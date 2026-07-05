@@ -27,7 +27,7 @@ export function VideoShowcase() {
 
       gsap.fromTo(
         wrapper,
-        { scale: 0.88, borderRadius: '2.5rem' },
+        { scale: 0.86, borderRadius: '2.5rem' },
         {
           scale: 1,
           borderRadius: '0rem',
@@ -37,7 +37,7 @@ export function VideoShowcase() {
             trigger: container,
             start: 'top bottom',
             end: 'center center',
-            scrub: 0.55,
+            scrub: 0.5,
           },
         }
       );
@@ -79,12 +79,12 @@ export function VideoShowcase() {
   );
 
   return (
-    <section ref={containerRef} className="relative overflow-hidden py-8 md:py-12">
+    <section ref={containerRef} className="relative w-full overflow-hidden py-6 md:py-10">
       <div
         ref={videoWrapperRef}
         data-cursor="play"
         data-cursor-label="Play"
-        className="media-hover relative mx-auto aspect-[16/10] w-[92%] overflow-hidden rounded-[2.5rem] bg-black md:w-[88%]"
+        className="media-hover relative mx-auto aspect-[16/9] w-[94%] overflow-hidden rounded-[2.5rem] bg-[#0a0a0a] will-change-transform md:w-[90%]"
       >
         <div ref={mediaInnerRef} className="absolute inset-0 will-change-transform">
           <video

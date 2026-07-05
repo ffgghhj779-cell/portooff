@@ -37,12 +37,12 @@ export function WhatWeDo() {
       if (textRef.current) {
         gsap.fromTo(
           textRef.current,
-          { opacity: 0, y: 50 },
+          { y: 40 },
           {
-            opacity: 1,
             y: 0,
             duration: MOTION.reveal,
             ease: MOTION.revealEase,
+            clearProps: 'transform',
             scrollTrigger: {
               trigger: textRef.current,
               start: 'top 80%',

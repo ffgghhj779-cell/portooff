@@ -129,11 +129,10 @@ export function Projects() {
 
       gsap.from('.project-card', {
         y: 48,
-        opacity: 0,
         duration: MOTION.reveal,
         stagger: 0.05,
         ease: MOTION.revealEase,
-        clearProps: 'all',
+        clearProps: 'transform',
         scrollTrigger: { trigger: grid, start: 'top 85%' },
       });
 
@@ -205,7 +204,7 @@ export function Projects() {
               <div
                 data-cursor="explore"
                 data-cursor-label="Explore"
-                className={`media-hover project-media relative h-full min-h-[inherit] overflow-hidden rounded-[2.5rem] bg-black ${glowStyles[project.glow]}`}
+                className={`media-hover project-media relative h-full min-h-[inherit] overflow-hidden rounded-[2.5rem] bg-[#111] ${glowStyles[project.glow]}`}
               >
                 <div className="project-image-inner absolute inset-0 will-change-transform">
                   <Image

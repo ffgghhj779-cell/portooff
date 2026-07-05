@@ -87,10 +87,10 @@ export function Blog() {
 
       gsap.from('.blog-row', {
         y: 32,
-        opacity: 0,
         duration: MOTION.reveal,
         stagger: 0.06,
-        ease: 'expo.out',
+        ease: MOTION.revealEase,
+        clearProps: 'transform',
         scrollTrigger: {
           trigger: section,
           start: 'top 75%',
@@ -112,7 +112,7 @@ export function Blog() {
     >
       <div className="section-shell flex flex-col gap-12 md:flex-row md:gap-16">
         <div className="w-full md:w-1/3">
-          <h2 className="heading-display type-section sticky top-32 font-bold tracking-tighter leading-[1.1]">
+          <h2 className="heading-display type-section sticky top-32 font-bold tracking-tighter leading-none text-white">
             Blog
           </h2>
         </div>
@@ -126,7 +126,7 @@ export function Blog() {
               <div
                 data-cursor="explore"
                 data-cursor-label="Explore"
-                className="media-hover relative aspect-[4/3] w-full overflow-hidden rounded-[2.5rem] bg-black/10 md:w-[42%]"
+                className="media-hover relative aspect-[4/3] w-full overflow-hidden rounded-[2.5rem] bg-white/5 md:w-[42%]"
               >
                 <div className="blog-image-inner absolute inset-0 will-change-transform">
                   <Image
@@ -140,13 +140,13 @@ export function Blog() {
                 </div>
               </div>
               <div className="flex w-full flex-col items-start gap-3 md:w-[58%]">
-                <span className="btn-pill border border-black/15 px-4 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-black/50">
+                <span className="btn-pill border border-white/20 px-4 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white/50">
                   {post.tag}
                 </span>
-                <h3 className="heading-display text-lg font-bold tracking-tighter leading-[1.1] md:text-2xl">
+                <h3 className="heading-display text-lg font-bold tracking-tighter leading-[1.1] text-white md:text-2xl">
                   {post.title}
                 </h3>
-                <p className="text-sm text-black/40">{post.date}</p>
+                <p className="text-sm text-white/40">{post.date}</p>
               </div>
             </article>
           ))}
@@ -155,7 +155,7 @@ export function Blog() {
             <MagneticButton className="inline-block">
               <Link
                 href="#blog"
-                className="btn-pill inline-block border border-black text-black"
+                className="btn-pill inline-block border border-white/30 text-white"
               >
                 Visit our blog
               </Link>

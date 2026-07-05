@@ -75,11 +75,11 @@ export function Services() {
       });
 
       gsap.from('.service-card', {
-        y: 64,
-        opacity: 0,
+        y: 48,
         duration: MOTION.reveal,
         stagger: 0.08,
-        ease: 'expo.out',
+        ease: MOTION.revealEase,
+        clearProps: 'transform',
         scrollTrigger: {
           trigger: cards,
           start: 'top 85%',
