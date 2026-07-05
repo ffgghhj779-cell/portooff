@@ -4,13 +4,19 @@ import { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { useMotionPreference } from '@/components/MotionPreferenceProvider';
-import { MOTION } from '@/lib/motion';
+import { CURSOR_FOLLOW_EASE, MOTION } from '@/lib/motion';
 
 type CursorMode = 'default' | 'link' | 'magnetic' | 'media' | 'play';
 
-const LERP = 0.09;
-const MAGNETIC_LERP = 0.16;
 const MORPH_DURATION = MOTION.cursorMorph;
+
+const FOLLOW_DURATION: Record<CursorMode, number> = {
+  default: MOTION.cursorFollow,
+  link: MOTION.cursorFollowLink,
+  magnetic: MOTION.cursorFollowMagnetic,
+  media: MOTION.cursorFollowMedia,
+  play: MOTION.cursorFollowMedia,
+};
 
 const MODE_CONFIG: Record<
   CursorMode,
@@ -71,12 +77,14 @@ export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLSpanElement>(null);
+  const followRef = useRef<{
+    x: gsap.QuickToFunc;
+    y: gsap.QuickToFunc;
+  } | null>(null);
 
   const modeRef = useRef<CursorMode>('default');
   const labelRef = useRef('');
   const mouseRef = useRef({ x: 0, y: 0 });
-  const posRef = useRef({ x: 0, y: 0 });
-  const targetRef = useRef({ x: 0, y: 0 });
   const magneticElRef = useRef<HTMLElement | null>(null);
 
   const [cursorText, setCursorText] = useState('');
@@ -96,7 +104,28 @@ export function CustomCursor() {
 
       if (!prefersFinePointer) return;
 
-      gsap.set(cursor, { opacity: 1 });
+      const createFollow = (nextMode: CursorMode) => {
+        followRef.current = {
+          x: gsap.quickTo(cursor, 'x', {
+            duration: FOLLOW_DURATION[nextMode],
+            ease: CURSOR_FOLLOW_EASE,
+            overwrite: true,
+          }),
+          y: gsap.quickTo(cursor, 'y', {
+            duration: FOLLOW_DURATION[nextMode],
+            ease: CURSOR_FOLLOW_EASE,
+            overwrite: true,
+          }),
+        };
+      };
+
+      createFollow('default');
+      gsap.set(cursor, { opacity: 1, x: 0, y: 0 });
+
+      const moveCursor = (x: number, y: number) => {
+        followRef.current?.x(x);
+        followRef.current?.y(y);
+      };
 
       const applyMode = (nextMode: CursorMode, label = '') => {
         if (modeRef.current === nextMode && labelRef.current === label) return;
@@ -105,6 +134,7 @@ export function CustomCursor() {
         labelRef.current = label;
         setMode(nextMode);
         setCursorText(label);
+        createFollow(nextMode);
 
         const config = MODE_CONFIG[nextMode];
 
@@ -132,14 +162,6 @@ export function CustomCursor() {
         el.onmousemove = null;
         el.onmouseleave = null;
         magneticElRef.current = null;
-      };
-
-      const snapToElement = (el: HTMLElement) => {
-        const rect = el.getBoundingClientRect();
-        targetRef.current = {
-          x: rect.left + rect.width / 2,
-          y: rect.top + rect.height / 2,
-        };
       };
 
       const resolveTarget = (target: HTMLElement): CursorMode | null => {
@@ -176,26 +198,25 @@ export function CustomCursor() {
           if (magneticElRef.current !== magneticEl) {
             resetMagneticListeners();
             magneticElRef.current = magneticEl;
-            snapToElement(magneticEl);
+
+            const rect = magneticEl.getBoundingClientRect();
+            moveCursor(rect.left + rect.width / 2, rect.top + rect.height / 2);
 
             magneticEl.onmousemove = (event: MouseEvent) => {
-              const rect = magneticEl.getBoundingClientRect();
+              const bounds = magneticEl.getBoundingClientRect();
               const pullX =
-                (event.clientX - (rect.left + rect.width / 2)) * 0.14;
+                (event.clientX - (bounds.left + bounds.width / 2)) * 0.14;
               const pullY =
-                (event.clientY - (rect.top + rect.height / 2)) * 0.14;
-              targetRef.current = {
-                x: rect.left + rect.width / 2 + pullX,
-                y: rect.top + rect.height / 2 + pullY,
-              };
+                (event.clientY - (bounds.top + bounds.height / 2)) * 0.14;
+              moveCursor(
+                bounds.left + bounds.width / 2 + pullX,
+                bounds.top + bounds.height / 2 + pullY
+              );
             };
 
             magneticEl.onmouseleave = () => {
               resetMagneticListeners();
-              targetRef.current = {
-                x: mouseRef.current.x,
-                y: mouseRef.current.y,
-              };
+              moveCursor(mouseRef.current.x, mouseRef.current.y);
             };
           }
           return 'magnetic';
@@ -218,7 +239,7 @@ export function CustomCursor() {
       const onMouseMove = (event: MouseEvent) => {
         mouseRef.current = { x: event.clientX, y: event.clientY };
         if (modeRef.current !== 'magnetic') {
-          targetRef.current = { x: event.clientX, y: event.clientY };
+          moveCursor(event.clientX, event.clientY);
         }
       };
 
@@ -227,47 +248,26 @@ export function CustomCursor() {
         if (resolved === null) {
           applyMode('default');
           resetMagneticListeners();
-          targetRef.current = {
-            x: mouseRef.current.x,
-            y: mouseRef.current.y,
-          };
+          moveCursor(mouseRef.current.x, mouseRef.current.y);
         }
       };
 
       const onMouseLeaveWindow = () => {
-        gsap.to(cursor, { opacity: 0, duration: 0.18, ease: 'expo.out' });
+        gsap.to(cursor, { opacity: 0, duration: 0.15, ease: 'expo.out' });
       };
 
       const onMouseEnterWindow = () => {
-        gsap.to(cursor, { opacity: 1, duration: 0.18, ease: 'expo.out' });
+        gsap.to(cursor, { opacity: 1, duration: 0.15, ease: 'expo.out' });
       };
 
-      const ticker = () => {
-        const lerp =
-          modeRef.current === 'magnetic' || modeRef.current === 'link'
-            ? MAGNETIC_LERP
-            : LERP;
-
-        posRef.current.x += (targetRef.current.x - posRef.current.x) * lerp;
-        posRef.current.y += (targetRef.current.y - posRef.current.y) * lerp;
-
-        gsap.set(cursor, {
-          x: posRef.current.x,
-          y: posRef.current.y,
-          force3D: true,
-        });
-      };
-
-      gsap.ticker.add(ticker);
-
-      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mousemove', onMouseMove, { passive: true });
       document.addEventListener('mouseover', onMouseOver);
       document.addEventListener('mouseleave', onMouseLeaveWindow);
       document.addEventListener('mouseenter', onMouseEnterWindow);
 
       return () => {
-        gsap.ticker.remove(ticker);
         resetMagneticListeners();
+        followRef.current = null;
         document.removeEventListener('mousemove', onMouseMove);
         document.removeEventListener('mouseover', onMouseOver);
         document.removeEventListener('mouseleave', onMouseLeaveWindow);
