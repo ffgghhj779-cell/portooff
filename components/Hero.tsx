@@ -138,7 +138,7 @@ export function Hero() {
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-8">
           <div className="flex flex-col lg:col-span-6">
             {HERO_LINES.map((line) => (
-              <div key={line.text} className="hero-line overflow-hidden">
+              <div key={line.text} className="hero-line">
                 <h1
                   className={`hero-line-inner heading-display type-hero flex items-center gap-3 md:gap-5 ${
                     line.italic ? 'font-light italic' : 'font-medium'
@@ -154,7 +154,7 @@ export function Hero() {
               </div>
             ))}
 
-            <div className="hero-subtitle mt-10 overflow-hidden md:mt-12">
+            <div className="hero-subtitle mt-10 md:mt-12">
               <p className="hero-subtitle-inner type-body-lg max-w-md font-medium tracking-tighter leading-[1.1] text-white/60">
                 We help companies build scalable digital products with thoughtful
                 design systems and carefully crafted development.

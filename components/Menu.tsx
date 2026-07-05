@@ -125,7 +125,7 @@ export function Menu() {
   );
 
   return (
-    <div ref={rootRef}>
+    <div ref={rootRef} className="contents">
       <button
         onClick={toggleMenu}
         className="magnetic fixed top-6 right-6 z-[70] flex flex-col gap-2 p-2 text-white mix-blend-difference md:right-12"
