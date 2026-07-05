@@ -45,7 +45,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: MOTION.lenisWheelMultiplier,
-      touchMultiplier: 1.8,
+      touchMultiplier: MOTION.lenisTouchMultiplier,
       infinite: false,
     });
 
@@ -77,6 +77,11 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
 
     gsap.ticker.add(ticker);
     gsap.ticker.lagSmoothing(0);
+
+    requestAnimationFrame(() => {
+      lenis.resize();
+      ScrollTrigger.refresh();
+    });
 
     let resizeTimer: ReturnType<typeof setTimeout>;
     const onResize = () => {

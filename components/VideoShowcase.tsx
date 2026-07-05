@@ -37,7 +37,7 @@ export function VideoShowcase() {
             trigger: container,
             start: 'top bottom',
             end: 'center center',
-            scrub: 0.5,
+            scrub: 1.1,
           },
         }
       );

@@ -8,8 +8,8 @@ import { MOTION } from '@/lib/motion';
 
 type CursorMode = 'default' | 'link' | 'magnetic' | 'media' | 'play';
 
-const LERP = 0.14;
-const MAGNETIC_LERP = 0.22;
+const LERP = 0.09;
+const MAGNETIC_LERP = 0.16;
 const MORPH_DURATION = MOTION.cursorMorph;
 
 const MODE_CONFIG: Record<

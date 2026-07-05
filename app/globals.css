@@ -214,7 +214,13 @@ body {
   backface-visibility: hidden;
 }
 
-.project-media {
+.service-image-inner {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.project-media,
+.service-media {
   transform: translateZ(0);
 }
 
