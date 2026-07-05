@@ -9,11 +9,11 @@ import { Menu } from '@/components/Menu';
 export function ClientProviders({ children }: { children: React.ReactNode }) {
   return (
     <MotionPreferenceProvider>
-      <CustomCursor />
-      <Menu />
       <SmoothScroll>
         <ScrollThemeController>{children}</ScrollThemeController>
       </SmoothScroll>
+      <CustomCursor />
+      <Menu />
     </MotionPreferenceProvider>
   );
 }

@@ -1,6 +1,7 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -22,7 +23,12 @@ export function Menu() {
   const lineMidRef = useRef<HTMLSpanElement>(null);
   const lineBotRef = useRef<HTMLSpanElement>(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const isOpenRef = useRef(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const closeMenu = () => {
     isOpenRef.current = false;
@@ -124,8 +130,8 @@ export function Menu() {
     { scope: rootRef, dependencies: [isOpen] }
   );
 
-  return (
-    <div ref={rootRef} className="contents">
+  const menu = (
+    <div ref={rootRef}>
       <button
         onClick={toggleMenu}
         className="magnetic fixed top-6 right-6 z-[70] flex flex-col gap-2 p-2 text-white mix-blend-difference md:right-12"
@@ -139,13 +145,13 @@ export function Menu() {
 
       <div
         ref={backdropRef}
-        className="menu-backdrop pointer-events-none fixed inset-0 z-[55] bg-black/40 opacity-0"
+        className="menu-backdrop pointer-events-none !fixed inset-0 z-[55] bg-black/40 opacity-0"
         aria-hidden="true"
       />
 
       <div
         ref={overlayRef}
-        className="menu-overlay mesh-glow pointer-events-none fixed inset-0 z-[60] flex flex-col bg-black text-white"
+        className="menu-overlay mesh-glow pointer-events-none !fixed inset-0 z-[60] flex flex-col bg-black text-white"
         style={{ clipPath: 'circle(0% at calc(100% - 3rem) 3rem)' }}
         data-lenis-prevent
       >
@@ -177,4 +183,8 @@ export function Menu() {
       </div>
     </div>
   );
+
+  if (!mounted) return null;
+
+  return createPortal(menu, document.body);
 }

@@ -187,6 +187,12 @@ body {
   transform: translateZ(0);
 }
 
+.menu-overlay,
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+}
+
 .menu-overlay {
   isolation: isolate;
   transform: translateZ(0);
