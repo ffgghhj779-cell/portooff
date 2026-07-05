@@ -11,7 +11,6 @@ import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useMotionPreference } from '@/components/MotionPreferenceProvider';
-import { batchScrollTriggerRefresh } from '@/lib/batch-scroll-trigger-refresh';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,7 +32,6 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     if (reducedMotion) {
       document.documentElement.classList.remove('lenis', 'lenis-smooth');
       setLenisInstance(null);
-      batchScrollTriggerRefresh();
       return;
     }
 
@@ -69,12 +67,8 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
           height: window.innerHeight,
         };
       },
-      pinType: document.documentElement.style.transform ? 'transform' : 'fixed',
+      pinType: 'transform',
     });
-
-    const onRefresh = () => lenis.resize();
-    ScrollTrigger.addEventListener('refresh', onRefresh);
-    batchScrollTriggerRefresh();
 
     const ticker = (time: number) => {
       lenis.raf(time * 1000);
@@ -82,11 +76,18 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
 
     gsap.ticker.add(ticker);
     gsap.ticker.lagSmoothing(0);
-    gsap.ticker.fps(-1);
+
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    const onResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => lenis.resize(), 200);
+    };
+    window.addEventListener('resize', onResize);
 
     return () => {
+      window.removeEventListener('resize', onResize);
+      clearTimeout(resizeTimer);
       gsap.ticker.remove(ticker);
-      ScrollTrigger.removeEventListener('refresh', onRefresh);
       ScrollTrigger.scrollerProxy(document.documentElement, {});
       lenis.destroy();
       document.documentElement.classList.remove('lenis', 'lenis-smooth');

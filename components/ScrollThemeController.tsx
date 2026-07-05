@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { batchScrollTriggerRefresh } from '@/lib/batch-scroll-trigger-refresh';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,6 +14,10 @@ export const SCROLL_THEMES = {
 } as const;
 
 export type ScrollThemeName = keyof typeof SCROLL_THEMES;
+
+function isScrollTheme(value: string | undefined): value is ScrollThemeName {
+  return value === 'dark' || value === 'light';
+}
 
 export function ScrollThemeController({
   children,
@@ -30,20 +33,35 @@ export function ScrollThemeController({
       if (!root) return;
 
       const body = document.body;
-      gsap.set(body, SCROLL_THEMES.dark);
-      document.documentElement.dataset.theme = 'dark';
+      const sections = gsap.utils.toArray<HTMLElement>(
+        '[data-scroll-theme]',
+        root
+      );
 
-      const bridges = gsap.utils.toArray<HTMLElement>('[data-theme-bridge]', root);
+      if (!sections.length) {
+        gsap.set(body, SCROLL_THEMES.dark);
+        document.documentElement.dataset.theme = 'dark';
+        return;
+      }
 
-      bridges.forEach((bridge) => {
-        const fromKey = bridge.dataset.themeFrom as ScrollThemeName | undefined;
-        const toKey = bridge.dataset.themeTo as ScrollThemeName | undefined;
-        if (!fromKey || !toKey || !(fromKey in SCROLL_THEMES) || !(toKey in SCROLL_THEMES)) {
-          return;
+      const firstTheme = sections[0].dataset.scrollTheme;
+      const initialTheme = isScrollTheme(firstTheme) ? firstTheme : 'dark';
+      gsap.set(body, SCROLL_THEMES[initialTheme]);
+      document.documentElement.dataset.theme = initialTheme;
+
+      for (let i = 1; i < sections.length; i += 1) {
+        const prevTheme = sections[i - 1].dataset.scrollTheme;
+        const nextTheme = sections[i].dataset.scrollTheme;
+        if (
+          !isScrollTheme(prevTheme) ||
+          !isScrollTheme(nextTheme) ||
+          prevTheme === nextTheme
+        ) {
+          continue;
         }
 
-        const from = SCROLL_THEMES[fromKey];
-        const to = SCROLL_THEMES[toKey];
+        const from = SCROLL_THEMES[prevTheme];
+        const to = SCROLL_THEMES[nextTheme];
 
         gsap.fromTo(
           body,
@@ -58,22 +76,20 @@ export function ScrollThemeController({
             immediateRender: false,
             overwrite: 'auto',
             scrollTrigger: {
-              trigger: bridge,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 1.35,
+              trigger: sections[i],
+              start: 'top center',
+              end: 'bottom center',
+              scrub: 1.1,
               onEnter: () => {
-                document.documentElement.dataset.theme = toKey;
+                document.documentElement.dataset.theme = nextTheme;
               },
               onLeaveBack: () => {
-                document.documentElement.dataset.theme = fromKey;
+                document.documentElement.dataset.theme = prevTheme;
               },
             },
           }
         );
-      });
-
-      batchScrollTriggerRefresh();
+      }
     },
     { scope: containerRef, dependencies: [pathname] }
   );

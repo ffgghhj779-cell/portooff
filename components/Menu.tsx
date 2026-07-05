@@ -161,7 +161,7 @@ export function Menu() {
                   onClick={closeMenu}
                   className="menu-link block"
                 >
-                  <span className="menu-link-inner heading-display inline-block text-[clamp(2.75rem,9vw,6.5rem)] font-semibold leading-[0.9]">
+                  <span className="menu-link-inner heading-display type-menu inline-block font-semibold leading-[0.92]">
                     {link.label}
                   </span>
                 </Link>

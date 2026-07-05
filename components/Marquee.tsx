@@ -73,7 +73,7 @@ export function Marquee() {
     >
       <div className="overflow-hidden whitespace-nowrap">
         <div ref={track1Ref} className="inline-flex will-change-transform">
-          <span className="heading-display text-[clamp(3rem,8vw,7rem)] font-medium uppercase italic opacity-90">
+          <span className="heading-display type-marquee font-medium uppercase italic opacity-90">
             {MARQUEE_TEXT}
             {MARQUEE_TEXT}
           </span>
@@ -82,7 +82,7 @@ export function Marquee() {
       <div className="overflow-hidden whitespace-nowrap">
         <div ref={track2Ref} className="inline-flex will-change-transform">
           <span
-            className="heading-display text-[clamp(3rem,8vw,7rem)] font-medium uppercase italic text-transparent"
+            className="heading-display type-marquee font-medium uppercase italic text-transparent"
             style={{ WebkitTextStroke: '1.5px currentColor' }}
           >
             {MARQUEE_TEXT}

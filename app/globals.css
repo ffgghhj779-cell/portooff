@@ -56,30 +56,50 @@ body {
 .section-shell {
   margin-inline: auto;
   width: 100%;
-  max-width: 90rem;
-  padding-inline: 1.5rem;
+  max-width: 76rem;
+  padding-inline: 1.25rem;
 }
 
 @media (min-width: 768px) {
   .section-shell {
-    padding-inline: 3rem;
+    padding-inline: 2.5rem;
   }
 }
 
 .section-pad {
-  padding-block: 7rem;
+  padding-block: 5rem;
 }
 
 @media (min-width: 768px) {
   .section-pad {
-    padding-block: 9rem;
+    padding-block: 6.5rem;
   }
 }
 
 .heading-display {
   font-family: var(--font-display), var(--font-inter), system-ui, sans-serif;
-  letter-spacing: -0.04em;
-  line-height: 0.82;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+}
+
+.type-hero {
+  font-size: clamp(2.5rem, 6.5vw, 5.75rem);
+}
+
+.type-section {
+  font-size: clamp(1.875rem, 4vw, 3.25rem);
+}
+
+.type-marquee {
+  font-size: clamp(2rem, 5vw, 4.5rem);
+}
+
+.type-menu {
+  font-size: clamp(2rem, 5.5vw, 4.25rem);
+}
+
+.type-display-xl {
+  font-size: clamp(2.25rem, 8vw, 5.5rem);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -139,7 +159,7 @@ body {
 html:not(.gsap-ready):not(.reduce-motion) .hero-line-inner,
 html:not(.gsap-ready):not(.reduce-motion) .hero-subtitle-inner {
   clip-path: inset(100% 0 0 0);
-  transform: translate3d(0, 110%, 0);
+  transform: translate3d(0, 100%, 0);
 }
 
 html:not(.gsap-ready):not(.reduce-motion) .hero-orb {
@@ -149,7 +169,17 @@ html:not(.gsap-ready):not(.reduce-motion) .hero-orb {
 
 html:not(.gsap-ready):not(.reduce-motion) .projects-heading-inner {
   clip-path: inset(100% 0 0 0);
-  transform: translate3d(0, 110%, 0);
+  transform: translate3d(0, 100%, 0);
+}
+
+html.gsap-ready .hero-line-inner,
+html.gsap-ready .hero-subtitle-inner,
+html.gsap-ready .projects-heading-inner,
+html.reduce-motion .hero-line-inner,
+html.reduce-motion .hero-subtitle-inner,
+html.reduce-motion .projects-heading-inner {
+  clip-path: none;
+  transform: none;
 }
 
 .menu-overlay {
@@ -191,7 +221,7 @@ html:not(.gsap-ready):not(.reduce-motion) .projects-heading-inner {
 }
 
 .custom-cursor {
-  contain: layout style;
+  z-index: 9999;
 }
 
 .custom-cursor-inner {

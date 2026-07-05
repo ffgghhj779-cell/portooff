@@ -162,7 +162,7 @@ export function Projects() {
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-white/40">
             Selected Works
           </p>
-          <h2 className="projects-heading-inner heading-display text-[clamp(2.25rem,6vw,5rem)] font-bold leading-[0.88]">
+          <h2 className="projects-heading-inner heading-display type-section font-bold leading-[0.92]">
             Featured projects
           </h2>
         </div>

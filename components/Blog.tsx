@@ -112,7 +112,7 @@ export function Blog() {
     >
       <div className="section-shell flex flex-col gap-16 md:flex-row">
         <div className="w-full md:w-1/3">
-          <h2 className="heading-display sticky top-40 text-[clamp(2.25rem,5vw,4.5rem)] font-bold leading-[0.9]">
+          <h2 className="heading-display type-section sticky top-40 font-bold leading-[0.92]">
             Blog
           </h2>
         </div>

@@ -7,7 +7,6 @@ import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { MagneticButton } from './MagneticButton';
-import { batchScrollTriggerRefresh } from '@/lib/batch-scroll-trigger-refresh';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -72,8 +71,6 @@ export function Services() {
           anticipatePin: 1,
           invalidateOnRefresh: true,
         });
-
-        batchScrollTriggerRefresh();
       });
 
       gsap.from('.service-card', {
@@ -117,7 +114,7 @@ export function Services() {
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-black/40">
                 What we do
               </p>
-              <h2 className="heading-display mb-8 text-[clamp(2.25rem,5vw,4.5rem)] font-bold leading-[0.88] text-black">
+              <h2 className="heading-display type-section mb-8 font-bold leading-[0.92] text-black">
                 Our services
               </h2>
               <p className="max-w-sm text-lg leading-relaxed text-black/60 md:text-xl">

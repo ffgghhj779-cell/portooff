@@ -183,9 +183,9 @@ export function Hero() {
             {HERO_LINES.map((line) => (
               <div key={line.text} className="hero-line overflow-hidden">
                 <h1
-                  className={`hero-line-inner heading-display flex items-center gap-4 md:gap-8 ${
+                  className={`hero-line-inner heading-display type-hero flex items-center gap-4 md:gap-6 ${
                     line.italic ? 'font-light italic' : 'font-medium'
-                  } text-[clamp(3.5rem,10vw,9rem)] leading-[0.82] tracking-[-0.045em]`}
+                  } leading-[0.92] tracking-[-0.035em]`}
                 >
                   {line.withOrb && (
                     <span className="hero-orb inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-white/20 md:h-[7.5rem] md:w-[7.5rem]">

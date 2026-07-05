@@ -83,7 +83,7 @@ export function Footer() {
             >
               <span
                 ref={tellUsTextRef}
-                className="tell-us-text block text-[clamp(3.5rem,14vw,9rem)] font-bold leading-none tracking-[-0.04em]"
+                className="tell-us-text type-display-xl block font-bold leading-none tracking-[-0.035em]"
               >
                 TELL US
               </span>

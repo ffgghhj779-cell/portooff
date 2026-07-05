@@ -37,7 +37,7 @@ export function ContactForm() {
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-black/40">
             Tasami · تسامي
           </p>
-          <h1 className="heading-display mb-10 text-[clamp(2.5rem,7vw,5.5rem)] font-bold leading-[0.9]">
+          <h1 className="heading-display type-section mb-10 font-bold leading-[0.92]">
             Hey! Tell us all
             <br />
             the things
@@ -50,7 +50,7 @@ export function ContactForm() {
               </p>
               <a
                 href={`tel:${PRIMARY_PHONE}`}
-                className="heading-display block text-[clamp(2rem,6vw,3.5rem)] font-bold leading-none tracking-tight"
+                className="heading-display type-section block font-bold leading-none tracking-tight"
               >
                 {PRIMARY_PHONE}
               </a>

@@ -80,7 +80,6 @@ export function CustomCursor() {
 
   const [cursorText, setCursorText] = useState('');
   const [mode, setMode] = useState<CursorMode>('default');
-  const [visible, setVisible] = useState(false);
 
   useGSAP(
     () => {
@@ -96,7 +95,7 @@ export function CustomCursor() {
 
       if (!prefersFinePointer) return;
 
-      setVisible(true);
+      gsap.set(cursor, { opacity: 1 });
 
       const applyMode = (nextMode: CursorMode, label = '') => {
         if (modeRef.current === nextMode && labelRef.current === label) return;
@@ -277,15 +276,15 @@ export function CustomCursor() {
     { scope: rootRef, dependencies: [reducedMotion] }
   );
 
-  if (reducedMotion || !visible) return null;
+  if (reducedMotion) return null;
 
   const config = MODE_CONFIG[mode];
 
   return (
-    <div ref={rootRef}>
+    <div ref={rootRef} className="pointer-events-none fixed inset-0 z-[9999]">
       <div
         ref={cursorRef}
-        className="custom-cursor pointer-events-none fixed top-0 left-0 z-[9999] -translate-x-1/2 -translate-y-1/2 will-change-transform"
+        className="custom-cursor pointer-events-none fixed top-0 left-0 opacity-0 -translate-x-1/2 -translate-y-1/2 will-change-transform"
         aria-hidden="true"
       >
         <div
