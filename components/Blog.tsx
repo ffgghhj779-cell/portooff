@@ -30,7 +30,7 @@ const posts = [
     tag: 'DESIGN COURSE',
   },
   {
-    title: 'Tasami Mouse Follower',
+    title: 'Cuberto Mouse Follower',
     date: '4/11/2022',
     image:
       'https://images.unsplash.com/photo-1617791160505-40fe982dbdcc?q=80&w=2426&auto=format&fit=crop',

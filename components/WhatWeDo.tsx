@@ -82,8 +82,8 @@ export function WhatWeDo() {
             digital products.
             <br />
             <br />
-            Tasami doesn&apos;t do cookie-cutter solutions — we build products
-            exactly as they were during the design phase, no shortcuts or
+            Tasami doesn&apos;t do cookie-cutter solutions and we build products
+            exactly as they were during the design phase, no short cuts or
             simplifications.
           </h2>
 

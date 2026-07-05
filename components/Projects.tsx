@@ -36,6 +36,13 @@ const projects = [
     layout: 'wide' as const,
   },
   {
+    name: 'Magma — Web3 builder tooling',
+    image:
+      'https://images.unsplash.com/photo-1620641788421-a37b341781a6?q=80&w=2000&auto=format&fit=crop',
+    glow: 'orange' as const,
+    layout: 'standard' as const,
+  },
+  {
     name: 'DaoWay — Planner app interface',
     image:
       'https://images.unsplash.com/photo-1614850523459-40c4e63ac874?q=80&w=2000&auto=format&fit=crop',
@@ -43,9 +50,44 @@ const projects = [
     layout: 'standard' as const,
   },
   {
-    name: 'Magma — Web3 builder tooling',
+    name: 'FlipaClip — Stop-motion animation tool',
     image:
-      'https://images.unsplash.com/photo-1620641788421-a37b341781a6?q=80&w=2000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=2000&auto=format&fit=crop',
+    glow: 'green' as const,
+    layout: 'standard' as const,
+  },
+  {
+    name: 'Zelt — HR, IT & Finance in one place',
+    image:
+      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop',
+    glow: 'blue' as const,
+    layout: 'standard' as const,
+  },
+  {
+    name: 'Ferrumpipe — Galvanized steel manufacturer',
+    image:
+      'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2000&auto=format&fit=crop',
+    glow: 'orange' as const,
+    layout: 'standard' as const,
+  },
+  {
+    name: 'Riyadh — Official capital city website',
+    image:
+      'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2000&auto=format&fit=crop',
+    glow: 'green' as const,
+    layout: 'standard' as const,
+  },
+  {
+    name: 'Qvino — Wine marketplace',
+    image:
+      'https://images.unsplash.com/photo-1510812431401-41e2bd2722f3?q=80&w=2000&auto=format&fit=crop',
+    glow: 'blue' as const,
+    layout: 'standard' as const,
+  },
+  {
+    name: 'Potion — Sales conversion tool',
+    image:
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2000&auto=format&fit=crop',
     glow: 'orange' as const,
     layout: 'standard' as const,
   },
@@ -53,18 +95,18 @@ const projects = [
 
 const glowStyles = {
   orange:
-    'shadow-[0_0_0_1px_rgba(255,107,53,0.22),0_0_48px_-12px_rgba(255,107,53,0.35),0_0_80px_-24px_rgba(79,140,255,0.12)]',
+    'shadow-[0_0_0_1px_rgba(255,107,53,0.18),0_0_40px_-12px_rgba(255,107,53,0.28)]',
   green:
-    'shadow-[0_0_0_1px_rgba(45,212,168,0.22),0_0_48px_-12px_rgba(45,212,168,0.3),0_0_80px_-24px_rgba(255,107,53,0.1)]',
+    'shadow-[0_0_0_1px_rgba(45,212,168,0.18),0_0_40px_-12px_rgba(45,212,168,0.26)]',
   blue:
-    'shadow-[0_0_0_1px_rgba(79,140,255,0.24),0_0_48px_-12px_rgba(79,140,255,0.32),0_0_80px_-24px_rgba(45,212,168,0.12)]',
+    'shadow-[0_0_0_1px_rgba(79,140,255,0.2),0_0_40px_-12px_rgba(79,140,255,0.3)]',
 } as const;
 
 const layoutStyles = {
-  hero: 'col-span-12 md:col-span-7 md:row-span-2 min-h-[320px] md:min-h-[520px]',
-  tall: 'col-span-12 md:col-span-5 md:row-span-2 min-h-[320px] md:min-h-[520px]',
-  wide: 'col-span-12 md:col-span-12 md:row-span-1 min-h-[240px] md:min-h-[300px]',
-  standard: 'col-span-12 md:col-span-6 md:row-span-1 min-h-[260px] md:min-h-[320px]',
+  hero: 'col-span-12 md:col-span-7 md:row-span-2 min-h-[300px] md:min-h-[480px]',
+  tall: 'col-span-12 md:col-span-5 md:row-span-2 min-h-[300px] md:min-h-[480px]',
+  wide: 'col-span-12 md:col-span-12 md:row-span-1 min-h-[220px] md:min-h-[280px]',
+  standard: 'col-span-12 md:col-span-6 md:row-span-1 min-h-[240px] md:min-h-[300px]',
 } as const;
 
 export function Projects() {
@@ -82,23 +124,17 @@ export function Projects() {
         duration: MOTION.reveal,
         ease: MOTION.revealEase,
         clearProps: 'transform',
-        scrollTrigger: {
-          trigger: grid,
-          start: 'top 85%',
-        },
+        scrollTrigger: { trigger: grid, start: 'top 88%' },
       });
 
       gsap.from('.project-card', {
         y: 48,
         opacity: 0,
         duration: MOTION.reveal,
-        stagger: 0.06,
+        stagger: 0.05,
         ease: MOTION.revealEase,
         clearProps: 'all',
-        scrollTrigger: {
-          trigger: grid,
-          start: 'top 78%',
-        },
+        scrollTrigger: { trigger: grid, start: 'top 85%' },
       });
 
       const cards = gsap.utils.toArray<HTMLElement>('.project-card', section);
@@ -132,7 +168,6 @@ export function Projects() {
 
         card.addEventListener('mouseenter', onEnter);
         card.addEventListener('mouseleave', onLeave);
-
         cleanups.push(() => {
           card.removeEventListener('mouseenter', onEnter);
           card.removeEventListener('mouseleave', onLeave);
@@ -140,9 +175,7 @@ export function Projects() {
         });
       });
 
-      return () => {
-        cleanups.forEach((fn) => fn());
-      };
+      return () => cleanups.forEach((fn) => fn());
     },
     { scope: sectionRef }
   );
@@ -151,33 +184,29 @@ export function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      className="section-pad relative w-full overflow-hidden"
+      className="section-pad relative w-full overflow-hidden !pt-12"
     >
       <div className="section-shell">
         <div className="projects-heading mb-10 overflow-hidden md:mb-14">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-white/45">
-            Selected Works
-          </p>
-          <h2 className="projects-heading-inner heading-display type-section font-bold tracking-tighter leading-none">
+          <h2 className="projects-heading-inner heading-display type-section font-bold tracking-tighter leading-none text-black">
             Featured projects
           </h2>
         </div>
 
         <div
           ref={gridRef}
-          className="projects-grid grid grid-cols-12 gap-4 md:gap-6"
+          className="projects-grid grid grid-cols-12 gap-3 md:gap-5"
         >
           {projects.map((project) => (
             <article
               key={project.name}
-              className={`project-card group flex flex-col gap-5 ${layoutStyles[project.layout]}`}
+              className={`project-card group flex flex-col gap-4 ${layoutStyles[project.layout]}`}
             >
               <div
                 data-cursor="explore"
                 data-cursor-label="Explore"
-                className={`media-hover project-media relative h-full min-h-[inherit] overflow-hidden rounded-[2.5rem] bg-cinematic-surface ${glowStyles[project.glow]}`}
+                className={`media-hover project-media relative h-full min-h-[inherit] overflow-hidden rounded-[2.5rem] bg-black ${glowStyles[project.glow]}`}
               >
-                <div className="pointer-events-none absolute inset-0 z-10 rounded-[inherit] bg-gradient-to-br from-glow-orange/5 via-transparent to-glow-blue/8" />
                 <div className="project-image-inner absolute inset-0 will-change-transform">
                   <Image
                     src={project.image}
@@ -190,18 +219,18 @@ export function Projects() {
                 </div>
               </div>
 
-              <h3 className="heading-display max-w-lg text-base font-medium tracking-tighter leading-[1.1] text-white/90 md:text-lg">
+              <h3 className="heading-display text-base font-medium tracking-tighter leading-[1.1] text-black/80 md:text-lg">
                 {project.name}
               </h3>
             </article>
           ))}
         </div>
 
-        <div className="mt-20 flex justify-center md:mt-28">
+        <div className="mt-16 flex justify-center md:mt-20">
           <MagneticButton>
             <Link
               href="#projects"
-              className="btn-pill block border border-white/25 text-white"
+              className="btn-pill block border border-black/20 text-black"
             >
               View all projects
             </Link>

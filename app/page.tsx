@@ -1,8 +1,8 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { VideoShowcase } from "@/components/VideoShowcase";
-import { Marquee } from "@/components/Marquee";
 import { WhatWeDo } from "@/components/WhatWeDo";
+import { Marquee } from "@/components/Marquee";
 import { Projects } from "@/components/Projects";
 import { Services } from "@/components/Services";
 import { Blog } from "@/components/Blog";
@@ -13,29 +13,29 @@ export default function Home() {
     <>
       <Navbar />
       <main className="overflow-x-hidden font-sans">
+        {/* Cuberto: dark hero + showreel */}
         <section data-scroll-theme="dark" className="theme-dark">
           <Hero />
-        </section>
-
-        <section data-scroll-theme="light" className="theme-light">
           <VideoShowcase />
-          <Marquee />
+        </section>
+
+        {/* Cuberto: light zone — about, contact marquee, work, services */}
+        <section
+          data-scroll-theme="light"
+          className="theme-light rounded-t-[2.5rem]"
+        >
           <WhatWeDo />
-        </section>
-
-        <section data-scroll-theme="dark" className="theme-dark">
+          <Marquee />
           <Projects />
-        </section>
-
-        <section data-scroll-theme="light" className="theme-light">
           <Services />
         </section>
 
-        <section data-scroll-theme="light" className="theme-light">
+        {/* Cuberto: dark footer zone — blog + CTA */}
+        <section
+          data-scroll-theme="dark"
+          className="theme-dark rounded-t-[2.5rem]"
+        >
           <Blog />
-        </section>
-
-        <section data-scroll-theme="dark" className="theme-dark">
           <Footer />
         </section>
       </main>

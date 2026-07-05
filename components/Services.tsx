@@ -31,7 +31,7 @@ const services = [
   {
     title: 'Custom development',
     description:
-      'Frontend, backend, and AI integrations — built for performance and scale.',
+      'Frontend + backend + AI integrations — built for performance and scalability.',
     image:
       'https://images.unsplash.com/photo-1620641788421-a37b341781a6?q=80&w=1600&auto=format&fit=crop',
     glow: 'green' as const,
@@ -118,7 +118,7 @@ export function Services() {
               <h2 className="heading-display type-section mb-6 font-bold tracking-tighter leading-[1.1] text-black">
                 Our services
               </h2>
-              <p className="max-w-sm text-lg leading-relaxed text-black/60 md:text-xl">
+              <p className="max-w-sm text-base leading-[1.1] tracking-tighter text-black/55 md:text-lg">
                 From motion design to AI-powered products — we design and build
                 interfaces for the future.
               </p>

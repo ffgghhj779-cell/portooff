@@ -7,7 +7,7 @@ import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const MARQUEE_TEXT = 'Tasami — Elite Digital Craftsmanship — ';
+const MARQUEE_TEXT = 'contact — contact — contact — ';
 
 export function Marquee() {
   const containerRef = useRef<HTMLElement>(null);
@@ -38,30 +38,23 @@ export function Marquee() {
           Math.abs(velocityRef.current) * 0.004,
           5.5
         );
-        const speed = 0.55 + velocityBoost;
+        const speed = 0.6 + velocityBoost;
 
         offset1Ref.current -= speed;
-        offset2Ref.current += speed * 0.85;
+        offset2Ref.current += speed * 0.88;
 
         const halfWidth1 = track1.scrollWidth / 2;
         const halfWidth2 = track2.scrollWidth / 2;
 
-        if (Math.abs(offset1Ref.current) >= halfWidth1) {
-          offset1Ref.current = 0;
-        }
-        if (Math.abs(offset2Ref.current) >= halfWidth2) {
-          offset2Ref.current = 0;
-        }
+        if (Math.abs(offset1Ref.current) >= halfWidth1) offset1Ref.current = 0;
+        if (Math.abs(offset2Ref.current) >= halfWidth2) offset2Ref.current = 0;
 
         gsap.set(track1, { x: offset1Ref.current, force3D: true });
         gsap.set(track2, { x: offset2Ref.current, force3D: true });
       };
 
       gsap.ticker.add(tick);
-
-      return () => {
-        gsap.ticker.remove(tick);
-      };
+      return () => gsap.ticker.remove(tick);
     },
     { scope: containerRef }
   );
@@ -69,24 +62,22 @@ export function Marquee() {
   return (
     <section
       ref={containerRef}
-      className="section-pad flex flex-col gap-5 overflow-hidden !py-20 md:gap-6"
+      className="overflow-hidden border-y border-black/[0.06] py-14 md:py-16"
     >
       <div className="overflow-hidden whitespace-nowrap">
         <div ref={track1Ref} className="inline-flex will-change-transform">
-          <span className="heading-display type-marquee font-medium uppercase italic opacity-90">
-            {MARQUEE_TEXT}
-            {MARQUEE_TEXT}
+          <span className="heading-display type-marquee px-2 font-medium lowercase tracking-tighter leading-none text-black">
+            {MARQUEE_TEXT.repeat(4)}
           </span>
         </div>
       </div>
-      <div className="overflow-hidden whitespace-nowrap">
+      <div className="mt-4 overflow-hidden whitespace-nowrap md:mt-5">
         <div ref={track2Ref} className="inline-flex will-change-transform">
           <span
-            className="heading-display type-marquee font-medium uppercase italic text-transparent"
-            style={{ WebkitTextStroke: '1.5px currentColor' }}
+            className="heading-display type-marquee px-2 font-medium lowercase tracking-tighter leading-none text-transparent"
+            style={{ WebkitTextStroke: '1px rgba(0,0,0,0.35)' }}
           >
-            {MARQUEE_TEXT}
-            {MARQUEE_TEXT}
+            {MARQUEE_TEXT.repeat(4)}
           </span>
         </div>
       </div>

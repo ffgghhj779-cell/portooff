@@ -10,7 +10,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const HOVER_DURATION = MOTION.hover;
 
-/** Abstract motion reel — no human figures */
 const REEL_SRC =
   'https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-network-background-loop-31647-large.mp4';
 
@@ -28,7 +27,7 @@ export function VideoShowcase() {
 
       gsap.fromTo(
         wrapper,
-        { scale: 0.94, borderRadius: '2.5rem' },
+        { scale: 0.88, borderRadius: '2.5rem' },
         {
           scale: 1,
           borderRadius: '0rem',
@@ -38,7 +37,7 @@ export function VideoShowcase() {
             trigger: container,
             start: 'top bottom',
             end: 'center center',
-            scrub: 0.6,
+            scrub: 0.55,
           },
         }
       );
@@ -80,30 +79,25 @@ export function VideoShowcase() {
   );
 
   return (
-    <section ref={containerRef} className="section-pad relative overflow-hidden">
-      <div className="section-shell">
-        <div
-          ref={videoWrapperRef}
-          data-cursor="play"
-          data-cursor-label="Play"
-          className="media-hover relative mx-auto aspect-video w-full overflow-hidden rounded-[2.5rem] bg-black"
-        >
-          <div
-            ref={mediaInnerRef}
-            className="absolute inset-0 will-change-transform"
+    <section ref={containerRef} className="relative overflow-hidden py-8 md:py-12">
+      <div
+        ref={videoWrapperRef}
+        data-cursor="play"
+        data-cursor-label="Play"
+        className="media-hover relative mx-auto aspect-[16/10] w-[92%] overflow-hidden rounded-[2.5rem] bg-black md:w-[88%]"
+      >
+        <div ref={mediaInnerRef} className="absolute inset-0 will-change-transform">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="h-full w-full object-cover"
+            poster="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1600&auto=format&fit=crop"
           >
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              className="h-full w-full object-cover opacity-75 mix-blend-luminosity"
-              poster="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1600&auto=format&fit=crop"
-            >
-              <source src={REEL_SRC} type="video/mp4" />
-            </video>
-          </div>
+            <source src={REEL_SRC} type="video/mp4" />
+          </video>
         </div>
       </div>
     </section>
