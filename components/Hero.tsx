@@ -5,7 +5,6 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { markGsapReady } from '@/lib/gsap-ready';
 import { MOTION } from '@/lib/motion';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -29,69 +28,43 @@ export function Hero() {
       const section = sectionRef.current;
       if (!section) return;
 
-      gsap.set('.hero-line-inner', {
-        clipPath: 'inset(100% 0 0 0)',
-        yPercent: 110,
-      });
-      gsap.set('.hero-orb', { scale: 0, opacity: 0, rotate: -90 });
-      gsap.set('.hero-subtitle-inner', {
-        clipPath: 'inset(100% 0 0 0)',
-        yPercent: 80,
-      });
+      const mm = gsap.matchMedia();
 
-      markGsapReady();
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        gsap.from('.hero-line-inner', {
+          y: 32,
+          duration: MOTION.reveal,
+          stagger: MOTION.revealStagger,
+          ease: MOTION.revealEase,
+          clearProps: 'transform',
+        });
 
-      const intro = gsap.timeline({
-        defaults: { ease: MOTION.revealEase },
-        onComplete: markGsapReady,
-      });
+        gsap.from('.hero-orb', {
+          scale: 0.85,
+          duration: 0.55,
+          ease: 'expo.out',
+          clearProps: 'transform',
+          delay: 0.12,
+        });
 
-      intro
-        .fromTo(
-          '.hero-line-inner',
-          {
-            clipPath: 'inset(100% 0 0 0)',
-            yPercent: 110,
-          },
-          {
-            clipPath: 'inset(0% 0 0 0)',
-            yPercent: 0,
-            duration: MOTION.reveal,
-            stagger: MOTION.revealStagger,
-          }
-        )
-        .fromTo(
-          '.hero-orb',
-          { scale: 0, opacity: 0, rotate: -90 },
-          {
-            scale: 1,
-            opacity: 1,
-            rotate: 0,
-            duration: 0.55,
+        gsap.from('.hero-subtitle-inner', {
+          y: 24,
+          duration: MOTION.reveal,
+          ease: MOTION.revealEase,
+          clearProps: 'transform',
+          delay: 0.2,
+        });
+
+        if (floatRef.current) {
+          gsap.from(floatRef.current, {
+            y: 40,
+            duration: 0.75,
             ease: 'expo.out',
-          },
-          '-=0.45'
-        )
-        .fromTo(
-          '.hero-subtitle-inner',
-          {
-            clipPath: 'inset(100% 0 0 0)',
-            yPercent: 80,
-          },
-          {
-            clipPath: 'inset(0% 0 0 0)',
-            yPercent: 0,
-            duration: MOTION.reveal,
-            ease: MOTION.revealEase,
-          },
-          '-=0.35'
-        )
-        .fromTo(
-          floatRef.current,
-          { opacity: 0, y: 48, scale: 0.92 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.75, ease: 'expo.out' },
-          '-=0.55'
-        );
+            clearProps: 'transform',
+            delay: 0.15,
+          });
+        }
+      });
 
       if (floatInnerRef.current) {
         gsap.to(floatInnerRef.current, {
@@ -129,43 +102,36 @@ export function Hero() {
         });
       }
 
-      gsap.to(contentRef.current, {
-        yPercent: 12,
-        opacity: 0.55,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 0.8,
-        },
-      });
+      if (contentRef.current) {
+        gsap.to(contentRef.current, {
+          yPercent: 10,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 0.8,
+          },
+        });
+      }
 
-      gsap.to(floatRef.current, {
-        y: -140,
-        x: 40,
-        rotateZ: -6,
-        ease: 'none',
-        force3D: true,
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1.5,
-        },
-      });
+      if (floatRef.current) {
+        gsap.to(floatRef.current, {
+          y: -100,
+          x: 32,
+          rotateZ: -4,
+          ease: 'none',
+          force3D: true,
+          scrollTrigger: {
+            trigger: section,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1.2,
+          },
+        });
+      }
 
-      gsap.to(mediaRef.current, {
-        yPercent: -25,
-        ease: 'none',
-        force3D: true,
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 2,
-        },
-      });
+      return () => mm.revert();
     },
     { scope: sectionRef }
   );
@@ -173,22 +139,22 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="mesh-glow relative z-10 min-h-screen overflow-hidden"
+      className="mesh-glow relative z-10 min-h-[100svh] overflow-hidden"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(255,107,53,0.08),transparent)]" />
 
       <div
         ref={contentRef}
-        className="section-shell relative flex min-h-[100svh] flex-col justify-center pb-16 pt-28 md:pt-32"
+        className="section-shell section-grid relative min-h-[100svh] content-center pb-16 pt-28 md:pt-32"
       >
-        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-10">
-          <div className="flex flex-col">
+        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-10">
+          <div className="flex flex-col lg:col-span-6">
             {HERO_LINES.map((line) => (
               <div key={line.text} className="hero-line overflow-hidden">
                 <h1
                   className={`hero-line-inner heading-display type-hero flex items-center gap-3 md:gap-5 ${
                     line.italic ? 'font-light italic' : 'font-medium'
-                  } tracking-tighter leading-[1.1]`}
+                  } tracking-tighter leading-none`}
                 >
                   {line.withOrb && (
                     <span className="hero-orb inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-white/20 md:h-[7.5rem] md:w-[7.5rem]">
@@ -203,7 +169,7 @@ export function Hero() {
 
           <div
             ref={floatRef}
-            className="relative mx-auto flex w-full max-w-md items-center justify-center opacity-0 lg:mx-0 lg:max-w-none lg:justify-end"
+            className="relative mx-auto flex w-full max-w-md items-center justify-center lg:col-span-6 lg:mx-0 lg:max-w-none lg:justify-end"
           >
             <div
               ref={floatInnerRef}
@@ -237,12 +203,12 @@ export function Hero() {
                     referrerPolicy="no-referrer"
                     sizes="(max-width: 768px) 80vw, 400px"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-cinematic-black/40 via-transparent to-glow-orange/10" />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-glow-orange/10" />
                   <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
                 </div>
 
                 <div
-                  className="absolute -right-4 top-1/4 h-16 w-16 rounded-lg border border-glow-orange/40 bg-glow-orange/10"
+                  className="absolute -right-4 top-1/4 h-16 w-16 rounded-[1.25rem] border border-glow-orange/40 bg-glow-orange/10"
                   style={{ transform: 'translateZ(60px) rotateY(-20deg)' }}
                 />
                 <div
@@ -254,8 +220,8 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="hero-subtitle mt-8 flex w-full justify-start overflow-hidden lg:mt-12 lg:justify-end">
-          <p className="hero-subtitle-inner type-body-lg max-w-md font-medium text-white/65 lg:max-w-lg lg:text-right">
+        <div className="hero-subtitle mt-8 flex w-full justify-start overflow-hidden lg:col-span-12 lg:mt-10 lg:justify-end">
+          <p className="hero-subtitle-inner type-body-lg max-w-md font-medium tracking-tighter leading-[1.1] text-white/70 lg:max-w-lg lg:text-right">
             We help companies build scalable digital products with thoughtful
             design systems and carefully crafted development.
           </p>

@@ -77,16 +77,11 @@ export function Projects() {
       const grid = gridRef.current;
       if (!section || !grid) return;
 
-      gsap.set('.projects-heading-inner', {
-        clipPath: 'inset(100% 0 0 0)',
-        yPercent: 110,
-      });
-
       gsap.from('.projects-heading-inner', {
-        clipPath: 'inset(100% 0 0 0)',
-        yPercent: 110,
+        y: 40,
         duration: MOTION.reveal,
         ease: MOTION.revealEase,
+        clearProps: 'transform',
         scrollTrigger: {
           trigger: grid,
           start: 'top 85%',
@@ -98,7 +93,8 @@ export function Projects() {
         opacity: 0,
         duration: MOTION.reveal,
         stagger: 0.06,
-        ease: 'expo.out',
+        ease: MOTION.revealEase,
+        clearProps: 'all',
         scrollTrigger: {
           trigger: grid,
           start: 'top 78%',
@@ -162,7 +158,7 @@ export function Projects() {
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-white/45">
             Selected Works
           </p>
-          <h2 className="projects-heading-inner heading-display type-section font-bold tracking-tighter leading-[1.1]">
+          <h2 className="projects-heading-inner heading-display type-section font-bold tracking-tighter leading-none">
             Featured projects
           </h2>
         </div>

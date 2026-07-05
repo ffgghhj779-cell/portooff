@@ -44,7 +44,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.75,
+      wheelMultiplier: MOTION.lenisWheelMultiplier,
       touchMultiplier: 1.8,
       infinite: false,
     });

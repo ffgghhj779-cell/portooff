@@ -26,15 +26,14 @@ export function VideoShowcase() {
       const mediaInner = mediaInnerRef.current;
       if (!container || !wrapper) return;
 
-      gsap.set(wrapper, { scale: 0.92, borderRadius: '2.5rem' });
-
       gsap.fromTo(
         wrapper,
-        { scale: 0.92, borderRadius: '2.5rem' },
+        { scale: 0.94, borderRadius: '2.5rem' },
         {
           scale: 1,
           borderRadius: '0rem',
           ease: 'none',
+          immediateRender: false,
           scrollTrigger: {
             trigger: container,
             start: 'top bottom',
