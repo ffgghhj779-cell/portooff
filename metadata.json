@@ -1,0 +1,6 @@
+{
+  "name": "Tasami",
+  "description": "Tasami architects next-generation web platforms, ultra-fast mobile applications, and intelligent AI automation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
