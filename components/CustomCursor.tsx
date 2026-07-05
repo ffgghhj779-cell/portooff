@@ -5,8 +5,14 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { useMotionPreference } from '@/components/MotionPreferenceProvider';
 import { CURSOR_FOLLOW_EASE, MOTION } from '@/lib/motion';
+import {
+  getCursorModeConfig,
+  getPageTheme,
+  type CursorMode,
+  type CursorTheme,
+} from '@/lib/cursorTheme';
 
-type CursorMode = 'default' | 'link' | 'magnetic' | 'media' | 'play';
+export type { CursorMode };
 
 const MORPH_DURATION = MOTION.cursorMorph;
 
@@ -16,59 +22,6 @@ const FOLLOW_DURATION: Record<CursorMode, number> = {
   magnetic: MOTION.cursorFollowMagnetic,
   media: MOTION.cursorFollowMedia,
   play: MOTION.cursorFollowMedia,
-};
-
-const MODE_CONFIG: Record<
-  CursorMode,
-  {
-    size: number;
-    bg: string;
-    border: string;
-    textColor: string;
-    blendMode: string;
-    showText: boolean;
-  }
-> = {
-  default: {
-    size: 12,
-    bg: '#ffffff',
-    border: 'transparent',
-    textColor: '#000000',
-    blendMode: 'difference',
-    showText: false,
-  },
-  link: {
-    size: 40,
-    bg: 'rgba(255, 255, 255, 0.12)',
-    border: 'rgba(255, 255, 255, 0.4)',
-    textColor: '#ffffff',
-    blendMode: 'difference',
-    showText: false,
-  },
-  magnetic: {
-    size: 64,
-    bg: '#ffffff',
-    border: 'transparent',
-    textColor: '#000000',
-    blendMode: 'difference',
-    showText: false,
-  },
-  media: {
-    size: 180,
-    bg: '#ffffff',
-    border: 'transparent',
-    textColor: '#000000',
-    blendMode: 'normal',
-    showText: true,
-  },
-  play: {
-    size: 180,
-    bg: '#0a0a0a',
-    border: 'rgba(255, 255, 255, 0.25)',
-    textColor: '#ffffff',
-    blendMode: 'normal',
-    showText: true,
-  },
 };
 
 export function CustomCursor() {
@@ -89,6 +42,7 @@ export function CustomCursor() {
 
   const [cursorText, setCursorText] = useState('');
   const [mode, setMode] = useState<CursorMode>('default');
+  const [pageTheme, setPageTheme] = useState<CursorTheme>('dark');
 
   useGSAP(
     () => {
@@ -120,15 +74,27 @@ export function CustomCursor() {
       };
 
       createFollow('default');
-      gsap.set(cursor, { opacity: 1, x: 0, y: 0 });
 
       const moveCursor = (x: number, y: number) => {
         followRef.current?.x(x);
         followRef.current?.y(y);
       };
 
-      const applyMode = (nextMode: CursorMode, label = '') => {
-        if (modeRef.current === nextMode && labelRef.current === label) return;
+      const applyMode = (
+        nextMode: CursorMode,
+        label = '',
+        force = false
+      ) => {
+        const theme = getPageTheme();
+        setPageTheme(theme);
+
+        if (
+          !force &&
+          modeRef.current === nextMode &&
+          labelRef.current === label
+        ) {
+          return;
+        }
 
         modeRef.current = nextMode;
         labelRef.current = label;
@@ -136,13 +102,14 @@ export function CustomCursor() {
         setCursorText(label);
         createFollow(nextMode);
 
-        const config = MODE_CONFIG[nextMode];
+        const config = getCursorModeConfig(nextMode, theme);
 
         gsap.to(inner, {
           width: config.size,
           height: config.size,
           backgroundColor: config.bg,
           borderColor: config.border,
+          mixBlendMode: config.blendMode,
           duration: MORPH_DURATION,
           ease: 'expo.out',
         });
@@ -155,6 +122,17 @@ export function CustomCursor() {
           ease: 'expo.out',
         });
       };
+
+      applyMode('default', '', true);
+      gsap.set(cursor, { opacity: 1, x: 0, y: 0 });
+
+      const themeObserver = new MutationObserver(() => {
+        applyMode(modeRef.current, labelRef.current, true);
+      });
+      themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme'],
+      });
 
       const resetMagneticListeners = () => {
         const el = magneticElRef.current;
@@ -266,6 +244,7 @@ export function CustomCursor() {
       document.addEventListener('mouseenter', onMouseEnterWindow);
 
       return () => {
+        themeObserver.disconnect();
         resetMagneticListeners();
         followRef.current = null;
         document.removeEventListener('mousemove', onMouseMove);
@@ -279,7 +258,7 @@ export function CustomCursor() {
 
   if (reducedMotion) return null;
 
-  const config = MODE_CONFIG[mode];
+  const config = getCursorModeConfig(mode, pageTheme);
 
   return (
     <div ref={rootRef} className="pointer-events-none fixed inset-0 z-[9999]">

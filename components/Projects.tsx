@@ -364,25 +364,7 @@ export function Projects() {
 
         ease: MOTION.revealEase,
 
-        scrollTrigger: { trigger: grid, start: 'top 82%' },
-
-      });
-
-
-
-      gsap.from('.project-caption', {
-
-        y: 24,
-
-        opacity: 0,
-
-        duration: MOTION.reveal,
-
-        stagger: MOTION.revealStagger,
-
-        ease: MOTION.revealEase,
-
-        scrollTrigger: { trigger: grid, start: 'top 80%' },
+        scrollTrigger: { trigger: grid, start: 'top 82%', toggleActions: 'play none none none' },
 
       });
 
