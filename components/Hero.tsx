@@ -5,6 +5,7 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { markGsapReady } from '@/lib/gsap-ready';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,7 +28,20 @@ export function Hero() {
       const section = sectionRef.current;
       if (!section) return;
 
-      const intro = gsap.timeline({ defaults: { ease: 'power4.out' } });
+      gsap.set('.hero-line-inner', {
+        clipPath: 'inset(100% 0 0 0)',
+        yPercent: 110,
+      });
+      gsap.set('.hero-orb', { scale: 0, opacity: 0, rotate: -90 });
+      gsap.set('.hero-subtitle-inner', {
+        clipPath: 'inset(100% 0 0 0)',
+        yPercent: 80,
+      });
+
+      const intro = gsap.timeline({
+        defaults: { ease: 'power4.out' },
+        onComplete: markGsapReady,
+      });
 
       intro
         .fromTo(

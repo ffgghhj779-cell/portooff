@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { MagneticButton } from './MagneticButton';
 
 const PRIMARY_PHONE = '01144003490';

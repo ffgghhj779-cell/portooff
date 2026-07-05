@@ -138,13 +138,13 @@ export function Menu() {
 
       <div
         ref={backdropRef}
-        className="pointer-events-none fixed inset-0 z-[55] bg-black/40 opacity-0"
+        className="menu-backdrop pointer-events-none fixed inset-0 z-[55] bg-black/40 opacity-0"
         aria-hidden="true"
       />
 
       <div
         ref={overlayRef}
-        className="mesh-glow pointer-events-none fixed inset-0 z-[60] flex flex-col bg-cinematic-black text-white"
+        className="menu-overlay mesh-glow pointer-events-none fixed inset-0 z-[60] flex flex-col bg-cinematic-black text-white"
         style={{ clipPath: 'circle(0% at calc(100% - 3rem) 3rem)' }}
         data-lenis-prevent
       >

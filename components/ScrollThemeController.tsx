@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -21,6 +22,7 @@ export function ScrollThemeController({
   children: React.ReactNode;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
 
   useGSAP(
     () => {
@@ -54,6 +56,7 @@ export function ScrollThemeController({
             color: to.color,
             ease: 'none',
             immediateRender: false,
+            overwrite: 'auto',
             scrollTrigger: {
               trigger: bridge,
               start: 'top bottom',
@@ -72,7 +75,7 @@ export function ScrollThemeController({
 
       batchScrollTriggerRefresh();
     },
-    { scope: containerRef, dependencies: [] }
+    { scope: containerRef, dependencies: [pathname] }
   );
 
   return <div ref={containerRef}>{children}</div>;

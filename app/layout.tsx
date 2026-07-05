@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import { SmoothScroll } from "@/components/SmoothScroll";
-import { CustomCursor } from "@/components/CustomCursor";
-import { Menu } from "@/components/Menu";
-import { ScrollThemeController } from "@/components/ScrollThemeController";
-import { MotionPreferenceProvider } from "@/components/MotionPreferenceProvider";
-import { ScrollLayoutStabilizer } from "@/components/ScrollLayoutStabilizer";
+import { ClientProviders } from "@/components/ClientProviders";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -30,18 +25,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="lenis lenis-smooth">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased selection:bg-white/10 selection:text-white`}
+        suppressHydrationWarning
       >
-        <MotionPreferenceProvider>
-          <CustomCursor />
-          <Menu />
-          <SmoothScroll>
-            <ScrollLayoutStabilizer />
-            <ScrollThemeController>{children}</ScrollThemeController>
-          </SmoothScroll>
-        </MotionPreferenceProvider>
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );

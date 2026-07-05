@@ -77,6 +77,11 @@ export function Projects() {
       const grid = gridRef.current;
       if (!section || !grid) return;
 
+      gsap.set('.projects-heading-inner', {
+        clipPath: 'inset(100% 0 0 0)',
+        yPercent: 110,
+      });
+
       gsap.from('.projects-heading-inner', {
         clipPath: 'inset(100% 0 0 0)',
         yPercent: 110,

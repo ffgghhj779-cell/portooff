@@ -31,10 +31,13 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (reducedMotion) {
+      document.documentElement.classList.remove('lenis', 'lenis-smooth');
       setLenisInstance(null);
       batchScrollTriggerRefresh();
       return;
     }
+
+    document.documentElement.classList.add('lenis', 'lenis-smooth');
 
     const lenis = new Lenis({
       duration: 1.15,
@@ -86,6 +89,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       ScrollTrigger.removeEventListener('refresh', onRefresh);
       ScrollTrigger.scrollerProxy(document.documentElement, {});
       lenis.destroy();
+      document.documentElement.classList.remove('lenis', 'lenis-smooth');
       setLenisInstance(null);
     };
   }, [reducedMotion]);

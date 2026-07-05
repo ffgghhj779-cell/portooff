@@ -7,6 +7,7 @@ import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { MagneticButton } from './MagneticButton';
+import { batchScrollTriggerRefresh } from '@/lib/batch-scroll-trigger-refresh';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,6 +72,8 @@ export function Services() {
           anticipatePin: 1,
           invalidateOnRefresh: true,
         });
+
+        batchScrollTriggerRefresh();
       });
 
       gsap.from('.service-card', {

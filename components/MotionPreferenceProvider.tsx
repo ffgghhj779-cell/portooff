@@ -9,6 +9,7 @@ import {
 } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { markGsapReady } from '@/lib/gsap-ready';
 
 type MotionPreferenceContextValue = {
   reducedMotion: boolean;
@@ -34,6 +35,7 @@ export function MotionPreferenceProvider({ children }: { children: ReactNode }) 
         setReducedMotion(true);
         document.documentElement.classList.add('reduce-motion');
         document.documentElement.dataset.motion = 'reduce';
+        markGsapReady();
 
         gsap.defaults({ duration: 0.01, ease: 'none' });
 

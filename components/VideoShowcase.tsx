@@ -26,6 +26,8 @@ export function VideoShowcase() {
       const mediaInner = mediaInnerRef.current;
       if (!container || !wrapper) return;
 
+      gsap.set(wrapper, { scale: 0.8, borderRadius: '3rem' });
+
       gsap.fromTo(
         wrapper,
         { scale: 0.8, borderRadius: '3rem' },

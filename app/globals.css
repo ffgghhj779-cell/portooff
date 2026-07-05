@@ -136,6 +136,32 @@ body {
   transform: translateZ(0);
 }
 
+html:not(.gsap-ready):not(.reduce-motion) .hero-line-inner,
+html:not(.gsap-ready):not(.reduce-motion) .hero-subtitle-inner {
+  clip-path: inset(100% 0 0 0);
+  transform: translate3d(0, 110%, 0);
+}
+
+html:not(.gsap-ready):not(.reduce-motion) .hero-orb {
+  opacity: 0;
+  transform: scale(0) rotate(-90deg);
+}
+
+html:not(.gsap-ready):not(.reduce-motion) .projects-heading-inner {
+  clip-path: inset(100% 0 0 0);
+  transform: translate3d(0, 110%, 0);
+}
+
+.menu-overlay {
+  isolation: isolate;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.menu-backdrop {
+  isolation: isolate;
+}
+
 .reduce-motion .hero-line-inner,
 .reduce-motion .hero-subtitle-inner,
 .reduce-motion .projects-heading-inner {
