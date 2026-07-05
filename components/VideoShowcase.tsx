@@ -27,9 +27,10 @@ export function VideoShowcase() {
 
       gsap.fromTo(
         wrapper,
-        { scale: 0.86, borderRadius: '2.5rem' },
+        { scale: 0.9, opacity: 0.6 },
         {
           scale: 1,
+          opacity: 1,
           borderRadius: '0rem',
           ease: 'none',
           immediateRender: false,
@@ -37,7 +38,7 @@ export function VideoShowcase() {
             trigger: container,
             start: 'top bottom',
             end: 'center center',
-            scrub: 1.1,
+            scrub: 0.85,
           },
         }
       );

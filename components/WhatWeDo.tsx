@@ -37,15 +37,17 @@ export function WhatWeDo() {
       if (textRef.current) {
         gsap.fromTo(
           textRef.current,
-          { y: 40 },
+          { y: 40, opacity: 0 },
           {
             y: 0,
+            opacity: 1,
             duration: MOTION.reveal,
             ease: MOTION.revealEase,
-            clearProps: 'transform',
             scrollTrigger: {
               trigger: textRef.current,
-              start: 'top 80%',
+              start: 'top 82%',
+              end: 'top 55%',
+              scrub: 0.6,
             },
           }
         );
@@ -60,6 +62,7 @@ export function WhatWeDo() {
         <div className="relative flex h-[320px] w-full items-center justify-center md:h-[380px] md:w-[45%]">
           <div
             ref={sphere1Ref}
+            data-reveal="up"
             className="relative h-[260px] w-[260px] overflow-hidden rounded-[2.5rem] md:h-[340px] md:w-[340px]"
           >
             <Image
@@ -90,6 +93,7 @@ export function WhatWeDo() {
           <MagneticButton>
             <Link
               href="#services"
+              data-reveal="up"
               className="btn-pill block border border-black/20 text-black hover:bg-black hover:text-white"
             >
               What we do

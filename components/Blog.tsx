@@ -85,15 +85,28 @@ export function Blog() {
         });
       });
 
-      gsap.from('.blog-row', {
-        y: 32,
+      gsap.from('.blog-heading', {
+        y: 48,
+        opacity: 0,
         duration: MOTION.reveal,
-        stagger: 0.06,
         ease: MOTION.revealEase,
-        clearProps: 'transform',
         scrollTrigger: {
           trigger: section,
-          start: 'top 75%',
+          start: 'top 85%',
+          end: 'top 60%',
+          scrub: 0.55,
+        },
+      });
+
+      gsap.from('.blog-row', {
+        y: 48,
+        opacity: 0,
+        duration: MOTION.reveal,
+        stagger: 0.08,
+        ease: MOTION.revealEase,
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 78%',
         },
       });
 
@@ -112,7 +125,7 @@ export function Blog() {
     >
       <div className="section-shell flex flex-col gap-12 md:flex-row md:gap-16">
         <div className="w-full md:w-1/3">
-          <h2 className="heading-display type-section sticky top-32 font-bold tracking-tighter leading-none text-white">
+          <h2 className="blog-heading heading-display type-section sticky top-32 font-bold tracking-tighter leading-none text-white">
             Blog
           </h2>
         </div>

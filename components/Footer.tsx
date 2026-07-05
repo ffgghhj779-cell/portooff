@@ -2,9 +2,13 @@
 
 import { useRef } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { MOTION } from '@/lib/motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const PRIMARY_PHONE = '01144003490';
 const PRIMARY_EMAIL = 'hello@tasami.com';
@@ -26,8 +30,36 @@ export function Footer() {
 
   useGSAP(
     () => {
+      const footer = footerRef.current;
       const tellUs = tellUsRef.current;
       const tellUsText = tellUsTextRef.current;
+      if (!footer) return;
+
+      gsap.from('.footer-reveal', {
+        y: 48,
+        opacity: 0,
+        duration: MOTION.reveal,
+        stagger: 0.08,
+        ease: MOTION.revealEase,
+        scrollTrigger: {
+          trigger: footer,
+          start: 'top 85%',
+        },
+      });
+
+      gsap.from('.footer-cta-block', {
+        y: 56,
+        opacity: 0,
+        duration: MOTION.reveal,
+        ease: MOTION.revealEase,
+        scrollTrigger: {
+          trigger: footer,
+          start: 'top 88%',
+          end: 'top 55%',
+          scrub: 0.6,
+        },
+      });
+
       if (!tellUs || !tellUsText) return;
 
       const onEnter = () => {
@@ -72,7 +104,7 @@ export function Footer() {
 
       <div className="section-shell relative z-10 pb-12 pt-16 md:pb-16">
         {!isContactPage && (
-          <div className="mb-24 text-center md:mb-32">
+          <div className="footer-cta-block mb-24 text-center md:mb-32">
             <h2 className="heading-display mb-6 text-2xl font-medium text-white/70 md:text-4xl">
               Have an idea?
             </h2>
@@ -91,7 +123,7 @@ export function Footer() {
           </div>
         )}
 
-        <div className="mb-16 grid grid-cols-1 gap-12 border-t border-white/10 pt-12 md:grid-cols-12 md:gap-8">
+        <div className="footer-reveal mb-16 grid grid-cols-1 gap-12 border-t border-white/10 pt-12 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-4">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-white/35">
               Primary contact
