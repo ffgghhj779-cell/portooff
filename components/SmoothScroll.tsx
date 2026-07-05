@@ -11,6 +11,7 @@ import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useMotionPreference } from '@/components/MotionPreferenceProvider';
+import { MOTION } from '@/lib/motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -38,7 +39,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     document.documentElement.classList.add('lenis', 'lenis-smooth');
 
     const lenis = new Lenis({
-      duration: 1.15,
+      duration: MOTION.lenisDuration,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',

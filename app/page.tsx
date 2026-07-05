@@ -12,27 +12,30 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen overflow-x-hidden font-sans">
-        <section data-scroll-theme="dark">
+      <main className="overflow-x-hidden font-sans">
+        <section data-scroll-theme="dark" className="theme-dark">
           <Hero />
         </section>
 
-        <section data-scroll-theme="light">
+        <section data-scroll-theme="light" className="theme-light">
           <VideoShowcase />
           <Marquee />
           <WhatWeDo />
         </section>
 
-        <section data-scroll-theme="dark">
+        <section data-scroll-theme="dark" className="theme-dark">
           <Projects />
         </section>
 
-        <section data-scroll-theme="light">
+        <section data-scroll-theme="light" className="theme-light">
           <Services />
         </section>
 
-        <section data-scroll-theme="dark">
+        <section data-scroll-theme="light" className="theme-light">
           <Blog />
+        </section>
+
+        <section data-scroll-theme="dark" className="theme-dark">
           <Footer />
         </section>
       </main>

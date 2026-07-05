@@ -7,11 +7,11 @@ import { useGSAP } from '@gsap/react';
 import { MagneticButton } from './MagneticButton';
 import Image from 'next/image';
 import Link from 'next/link';
+import { HOVER_SCALE, MOTION } from '@/lib/motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const HOVER_SCALE = 1.05;
-const HOVER_DURATION = 1.4;
+const HOVER_DURATION = MOTION.hover;
 
 /** Abstract 3D geometry / isometric UI only */
 const posts = [
@@ -59,7 +59,7 @@ export function Blog() {
           gsap.to(imageInner, {
             scale: HOVER_SCALE,
             duration: HOVER_DURATION,
-            ease: 'power2.out',
+            ease: MOTION.hoverEase,
             overwrite: 'auto',
             force3D: true,
           });
@@ -69,7 +69,7 @@ export function Blog() {
           gsap.to(imageInner, {
             scale: 1,
             duration: HOVER_DURATION,
-            ease: 'power2.out',
+            ease: MOTION.hoverEase,
             overwrite: 'auto',
             force3D: true,
           });
@@ -86,11 +86,11 @@ export function Blog() {
       });
 
       gsap.from('.blog-row', {
-        y: 48,
+        y: 32,
         opacity: 0,
-        duration: 0.95,
-        stagger: 0.12,
-        ease: 'power3.out',
+        duration: MOTION.reveal,
+        stagger: 0.06,
+        ease: 'expo.out',
         scrollTrigger: {
           trigger: section,
           start: 'top 75%',
@@ -108,25 +108,25 @@ export function Blog() {
     <section
       id="blog"
       ref={sectionRef}
-      className="section-pad w-full rounded-t-[3rem]"
+      className="section-pad w-full rounded-t-[2.5rem]"
     >
-      <div className="section-shell flex flex-col gap-16 md:flex-row">
+      <div className="section-shell flex flex-col gap-12 md:flex-row md:gap-16">
         <div className="w-full md:w-1/3">
-          <h2 className="heading-display type-section sticky top-40 font-bold leading-[0.92]">
+          <h2 className="heading-display type-section sticky top-32 font-bold tracking-tighter leading-[1.1]">
             Blog
           </h2>
         </div>
 
-        <div className="flex w-full flex-col gap-16 md:w-2/3">
+        <div className="flex w-full flex-col gap-12 md:w-2/3">
           {posts.map((post) => (
             <article
               key={post.title}
-              className="blog-row group flex cursor-pointer flex-col items-center gap-8 md:flex-row"
+              className="blog-row group flex cursor-pointer flex-col items-start gap-6 md:flex-row md:items-center"
             >
               <div
                 data-cursor="explore"
                 data-cursor-label="Explore"
-                className="media-hover relative aspect-video w-full overflow-hidden rounded-3xl bg-gray-800 md:w-1/2"
+                className="media-hover relative aspect-[4/3] w-full overflow-hidden rounded-[2.5rem] bg-black/10 md:w-[42%]"
               >
                 <div className="blog-image-inner absolute inset-0 will-change-transform">
                   <Image
@@ -139,14 +139,14 @@ export function Blog() {
                   />
                 </div>
               </div>
-              <div className="flex w-full flex-col items-start gap-4 md:w-1/2">
-                <span className="rounded-full border border-white/20 px-4 py-1 text-xs font-bold uppercase tracking-widest text-zinc-300">
+              <div className="flex w-full flex-col items-start gap-3 md:w-[58%]">
+                <span className="btn-pill border border-black/15 px-4 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-black/50">
                   {post.tag}
                 </span>
-                <h3 className="heading-display text-xl font-bold leading-snug md:text-3xl">
+                <h3 className="heading-display text-lg font-bold tracking-tighter leading-[1.1] md:text-2xl">
                   {post.title}
                 </h3>
-                <p className="text-zinc-500">{post.date}</p>
+                <p className="text-sm text-black/40">{post.date}</p>
               </div>
             </article>
           ))}
@@ -155,7 +155,7 @@ export function Blog() {
             <MagneticButton className="inline-block">
               <Link
                 href="#blog"
-                className="inline-block rounded-full border border-white px-10 py-5 font-medium text-white"
+                className="btn-pill inline-block border border-black text-black"
               >
                 Visit our blog
               </Link>

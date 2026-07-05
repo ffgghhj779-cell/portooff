@@ -7,11 +7,11 @@ import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { MagneticButton } from './MagneticButton';
+import { HOVER_SCALE, MOTION } from '@/lib/motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const HOVER_SCALE = 1.05;
-const HOVER_DURATION = 1.4;
+const HOVER_DURATION = MOTION.hover;
 
 const projects = [
   {
@@ -85,20 +85,20 @@ export function Projects() {
       gsap.from('.projects-heading-inner', {
         clipPath: 'inset(100% 0 0 0)',
         yPercent: 110,
-        duration: 1.15,
-        ease: 'power4.out',
+        duration: MOTION.reveal,
+        ease: MOTION.revealEase,
         scrollTrigger: {
           trigger: grid,
-          start: 'top 82%',
+          start: 'top 85%',
         },
       });
 
       gsap.from('.project-card', {
-        y: 80,
+        y: 48,
         opacity: 0,
-        duration: 1.05,
-        stagger: 0.1,
-        ease: 'power3.out',
+        duration: MOTION.reveal,
+        stagger: 0.06,
+        ease: 'expo.out',
         scrollTrigger: {
           trigger: grid,
           start: 'top 78%',
@@ -118,7 +118,7 @@ export function Projects() {
           gsap.to(imageInner, {
             scale: HOVER_SCALE,
             duration: HOVER_DURATION,
-            ease: 'power2.out',
+            ease: MOTION.hoverEase,
             overwrite: 'auto',
             force3D: true,
           });
@@ -128,7 +128,7 @@ export function Projects() {
           gsap.to(imageInner, {
             scale: 1,
             duration: HOVER_DURATION,
-            ease: 'power2.out',
+            ease: MOTION.hoverEase,
             overwrite: 'auto',
             force3D: true,
           });
@@ -158,11 +158,11 @@ export function Projects() {
       className="section-pad relative w-full overflow-hidden"
     >
       <div className="section-shell">
-        <div className="projects-heading mb-14 overflow-hidden md:mb-20">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-white/40">
+        <div className="projects-heading mb-10 overflow-hidden md:mb-14">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-white/45">
             Selected Works
           </p>
-          <h2 className="projects-heading-inner heading-display type-section font-bold leading-[0.92]">
+          <h2 className="projects-heading-inner heading-display type-section font-bold tracking-tighter leading-[1.1]">
             Featured projects
           </h2>
         </div>
@@ -179,7 +179,7 @@ export function Projects() {
               <div
                 data-cursor="explore"
                 data-cursor-label="Explore"
-                className={`media-hover project-media relative h-full min-h-[inherit] overflow-hidden rounded-[1.75rem] bg-cinematic-surface ${glowStyles[project.glow]}`}
+                className={`media-hover project-media relative h-full min-h-[inherit] overflow-hidden rounded-[2.5rem] bg-cinematic-surface ${glowStyles[project.glow]}`}
               >
                 <div className="pointer-events-none absolute inset-0 z-10 rounded-[inherit] bg-gradient-to-br from-glow-orange/5 via-transparent to-glow-blue/8" />
                 <div className="project-image-inner absolute inset-0 will-change-transform">
@@ -194,7 +194,7 @@ export function Projects() {
                 </div>
               </div>
 
-              <h3 className="heading-display max-w-lg text-lg font-medium leading-snug text-white/90 md:text-xl">
+              <h3 className="heading-display max-w-lg text-base font-medium tracking-tighter leading-[1.1] text-white/90 md:text-lg">
                 {project.name}
               </h3>
             </article>
@@ -205,7 +205,7 @@ export function Projects() {
           <MagneticButton>
             <Link
               href="#projects"
-              className="block rounded-full border border-white/30 px-10 py-5 font-medium text-white"
+              className="btn-pill block border border-white/25 text-white"
             >
               View all projects
             </Link>

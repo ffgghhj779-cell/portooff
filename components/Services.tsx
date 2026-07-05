@@ -7,6 +7,7 @@ import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { MagneticButton } from './MagneticButton';
+import { MOTION } from '@/lib/motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -76,9 +77,9 @@ export function Services() {
       gsap.from('.service-card', {
         y: 64,
         opacity: 0,
-        duration: 1,
-        stagger: 0.14,
-        ease: 'power3.out',
+        duration: MOTION.reveal,
+        stagger: 0.08,
+        ease: 'expo.out',
         scrollTrigger: {
           trigger: cards,
           start: 'top 85%',
@@ -114,7 +115,7 @@ export function Services() {
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-black/40">
                 What we do
               </p>
-              <h2 className="heading-display type-section mb-8 font-bold leading-[0.92] text-black">
+              <h2 className="heading-display type-section mb-6 font-bold tracking-tighter leading-[1.1] text-black">
                 Our services
               </h2>
               <p className="max-w-sm text-lg leading-relaxed text-black/60 md:text-xl">
@@ -131,13 +132,13 @@ export function Services() {
             {services.map((service) => (
               <article
                 key={service.title}
-                className={`service-card grid grid-cols-1 gap-6 rounded-[1.75rem] border border-black/[0.06] bg-white p-5 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.18)] md:grid-cols-2 md:gap-8 md:p-7 ${glowStyles[service.glow]}`}
+                className={`service-card grid grid-cols-1 gap-6 rounded-[2.5rem] border border-black/[0.06] bg-[#fafafa] p-5 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.12)] md:grid-cols-2 md:gap-8 md:p-7 ${glowStyles[service.glow]}`}
               >
-                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#f3f3f1]">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] bg-[#f4f4f4]">
                   <div
                     className={`service-mockup absolute inset-4 will-change-transform md:inset-5 ${glowStyles[service.glow]}`}
                   >
-                    <div className="relative h-full w-full overflow-hidden rounded-xl">
+                    <div className="relative h-full w-full overflow-hidden rounded-[1.5rem]">
                       <Image
                         src={service.image}
                         alt={service.title}
@@ -168,7 +169,7 @@ export function Services() {
           <MagneticButton>
             <Link
               href="#services"
-              className="block rounded-full bg-black px-10 py-5 font-medium text-white"
+              className="btn-pill block bg-black text-white"
             >
               View all services
             </Link>

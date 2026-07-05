@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import Image from 'next/image';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { MOTION } from '@/lib/motion';
 import { MagneticButton } from './MagneticButton';
 import Link from 'next/link';
 
@@ -40,8 +41,8 @@ export function WhatWeDo() {
           {
             opacity: 1,
             y: 0,
-            duration: 1,
-            ease: 'power4.out',
+            duration: MOTION.reveal,
+            ease: MOTION.revealEase,
             scrollTrigger: {
               trigger: textRef.current,
               start: 'top 80%',
@@ -54,12 +55,12 @@ export function WhatWeDo() {
   );
 
   return (
-    <section ref={sectionRef} className="section-pad w-full overflow-hidden">
-      <div className="section-shell relative flex flex-col items-center gap-16 md:flex-row">
-        <div className="relative flex h-[400px] w-full items-center justify-center md:w-1/2">
+    <section ref={sectionRef} className="section-pad w-full overflow-hidden pb-8">
+      <div className="section-shell relative flex flex-col items-center gap-10 md:flex-row md:gap-12">
+        <div className="relative flex h-[320px] w-full items-center justify-center md:h-[380px] md:w-[45%]">
           <div
             ref={sphere1Ref}
-            className="relative h-[300px] w-[300px] md:h-[400px] md:w-[400px]"
+            className="relative h-[260px] w-[260px] overflow-hidden rounded-[2.5rem] md:h-[340px] md:w-[340px]"
           >
             <Image
               src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop"
@@ -71,10 +72,10 @@ export function WhatWeDo() {
           </div>
         </div>
 
-        <div className="flex w-full flex-col items-start md:w-1/2">
+        <div className="flex w-full flex-col items-start md:w-[55%]">
           <h2
             ref={textRef}
-            className="heading-display mb-12 text-2xl font-medium leading-relaxed md:text-3xl lg:text-4xl"
+            className="heading-display type-body-lg mb-8 font-medium tracking-tighter leading-[1.1] text-black/85"
           >
             Since 2010, we have been helping our clients find exceptional
             solutions for their businesses, creating memorable websites and
@@ -89,7 +90,7 @@ export function WhatWeDo() {
           <MagneticButton>
             <Link
               href="#services"
-              className="block rounded-full border border-gray-300 px-10 py-5 font-medium transition-colors hover:bg-black hover:text-white"
+              className="btn-pill block border border-black/20 text-black hover:bg-black hover:text-white"
             >
               What we do
             </Link>

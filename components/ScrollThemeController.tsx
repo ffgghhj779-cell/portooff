@@ -9,8 +9,8 @@ import { useGSAP } from '@gsap/react';
 gsap.registerPlugin(ScrollTrigger);
 
 export const SCROLL_THEMES = {
-  dark: { backgroundColor: '#050505', color: '#f5f5f5' },
-  light: { backgroundColor: '#fafaf9', color: '#050505' },
+  dark: { backgroundColor: '#000000', color: '#ffffff' },
+  light: { backgroundColor: '#f4f4f4', color: '#000000' },
 } as const;
 
 export type ScrollThemeName = keyof typeof SCROLL_THEMES;
@@ -79,7 +79,7 @@ export function ScrollThemeController({
               trigger: sections[i],
               start: 'top center',
               end: 'bottom center',
-              scrub: 1.1,
+              scrub: 0.55,
               onEnter: () => {
                 document.documentElement.dataset.theme = nextTheme;
               },

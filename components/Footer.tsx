@@ -33,7 +33,7 @@ export function Footer() {
       const onEnter = () => {
         gsap.to(tellUsText, {
           color: '#ffffff',
-          duration: 0.55,
+          duration: 0.35,
           ease: 'expo.out',
         });
       };
@@ -41,7 +41,7 @@ export function Footer() {
       const onLeave = () => {
         gsap.to(tellUsText, {
           color: 'transparent',
-          duration: 0.55,
+          duration: 0.35,
           ease: 'expo.out',
         });
       };
@@ -83,7 +83,7 @@ export function Footer() {
             >
               <span
                 ref={tellUsTextRef}
-                className="tell-us-text type-display-xl block font-bold leading-none tracking-[-0.035em]"
+                className="tell-us-text type-display-xl block font-bold tracking-tighter leading-[1.05]"
               >
                 TELL US
               </span>

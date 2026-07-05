@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { MOTION } from '@/lib/motion';
 
 export function MagneticButton({
   children,
@@ -19,12 +20,12 @@ export function MagneticButton({
       if (!el) return;
 
       const xTo = gsap.quickTo(el, 'x', {
-        duration: 0.8,
-        ease: 'power3.out',
+        duration: MOTION.magnetic,
+        ease: 'expo.out',
       });
       const yTo = gsap.quickTo(el, 'y', {
-        duration: 0.8,
-        ease: 'power3.out',
+        duration: MOTION.magnetic,
+        ease: 'expo.out',
       });
 
       const mouseMove = (e: MouseEvent) => {

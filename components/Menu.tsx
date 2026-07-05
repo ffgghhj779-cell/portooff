@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { MOTION } from '@/lib/motion';
 
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
@@ -48,12 +49,12 @@ export function Menu() {
         gsap.set(overlay, { pointerEvents: 'auto' });
 
         gsap
-          .timeline({ defaults: { ease: 'power4.inOut' } })
-          .to(backdrop, { opacity: 1, duration: 0.7 }, 0)
+          .timeline({ defaults: { ease: MOTION.menuEase } })
+          .to(backdrop, { opacity: 1, duration: 0.35 }, 0)
           .fromTo(
             overlay,
             { clipPath: 'circle(0% at calc(100% - 3rem) 3rem)' },
-            { clipPath: 'circle(150% at calc(100% - 3rem) 3rem)', duration: 1.1 },
+            { clipPath: 'circle(150% at calc(100% - 3rem) 3rem)', duration: MOTION.menuOpen },
             0
           )
           .fromTo(
@@ -62,32 +63,32 @@ export function Menu() {
             {
               yPercent: 0,
               opacity: 1,
-              duration: 0.9,
-              stagger: 0.08,
-              ease: 'power4.out',
+              duration: 0.5,
+              stagger: 0.05,
+              ease: MOTION.menuEase,
             },
-            0.35
+            0.18
           )
           .fromTo(
             '.menu-brand',
-            { opacity: 0, y: 24 },
-            { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },
-            0.45
+            { opacity: 0, y: 16 },
+            { opacity: 1, y: 0, duration: 0.45, ease: 'expo.out' },
+            0.22
           );
 
         if (lineTop && lineMid && lineBot) {
           gsap.to(lineTop, {
             rotate: 45,
             y: 10,
-            duration: 0.45,
-            ease: 'power3.out',
+            duration: 0.28,
+            ease: 'expo.out',
           });
-          gsap.to(lineMid, { opacity: 0, duration: 0.25 });
+          gsap.to(lineMid, { opacity: 0, duration: 0.15 });
           gsap.to(lineBot, {
             rotate: -45,
             y: -10,
-            duration: 0.45,
-            ease: 'power3.out',
+            duration: 0.28,
+            ease: 'expo.out',
           });
         }
       } else {
@@ -95,7 +96,7 @@ export function Menu() {
 
         gsap
           .timeline({
-            defaults: { ease: 'power4.inOut' },
+            defaults: { ease: MOTION.menuEase },
             onComplete: () => {
               gsap.set(overlay, { pointerEvents: 'none' });
             },
@@ -103,20 +104,20 @@ export function Menu() {
           .to('.menu-link-inner', {
             yPercent: -80,
             opacity: 0,
-            duration: 0.45,
-            stagger: 0.04,
+            duration: MOTION.menuClose,
+            stagger: 0.025,
           })
           .to(
             overlay,
-            { clipPath: 'circle(0% at calc(100% - 3rem) 3rem)', duration: 0.85 },
-            0.1
+            { clipPath: 'circle(0% at calc(100% - 3rem) 3rem)', duration: 0.45 },
+            0.05
           )
-          .to(backdrop, { opacity: 0, duration: 0.6 }, 0.15);
+          .to(backdrop, { opacity: 0, duration: 0.35 }, 0.08);
 
         if (lineTop && lineMid && lineBot) {
-          gsap.to(lineTop, { rotate: 0, y: 0, duration: 0.45, ease: 'power3.out' });
-          gsap.to(lineMid, { opacity: 1, duration: 0.25 });
-          gsap.to(lineBot, { rotate: 0, y: 0, duration: 0.45, ease: 'power3.out' });
+          gsap.to(lineTop, { rotate: 0, y: 0, duration: 0.28, ease: 'expo.out' });
+          gsap.to(lineMid, { opacity: 1, duration: 0.15 });
+          gsap.to(lineBot, { rotate: 0, y: 0, duration: 0.28, ease: 'expo.out' });
         }
       }
     },
@@ -144,7 +145,7 @@ export function Menu() {
 
       <div
         ref={overlayRef}
-        className="menu-overlay mesh-glow pointer-events-none fixed inset-0 z-[60] flex flex-col bg-cinematic-black text-white"
+        className="menu-overlay mesh-glow pointer-events-none fixed inset-0 z-[60] flex flex-col bg-black text-white"
         style={{ clipPath: 'circle(0% at calc(100% - 3rem) 3rem)' }}
         data-lenis-prevent
       >
@@ -161,7 +162,7 @@ export function Menu() {
                   onClick={closeMenu}
                   className="menu-link block"
                 >
-                  <span className="menu-link-inner heading-display type-menu inline-block font-semibold leading-[0.92]">
+                  <span className="menu-link-inner heading-display type-menu inline-block font-semibold tracking-tighter leading-[1.1]">
                     {link.label}
                   </span>
                 </Link>

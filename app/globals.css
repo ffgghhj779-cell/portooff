@@ -3,11 +3,15 @@
 @theme {
   --font-sans: var(--font-inter);
 
-  --color-cinematic-black: #050505;
-  --color-cinematic-surface: #0a0a0a;
+  --color-cinematic-black: #000000;
+  --color-cinematic-surface: #050505;
+  --color-cinematic-light: #f4f4f4;
+  --color-cinematic-light-alt: #fafafa;
   --color-glow-orange: #ff6b35;
   --color-glow-green: #2dd4a8;
   --color-glow-blue: #4f8cff;
+
+  --radius-premium: 2.5rem;
 }
 
 :root {
@@ -44,9 +48,19 @@ html.lenis body {
 }
 
 body {
-  background-color: #050505;
-  color: #f5f5f5;
+  background-color: #000000;
+  color: #ffffff;
   overflow-x: hidden;
+}
+
+.theme-dark {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.theme-light {
+  background-color: #f4f4f4;
+  color: #000000;
 }
 
 .font-display {
@@ -56,50 +70,68 @@ body {
 .section-shell {
   margin-inline: auto;
   width: 100%;
-  max-width: 76rem;
+  max-width: 72rem;
   padding-inline: 1.25rem;
 }
 
 @media (min-width: 768px) {
   .section-shell {
-    padding-inline: 2.5rem;
+    padding-inline: 2rem;
   }
 }
 
 .section-pad {
-  padding-block: 5rem;
+  padding-block: 4rem;
 }
 
 @media (min-width: 768px) {
   .section-pad {
-    padding-block: 6.5rem;
+    padding-block: 5rem;
   }
 }
 
 .heading-display {
   font-family: var(--font-display), var(--font-inter), system-ui, sans-serif;
-  letter-spacing: -0.035em;
-  line-height: 0.92;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
 }
 
 .type-hero {
-  font-size: clamp(2.5rem, 6.5vw, 5.75rem);
+  font-size: clamp(2.75rem, 6vw, 5.25rem);
 }
 
 .type-section {
-  font-size: clamp(1.875rem, 4vw, 3.25rem);
+  font-size: clamp(1.75rem, 3.5vw, 3rem);
 }
 
 .type-marquee {
-  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-size: clamp(1.875rem, 4.5vw, 4rem);
 }
 
 .type-menu {
-  font-size: clamp(2rem, 5.5vw, 4.25rem);
+  font-size: clamp(1.875rem, 5vw, 3.75rem);
 }
 
 .type-display-xl {
-  font-size: clamp(2.25rem, 8vw, 5.5rem);
+  font-size: clamp(2rem, 7vw, 5rem);
+}
+
+.type-body-lg {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.radius-premium {
+  border-radius: var(--radius-premium);
+}
+
+.btn-pill {
+  border-radius: 9999px;
+  padding: 1rem 2.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  transition: opacity 0.2s ease, background-color 0.2s ease, color 0.2s ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -118,27 +150,27 @@ body {
 .mesh-glow::before {
   content: "";
   position: absolute;
-  inset: -20%;
+  inset: -15%;
   z-index: -1;
   pointer-events: none;
   background:
     radial-gradient(
       ellipse 40% 35% at 15% 20%,
-      color-mix(in srgb, var(--color-glow-orange) 18%, transparent),
+      color-mix(in srgb, var(--color-glow-orange) 12%, transparent),
       transparent 70%
     ),
     radial-gradient(
       ellipse 35% 40% at 85% 25%,
-      color-mix(in srgb, var(--color-glow-green) 14%, transparent),
+      color-mix(in srgb, var(--color-glow-green) 10%, transparent),
       transparent 72%
     ),
     radial-gradient(
       ellipse 45% 38% at 55% 85%,
-      color-mix(in srgb, var(--color-glow-blue) 16%, transparent),
+      color-mix(in srgb, var(--color-glow-blue) 12%, transparent),
       transparent 70%
     );
   filter: blur(60px);
-  opacity: 0.55;
+  opacity: 0.35;
 }
 
 .hide-scrollbar::-webkit-scrollbar {
@@ -151,35 +183,10 @@ body {
 }
 
 .hero-line-inner,
-.hero-subtitle-inner {
+.hero-subtitle-inner,
+.projects-heading-inner {
   will-change: clip-path, transform;
   transform: translateZ(0);
-}
-
-html:not(.gsap-ready):not(.reduce-motion) .hero-line-inner,
-html:not(.gsap-ready):not(.reduce-motion) .hero-subtitle-inner {
-  clip-path: inset(100% 0 0 0);
-  transform: translate3d(0, 100%, 0);
-}
-
-html:not(.gsap-ready):not(.reduce-motion) .hero-orb {
-  opacity: 0;
-  transform: scale(0) rotate(-90deg);
-}
-
-html:not(.gsap-ready):not(.reduce-motion) .projects-heading-inner {
-  clip-path: inset(100% 0 0 0);
-  transform: translate3d(0, 100%, 0);
-}
-
-html.gsap-ready .hero-line-inner,
-html.gsap-ready .hero-subtitle-inner,
-html.gsap-ready .projects-heading-inner,
-html.reduce-motion .hero-line-inner,
-html.reduce-motion .hero-subtitle-inner,
-html.reduce-motion .projects-heading-inner {
-  clip-path: none;
-  transform: none;
 }
 
 .menu-overlay {
@@ -203,17 +210,6 @@ html.reduce-motion .projects-heading-inner {
 .project-image-inner {
   transform: translateZ(0);
   backface-visibility: hidden;
-}
-
-.projects-heading-inner {
-  will-change: clip-path, transform;
-  transform: translateZ(0);
-}
-
-.reduce-motion .projects-heading-inner {
-  clip-path: none !important;
-  transform: none !important;
-  will-change: auto;
 }
 
 .project-media {

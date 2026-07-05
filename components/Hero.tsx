@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { markGsapReady } from '@/lib/gsap-ready';
+import { MOTION } from '@/lib/motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -38,8 +39,10 @@ export function Hero() {
         yPercent: 80,
       });
 
+      markGsapReady();
+
       const intro = gsap.timeline({
-        defaults: { ease: 'power4.out' },
+        defaults: { ease: MOTION.revealEase },
         onComplete: markGsapReady,
       });
 
@@ -53,8 +56,8 @@ export function Hero() {
           {
             clipPath: 'inset(0% 0 0 0)',
             yPercent: 0,
-            duration: 1.15,
-            stagger: 0.14,
+            duration: MOTION.reveal,
+            stagger: MOTION.revealStagger,
           }
         )
         .fromTo(
@@ -64,10 +67,10 @@ export function Hero() {
             scale: 1,
             opacity: 1,
             rotate: 0,
-            duration: 1,
-            ease: 'back.out(1.4)',
+            duration: 0.55,
+            ease: 'expo.out',
           },
-          '-=0.85'
+          '-=0.45'
         )
         .fromTo(
           '.hero-subtitle-inner',
@@ -78,16 +81,16 @@ export function Hero() {
           {
             clipPath: 'inset(0% 0 0 0)',
             yPercent: 0,
-            duration: 1,
-            ease: 'power4.out',
+            duration: MOTION.reveal,
+            ease: MOTION.revealEase,
           },
-          '-=0.55'
+          '-=0.35'
         )
         .fromTo(
           floatRef.current,
-          { opacity: 0, y: 80, scale: 0.88 },
-          { opacity: 1, y: 0, scale: 1, duration: 1.4, ease: 'power4.out' },
-          '-=1.1'
+          { opacity: 0, y: 48, scale: 0.92 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.75, ease: 'expo.out' },
+          '-=0.55'
         );
 
       if (floatInnerRef.current) {
@@ -127,14 +130,14 @@ export function Hero() {
       }
 
       gsap.to(contentRef.current, {
-        yPercent: 18,
-        opacity: 0.35,
+        yPercent: 12,
+        opacity: 0.55,
         ease: 'none',
         scrollTrigger: {
           trigger: section,
           start: 'top top',
           end: 'bottom top',
-          scrub: 1.2,
+          scrub: 0.8,
         },
       });
 
@@ -176,16 +179,16 @@ export function Hero() {
 
       <div
         ref={contentRef}
-        className="section-shell relative flex min-h-screen flex-col justify-center pb-28 pt-36 lg:px-16"
+        className="section-shell relative flex min-h-[100svh] flex-col justify-center pb-16 pt-28 md:pt-32"
       >
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
+        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-10">
           <div className="flex flex-col">
             {HERO_LINES.map((line) => (
               <div key={line.text} className="hero-line overflow-hidden">
                 <h1
-                  className={`hero-line-inner heading-display type-hero flex items-center gap-4 md:gap-6 ${
+                  className={`hero-line-inner heading-display type-hero flex items-center gap-3 md:gap-5 ${
                     line.italic ? 'font-light italic' : 'font-medium'
-                  } leading-[0.92] tracking-[-0.035em]`}
+                  } tracking-tighter leading-[1.1]`}
                 >
                   {line.withOrb && (
                     <span className="hero-orb inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-white/20 md:h-[7.5rem] md:w-[7.5rem]">
@@ -212,9 +215,9 @@ export function Hero() {
                 className="relative aspect-square w-full"
                 style={{ transformStyle: 'preserve-3d' }}
               >
-                <div className="absolute inset-[8%] rounded-[2rem] border border-white/10 bg-white/[0.03] backdrop-blur-sm" />
-                <div className="absolute inset-[14%] rotate-12 rounded-[1.5rem] border border-glow-blue/30 bg-glow-blue/5" />
-                <div className="absolute inset-[20%] -rotate-6 rounded-[1.25rem] border border-glow-green/25 bg-glow-green/5" />
+                <div className="absolute inset-[8%] rounded-[2.5rem] border border-white/10 bg-white/[0.03] backdrop-blur-sm" />
+                <div className="absolute inset-[14%] rotate-12 rounded-[2rem] border border-glow-blue/30 bg-glow-blue/5" />
+                <div className="absolute inset-[20%] -rotate-6 rounded-[1.75rem] border border-glow-green/25 bg-glow-green/5" />
                 <div className="absolute left-[10%] top-[18%] h-px w-[45%] bg-gradient-to-r from-glow-orange/60 to-transparent" />
                 <div className="absolute bottom-[22%] right-[12%] h-px w-[38%] bg-gradient-to-l from-glow-blue/50 to-transparent" />
 
@@ -222,7 +225,7 @@ export function Hero() {
                   ref={mediaRef}
                   data-cursor="explore"
                   data-cursor-label="Explore"
-                  className="media-hover absolute inset-[24%] overflow-hidden rounded-2xl border border-white/15 shadow-[0_24px_80px_rgba(0,0,0,0.55)]"
+                  className="media-hover absolute inset-[24%] overflow-hidden rounded-[2.5rem] border border-white/15 shadow-[0_24px_80px_rgba(0,0,0,0.55)]"
                   style={{ transform: 'translateZ(40px)' }}
                 >
                   <Image
@@ -251,8 +254,8 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="hero-subtitle mt-10 flex w-full justify-start overflow-hidden lg:mt-16 lg:justify-end">
-          <p className="hero-subtitle-inner max-w-md text-base font-medium leading-relaxed text-white/55 md:text-xl md:leading-relaxed lg:max-w-lg lg:text-right">
+        <div className="hero-subtitle mt-8 flex w-full justify-start overflow-hidden lg:mt-12 lg:justify-end">
+          <p className="hero-subtitle-inner type-body-lg max-w-md font-medium text-white/65 lg:max-w-lg lg:text-right">
             We help companies build scalable digital products with thoughtful
             design systems and carefully crafted development.
           </p>

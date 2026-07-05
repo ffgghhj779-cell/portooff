@@ -4,11 +4,11 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { HOVER_SCALE, MOTION } from '@/lib/motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const HOVER_SCALE = 1.05;
-const HOVER_DURATION = 1.4;
+const HOVER_DURATION = MOTION.hover;
 
 /** Abstract motion reel — no human figures */
 const REEL_SRC =
@@ -26,11 +26,11 @@ export function VideoShowcase() {
       const mediaInner = mediaInnerRef.current;
       if (!container || !wrapper) return;
 
-      gsap.set(wrapper, { scale: 0.8, borderRadius: '3rem' });
+      gsap.set(wrapper, { scale: 0.92, borderRadius: '2.5rem' });
 
       gsap.fromTo(
         wrapper,
-        { scale: 0.8, borderRadius: '3rem' },
+        { scale: 0.92, borderRadius: '2.5rem' },
         {
           scale: 1,
           borderRadius: '0rem',
@@ -39,7 +39,7 @@ export function VideoShowcase() {
             trigger: container,
             start: 'top bottom',
             end: 'center center',
-            scrub: true,
+            scrub: 0.6,
           },
         }
       );
@@ -52,7 +52,7 @@ export function VideoShowcase() {
         gsap.to(mediaInner, {
           scale: HOVER_SCALE,
           duration: HOVER_DURATION,
-          ease: 'power2.out',
+          ease: MOTION.hoverEase,
           overwrite: 'auto',
           force3D: true,
         });
@@ -62,7 +62,7 @@ export function VideoShowcase() {
         gsap.to(mediaInner, {
           scale: 1,
           duration: HOVER_DURATION,
-          ease: 'power2.out',
+          ease: MOTION.hoverEase,
           overwrite: 'auto',
           force3D: true,
         });
@@ -87,7 +87,7 @@ export function VideoShowcase() {
           ref={videoWrapperRef}
           data-cursor="play"
           data-cursor-label="Play"
-          className="media-hover relative mx-auto aspect-video w-full overflow-hidden bg-[#111]"
+          className="media-hover relative mx-auto aspect-video w-full overflow-hidden rounded-[2.5rem] bg-black"
         >
           <div
             ref={mediaInnerRef}

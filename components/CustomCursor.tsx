@@ -4,12 +4,13 @@ import { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { useMotionPreference } from '@/components/MotionPreferenceProvider';
+import { MOTION } from '@/lib/motion';
 
 type CursorMode = 'default' | 'link' | 'magnetic' | 'media' | 'play';
 
-const LERP = 0.1;
-const MAGNETIC_LERP = 0.16;
-const MORPH_DURATION = 0.72;
+const LERP = 0.14;
+const MAGNETIC_LERP = 0.22;
+const MORPH_DURATION = MOTION.cursorMorph;
 
 const MODE_CONFIG: Record<
   CursorMode,
@@ -234,11 +235,11 @@ export function CustomCursor() {
       };
 
       const onMouseLeaveWindow = () => {
-        gsap.to(cursor, { opacity: 0, duration: 0.25, ease: 'power2.out' });
+        gsap.to(cursor, { opacity: 0, duration: 0.18, ease: 'expo.out' });
       };
 
       const onMouseEnterWindow = () => {
-        gsap.to(cursor, { opacity: 1, duration: 0.25, ease: 'power2.out' });
+        gsap.to(cursor, { opacity: 1, duration: 0.18, ease: 'expo.out' });
       };
 
       const ticker = () => {
