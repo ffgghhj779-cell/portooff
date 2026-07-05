@@ -1,86 +1,143 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { MagneticButton } from './MagneticButton';
-
-const PRIMARY_PHONE = '01144003490';
-const PRIMARY_EMAIL = 'hello@tasami.com';
+import { SITE } from '@/lib/data/site';
 
 export function ContactForm() {
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
   const [selectedBudget, setSelectedBudget] = useState<string | null>(null);
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
 
   const interests = [
     'Site from scratch',
     'UX/UI design',
     'Product design',
-    'Webflow site',
+    'Web development',
     'Motion design',
     'Branding',
     'Mobile development',
   ];
 
-  const budgets = ['10-20k', '30-40k', '40-50k', '50-100k', '> 100k'];
+  const budgets = ['10–20k EGP', '30–50k EGP', '50–100k EGP', '100k+ EGP'];
 
   const toggleInterest = (interest: string) => {
     setSelectedInterests((prev) =>
-      prev.includes(interest)
-        ? prev.filter((i) => i !== interest)
-        : [...prev, interest]
+      prev.includes(interest) ? prev.filter((i) => i !== interest) : [...prev, interest]
     );
   };
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('loading');
+    setErrorMsg('');
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.get('name'),
+          email: data.get('email'),
+          phone: data.get('phone'),
+          message: data.get('message'),
+          interests: selectedInterests,
+          budget: selectedBudget,
+        }),
+      });
+
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || 'Failed to send');
+
+      setStatus('success');
+      form.reset();
+      setSelectedInterests([]);
+      setSelectedBudget(null);
+    } catch (err) {
+      setStatus('error');
+      setErrorMsg(err instanceof Error ? err.message : 'Failed to send message.');
+    }
+  };
+
+  if (status === 'success') {
+    return (
+      <div className="section-pad flex min-h-[70vh] w-full items-center">
+        <div className="section-shell max-w-2xl text-center md:text-left">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-black/40">
+            Message sent
+          </p>
+          <h1 className="heading-display type-section mb-6 font-bold tracking-tighter">
+            Thanks — we&apos;ll be in touch soon.
+          </h1>
+          <p className="mb-8 text-lg text-black/60">
+            Prefer a quick call? Dial{' '}
+            <a href={`tel:${SITE.phone}`} className="font-semibold text-black underline">
+              {SITE.phone}
+            </a>
+          </p>
+          <MagneticButton>
+            <Link href="/" className="btn-pill inline-block bg-black text-white">
+              Back to home
+            </Link>
+          </MagneticButton>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="section-pad min-h-screen w-full">
+    <div className="section-pad min-h-screen w-full bg-[#f4f4f4] text-black">
       <div className="section-shell max-w-4xl">
         <div className="mb-16 border-b border-black/10 pb-12 md:mb-20">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-black/40">
-            Tasami · تسامي
+            {SITE.name} · {SITE.nameAr}
           </p>
           <h1 className="heading-display type-section mb-10 font-bold leading-[0.92]">
             Hey! Tell us all
             <br />
             the things
           </h1>
-
           <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-black/45">
                 Call us directly
               </p>
               <a
-                href={`tel:${PRIMARY_PHONE}`}
+                href={`tel:${SITE.phone}`}
                 className="heading-display type-section block font-bold leading-none tracking-tight"
               >
-                {PRIMARY_PHONE}
+                {SITE.phone}
               </a>
             </div>
             <MagneticButton>
               <a
-                href={`mailto:${PRIMARY_EMAIL}`}
+                href={`mailto:${SITE.email}`}
                 className="inline-flex rounded-full border border-black/20 px-6 py-3 text-sm font-medium"
               >
-                {PRIMARY_EMAIL}
+                {SITE.email}
               </a>
             </MagneticButton>
           </div>
         </div>
 
-        <form className="flex flex-col gap-16" onSubmit={(e) => e.preventDefault()}>
+        <form className="flex flex-col gap-16" onSubmit={handleSubmit}>
           <div className="flex flex-col gap-6">
-            <label className="heading-display text-2xl font-bold">
-              I&apos;m interested in...
-            </label>
+            <label className="heading-display text-2xl font-bold">I&apos;m interested in...</label>
             <div className="flex flex-wrap gap-3">
               {interests.map((interest) => (
                 <button
                   key={interest}
                   type="button"
                   onClick={() => toggleInterest(interest)}
-                  className={`rounded-full border px-6 py-3 text-base font-medium ${
+                  className={`rounded-full border px-6 py-3 text-base font-medium transition-colors ${
                     selectedInterests.includes(interest)
                       ? 'border-black bg-black text-white'
-                      : 'border-gray-300 bg-transparent text-gray-500'
+                      : 'border-black/20 bg-transparent text-black/60'
                   }`}
                 >
                   {interest}
@@ -91,43 +148,45 @@ export function ContactForm() {
 
           <div className="flex flex-col gap-12">
             <input
+              name="name"
               type="text"
               placeholder="Your name"
               required
-              className="w-full border-b border-gray-300 bg-transparent pb-4 text-2xl placeholder-gray-400 outline-none focus:border-black"
+              className="w-full border-b border-black/20 bg-transparent pb-4 text-2xl placeholder-black/35 outline-none focus:border-black"
             />
             <input
+              name="email"
               type="email"
               placeholder="Email"
               required
-              className="w-full border-b border-gray-300 bg-transparent pb-4 text-2xl placeholder-gray-400 outline-none focus:border-black"
+              className="w-full border-b border-black/20 bg-transparent pb-4 text-2xl placeholder-black/35 outline-none focus:border-black"
             />
             <input
+              name="phone"
               type="tel"
               placeholder="Phone (optional)"
-              className="w-full border-b border-gray-300 bg-transparent pb-4 text-2xl placeholder-gray-400 outline-none focus:border-black"
+              className="w-full border-b border-black/20 bg-transparent pb-4 text-2xl placeholder-black/35 outline-none focus:border-black"
             />
             <input
+              name="message"
               type="text"
               placeholder="Tell us about your project"
-              className="w-full border-b border-gray-300 bg-transparent pb-4 text-2xl placeholder-gray-400 outline-none focus:border-black"
+              className="w-full border-b border-black/20 bg-transparent pb-4 text-2xl placeholder-black/35 outline-none focus:border-black"
             />
           </div>
 
           <div className="flex flex-col gap-6">
-            <label className="heading-display text-2xl font-bold">
-              Project budget (USD)
-            </label>
+            <label className="heading-display text-2xl font-bold">Project budget</label>
             <div className="flex flex-wrap gap-3">
               {budgets.map((budget) => (
                 <button
                   key={budget}
                   type="button"
                   onClick={() => setSelectedBudget(budget)}
-                  className={`rounded-full border px-6 py-3 text-base font-medium ${
+                  className={`rounded-full border px-6 py-3 text-base font-medium transition-colors ${
                     selectedBudget === budget
                       ? 'border-black bg-black text-white'
-                      : 'border-gray-300 bg-transparent text-gray-500'
+                      : 'border-black/20 bg-transparent text-black/60'
                   }`}
                 >
                   {budget}
@@ -136,24 +195,21 @@ export function ContactForm() {
             </div>
           </div>
 
+          {status === 'error' && (
+            <p className="text-sm font-medium text-red-600">{errorMsg}</p>
+          )}
+
           <div>
             <MagneticButton>
               <button
                 type="submit"
-                className="rounded-full bg-black px-12 py-5 font-medium text-white"
+                disabled={status === 'loading'}
+                className="rounded-full bg-black px-12 py-5 font-medium text-white disabled:opacity-60"
               >
-                Send request
+                {status === 'loading' ? 'Sending…' : 'Send request'}
               </button>
             </MagneticButton>
           </div>
-
-          <p className="max-w-sm text-sm text-gray-400">
-            Prefer a quick call? Dial{' '}
-            <a href={`tel:${PRIMARY_PHONE}`} className="font-semibold text-black underline">
-              {PRIMARY_PHONE}
-            </a>{' '}
-            — we respond within one business day.
-          </p>
         </form>
       </div>
     </div>

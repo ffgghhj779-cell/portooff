@@ -11,6 +11,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'image.thum.io',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };

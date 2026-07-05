@@ -7,18 +7,16 @@ import { useGSAP } from '@gsap/react';
 import { MOTION } from '@/lib/motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { SITE } from '@/lib/data/site';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const PRIMARY_PHONE = '01144003490';
-const PRIMARY_EMAIL = 'hello@tasami.com';
-
 const socialLinks = [
-  { label: 'LinkedIn', href: '#', abbr: 'In' },
-  { label: 'Instagram', href: '#', abbr: 'Ig' },
-  { label: 'Twitter', href: '#', abbr: 'Tw' },
-  { label: 'Dribbble', href: '#', abbr: 'Dr' },
-  { label: 'Behance', href: '#', abbr: 'Be' },
+  { label: 'LinkedIn', href: SITE.social.linkedin, abbr: 'In' },
+  { label: 'Instagram', href: SITE.social.instagram, abbr: 'Ig' },
+  { label: 'Twitter', href: SITE.social.twitter, abbr: 'Tw' },
+  { label: 'Dribbble', href: SITE.social.dribbble, abbr: 'Dr' },
+  { label: 'Behance', href: SITE.social.behance, abbr: 'Be' },
 ] as const;
 
 export function Footer() {
@@ -129,16 +127,16 @@ export function Footer() {
               Primary contact
             </p>
             <a
-              href={`tel:${PRIMARY_PHONE}`}
+              href={`tel:${SITE.phone}`}
               className="mb-4 block text-3xl font-bold tracking-tight text-white md:text-4xl"
             >
-              {PRIMARY_PHONE}
+              {SITE.phone}
             </a>
             <a
-              href={`mailto:${PRIMARY_EMAIL}`}
+              href={`mailto:${SITE.email}`}
               className="inline-flex rounded-full border border-white/20 px-6 py-3 text-sm font-medium"
             >
-              {PRIMARY_EMAIL}
+              {SITE.email}
             </a>
           </div>
 
@@ -150,7 +148,7 @@ export function Footer() {
               <Link href="#services" className="w-fit">
                 Services
               </Link>
-              <Link href="#projects" className="w-fit">
+              <Link href="/projects" className="w-fit">
                 Projects
               </Link>
               <Link href="#blog" className="w-fit">
@@ -183,8 +181,8 @@ export function Footer() {
 
         <div className="flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-sm text-white/40 md:flex-row md:items-center">
           <div className="flex flex-wrap items-center gap-4">
-            <Link href="#">Privacy Policy</Link>
-            <span>© {new Date().getFullYear()} Tasami (تسامي)</span>
+            <Link href="/privacy">Privacy Policy</Link>
+            <span>© {new Date().getFullYear()} {SITE.name} ({SITE.nameAr})</span>
           </div>
           <p className="text-white/30">Elite digital craftsmanship.</p>
         </div>
