@@ -80,7 +80,7 @@ export function WhatWeDo() {
         <div className="flex w-full flex-col items-start md:w-[55%]">
           <h2
             ref={textRef}
-            className="heading-display type-body-lg mb-8 font-medium tracking-tighter leading-[1.1] text-black/85"
+            className="heading-display type-body-lg mb-8 font-medium tracking-tighter leading-[0.95] text-black/85"
           >
             {t.whatWeDo.body.split('\n\n').map((paragraph, i) => (
               <span key={i}>

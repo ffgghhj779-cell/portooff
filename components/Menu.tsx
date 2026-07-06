@@ -139,13 +139,13 @@ export function Menu() {
         ref={backdropRef}
         role="presentation"
         onClick={closeMenu}
-        className="menu-backdrop pointer-events-none fixed inset-0 z-[55] bg-black/50 opacity-0"
+        className="menu-backdrop pointer-events-none fixed inset-0 z-[55] bg-[#050505]/50 opacity-0"
         aria-hidden={!isOpen}
       />
 
       <div
         ref={overlayRef}
-        className="menu-overlay mesh-glow pointer-events-none fixed inset-0 z-[60] flex min-h-[100svh] flex-col bg-black text-white"
+        className="menu-overlay mesh-glow pointer-events-none fixed inset-0 z-[60] flex min-h-[100svh] flex-col bg-[#050505] text-white"
         style={{ clipPath: 'circle(0% at calc(100% - 2.5rem) 2.5rem)' }}
         data-lenis-prevent
         aria-hidden={!isOpen}

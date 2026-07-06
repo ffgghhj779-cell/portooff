@@ -35,7 +35,7 @@ function ProjectCard({ project }: { project: Project }) {
       data-cursor-label={t.projects.view}
     >
       <div
-        className={`project-media relative w-full overflow-hidden rounded-[2rem] bg-[#111] md:rounded-[2.5rem] ${
+        className={`project-media relative w-full overflow-hidden rounded-[2.5rem] bg-[#111] ${
           project.tall ? 'aspect-[4/5]' : 'aspect-[5/4]'
         }`}
       >

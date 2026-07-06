@@ -30,7 +30,7 @@ function ServiceCard({
   return (
     <article className="service-card group">
       <div
-        className={`service-media relative w-full overflow-hidden rounded-[2rem] bg-[#e8e8e8] md:rounded-[2.5rem] ${
+        className={`service-media relative w-full overflow-hidden rounded-[2.5rem] bg-[#e8e8e8] ${
           service.tall ? 'aspect-[4/5]' : 'aspect-[5/4]'
         }`}
         data-cursor="explore"

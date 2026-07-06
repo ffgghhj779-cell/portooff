@@ -115,7 +115,7 @@ export function Footer() {
             >
               <span
                 ref={tellUsTextRef}
-                className="tell-us-text type-display-xl block font-bold tracking-tighter leading-[1.05]"
+                className="tell-us-text type-display-xl block font-bold tracking-tighter leading-[0.95]"
               >
                 {t.footer.tellUs}
               </span>

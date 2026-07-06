@@ -2,7 +2,7 @@
 
 export const MOTION = {
 
-  hover: 0.9,
+  hover: 0.45,
 
   hoverEase: 'expo.out' as const,
 
@@ -20,7 +20,7 @@ export const MOTION = {
 
   cursorMorph: 0.38,
 
-  cursorFollow: 0.08,
+  cursorFollow: 0.11,
 
   cursorFollowLink: 0.1,
 
@@ -30,17 +30,17 @@ export const MOTION = {
 
   magnetic: 0.45,
 
-  lenisDuration: 1.05,
+  lenisDuration: undefined,
 
-  lenisLerp: 0.1,
+  lenisLerp: 0.08,
 
   lenisWheelMultiplier: 0.92,
 
   lenisTouchMultiplier: 1.55,
 
   /** Mobile — snappier scroll, less inertia */
-  lenisMobileDuration: 0.72,
-  lenisMobileLerp: 0.18,
+  lenisMobileDuration: undefined,
+  lenisMobileLerp: 0.12,
   lenisMobileTouchMultiplier: 1.25,
 
 } as const;

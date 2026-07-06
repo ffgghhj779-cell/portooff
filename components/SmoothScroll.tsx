@@ -59,23 +59,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
 
     lenis.on('scroll', ScrollTrigger.update);
 
-    ScrollTrigger.scrollerProxy(document.documentElement, {
-      scrollTop(value) {
-        if (arguments.length && value !== undefined) {
-          lenis.scrollTo(value, { immediate: true });
-        }
-        return lenis.scroll;
-      },
-      getBoundingClientRect() {
-        return {
-          top: 0,
-          left: 0,
-          width: window.innerWidth,
-          height: window.innerHeight,
-        };
-      },
-      pinType: 'transform',
-    });
+    lenis.on('scroll', ScrollTrigger.update);
 
     const ticker = (time: number) => {
       lenis.raf(time * 1000);
@@ -100,7 +84,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       window.removeEventListener('resize', onResize);
       clearTimeout(resizeTimer);
       gsap.ticker.remove(ticker);
-      ScrollTrigger.scrollerProxy(document.documentElement, {});
+      ScrollTrigger.killAll(); // Ensure complete cleanup of ScrollTriggers on unmount
       lenis.destroy();
       document.documentElement.classList.remove('lenis', 'lenis-smooth');
       setLenisInstance(null);

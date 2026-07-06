@@ -3,10 +3,10 @@
 @theme {
   --font-sans: var(--font-inter);
 
-  --color-cinematic-black: #000000;
-  --color-cinematic-surface: #050505;
-  --color-cinematic-light: #f4f4f4;
-  --color-cinematic-light-alt: #fafafa;
+  --color-cinematic-black: #050505;
+  --color-cinematic-surface: #0a0a0a;
+  --color-cinematic-light: #f7f7f8;
+  --color-cinematic-light-alt: #f2f2f3;
   --color-glow-orange: #ff6b35;
   --color-glow-green: #2dd4a8;
   --color-glow-blue: #4f8cff;
@@ -52,18 +52,20 @@ html.lenis {
 }
 
 body {
-  background-color: #000000;
+  background-color: #050505;
   color: #ffffff;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .theme-dark {
-  background-color: #000000;
+  background-color: #050505;
   color: #ffffff;
 }
 
 .theme-light {
-  background-color: #f4f4f4;
+  background-color: #f7f7f8;
   color: #000000;
 }
 
@@ -96,11 +98,11 @@ body {
 .heading-display {
   font-family: var(--font-display), var(--font-inter), system-ui, sans-serif;
   letter-spacing: -0.04em;
-  line-height: 1;
+  line-height: 0.95;
 }
 
 .type-hero {
-  font-size: clamp(2.75rem, 6vw, 5.25rem);
+  font-size: clamp(2.25rem, 6vw, 5.25rem);
 }
 
 .type-section {
@@ -409,4 +411,9 @@ html[data-mobile='true'] .footer-ambient__cables {
 
 html[data-mobile='true'] .services-pin {
   will-change: auto;
+}
+
+/* ——— Preloader Anti-FOUC ——— */
+html.preloader-skipped .preloader {
+  display: none !important;
 }
