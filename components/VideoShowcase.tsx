@@ -9,8 +9,7 @@ import { useTranslations } from '@/lib/i18n/LocaleProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const REEL_SRC =
-  'https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-network-background-loop-31647-large.mp4';
+const REEL_SRC = '/showreel.mp4';
 
 const POSTER_SRC = '/about-sphere.png';
 
