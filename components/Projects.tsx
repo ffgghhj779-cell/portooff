@@ -46,7 +46,7 @@ function ProjectCard({ project }: { project: Project }) {
             alt={`${project.name} — ${project.tagline}`}
             fill
             quality={92}
-            className="object-cover transition-[filter] duration-700 group-hover:brightness-110"
+            className="object-cover"
             referrerPolicy="no-referrer"
             sizes="(max-width: 768px) 100vw, 42vw"
           />
@@ -164,17 +164,17 @@ export function Projects({ limit }: { limit?: number }) {
         gsap.set(imageInner, { scale: 1, force3D: true });
         const onEnter = () =>
           gsap.to(imageInner, {
-            scale: HOVER_SCALE,
-            duration: HOVER_DURATION,
-            ease: MOTION.hoverEase,
+            scale: 1.04,
+            duration: 1.2,
+            ease: 'cubic-bezier(0.16, 1, 0.3, 1)',
             overwrite: 'auto',
             force3D: true,
           });
         const onLeave = () =>
           gsap.to(imageInner, {
             scale: 1,
-            duration: HOVER_DURATION,
-            ease: MOTION.hoverEase,
+            duration: 1.2,
+            ease: 'cubic-bezier(0.16, 1, 0.3, 1)',
             overwrite: 'auto',
             force3D: true,
           });

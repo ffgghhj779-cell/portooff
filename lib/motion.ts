@@ -2,13 +2,13 @@
 
 export const MOTION = {
 
-  hover: 0.45,
+  hover: 1.2,
 
-  hoverEase: 'expo.out' as const,
+  hoverEase: 'cubic-bezier(0.16, 1, 0.3, 1)' as const,
 
   reveal: 0.85,
 
-  revealEase: 'power3.out' as const,
+  revealEase: 'cubic-bezier(0.16, 1, 0.3, 1)' as const,
 
   revealStagger: 0.035,
 
@@ -32,22 +32,22 @@ export const MOTION = {
 
   lenisDuration: undefined,
 
-  lenisLerp: 0.08,
+  lenisLerp: 0.06,
 
-  lenisWheelMultiplier: 0.92,
+  lenisWheelMultiplier: 1.0,
 
   lenisTouchMultiplier: 1.55,
 
   /** Mobile — snappier scroll, less inertia */
   lenisMobileDuration: undefined,
-  lenisMobileLerp: 0.12,
-  lenisMobileTouchMultiplier: 1.25,
+  lenisMobileLerp: 0.1,
+  lenisMobileTouchMultiplier: 1.4,
 
 } as const;
 
 
 
-export const HOVER_SCALE = 1.04;
+export const HOVER_SCALE = 1.05;
 
 
 
