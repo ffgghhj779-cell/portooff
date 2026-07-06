@@ -14,18 +14,9 @@ export type Project = {
   tall: boolean;
 };
 
-const ABSTRACT_URLS = [
-  'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1614850523459-40c4e63ac874?q=80&w=1600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1620641788421-a37b341781a6?q=80&w=1600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1617791160505-40fe982dbdcc?q=80&w=1600&auto=format&fit=crop'
-];
-
-/** Using strict abstract geometry external URLs for production safety */
+/** High-res cover stored locally */
 function cover(slug: string): string {
-  const hash = slug.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  return ABSTRACT_URLS[hash % ABSTRACT_URLS.length];
+  return `/projects/covers/${slug}.png`;
 }
 
 export const PROJECTS: Project[] = [
