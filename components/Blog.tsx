@@ -139,9 +139,9 @@ export function Blog() {
               <div
                 data-cursor="explore"
                 data-cursor-label="Explore"
-                className="media-hover relative aspect-[4/3] w-full overflow-hidden rounded-[2.5rem] bg-white/5 md:w-[42%]"
+                className="media-hover relative aspect-[4/3] w-full overflow-hidden rounded-[2.5rem] bg-white/5 transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[0.98] md:w-[42%]"
               >
-                <div className="blog-image-inner absolute inset-0 will-change-transform">
+                <div className="blog-image-inner absolute inset-0 will-change-transform transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]">
                   <Image
                     src={post.image}
                     alt={post.title}
@@ -153,7 +153,7 @@ export function Blog() {
                 </div>
               </div>
               <div className="flex w-full flex-col items-start gap-3 md:w-[58%]">
-                <span className="btn-pill border border-white/20 px-4 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white/50">
+                <span className="inline-flex items-center rounded-full border border-white/15 px-4 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white/45">
                   {post.tag}
                 </span>
                 <h3 className="heading-display text-lg font-bold tracking-tighter leading-[1.1] text-white md:text-2xl">

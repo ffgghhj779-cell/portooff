@@ -30,18 +30,18 @@ function ServiceCard({
   return (
     <article className="service-card group">
       <div
-        className={`service-media relative w-full overflow-hidden rounded-[2.5rem] bg-[#e8e8e8] ${
+        className={`service-media relative w-full overflow-hidden rounded-[2.5rem] bg-[#e8e8e8] transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[0.98] ${
           service.tall ? 'aspect-[4/5]' : 'aspect-[5/4]'
         }`}
         data-cursor="explore"
         data-cursor-label="Explore"
       >
-        <div className="service-image-inner absolute inset-0 will-change-transform">
+        <div className="service-image-inner absolute inset-0 will-change-transform transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]">
           <Image
             src={service.image}
             alt={service.title}
             fill
-            className="object-cover transition-[filter] duration-700 group-hover:brightness-105"
+            className="object-cover"
             referrerPolicy="no-referrer"
             sizes="(max-width: 768px) 100vw, 42vw"
           />

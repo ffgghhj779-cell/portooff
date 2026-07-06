@@ -31,13 +31,13 @@ export function Navbar({ variant = 'auto' }: NavbarProps) {
           <div
             className={`hidden items-center gap-6 text-sm font-medium uppercase tracking-[0.16em] md:flex ${textClass}`}
           >
-            <Link href="/projects" className="transition-opacity duration-200 hover:opacity-60">
+            <Link href="/projects" className="nav-link-animated transition-opacity duration-300 hover:opacity-75">
               {t.nav.work}
             </Link>
-            <Link href="/#services" className="transition-opacity duration-200 hover:opacity-60">
+            <Link href="/#services" className="nav-link-animated transition-opacity duration-300 hover:opacity-75">
               {t.nav.services}
             </Link>
-            <Link href="/contact" className="transition-opacity duration-200 hover:opacity-60">
+            <Link href="/contact" className="nav-link-animated transition-opacity duration-300 hover:opacity-75">
               {t.nav.contact}
             </Link>
           </div>
