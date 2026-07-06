@@ -26,18 +26,33 @@ export function Logo({ theme = 'dark', showSlogan = true, size = 'md' }: LogoPro
         className={`h-9 w-9 shrink-0 md:h-10 md:w-10 ${markClass}`}
         aria-hidden="true"
       >
-        <rect
-          x="3"
-          y="3"
-          width="34"
-          height="34"
-          rx="11"
-          className={isLight ? 'stroke-black/12' : 'stroke-white/15'}
-          strokeWidth="1"
+        <defs>
+          <linearGradient id="t-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#ff6b35" />
+            <stop offset="50%" stopColor="#2dd4a8" />
+            <stop offset="100%" stopColor="#4f8cff" />
+          </linearGradient>
+          <filter id="logo-glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="2.5" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+        </defs>
+
+        {/* T Stem */}
+        <rect x="17" y="16" width="6" height="20" rx="2.5" fill="currentColor" opacity="0.85" />
+        
+        {/* T Top Bar */}
+        <rect x="5" y="6" width="30" height="6" rx="2.5" fill="currentColor" />
+
+        {/* Upward Arrow (Tasami / Elevation) */}
+        <path 
+          d="M 9 28 L 20 14.5 L 31 28" 
+          stroke="url(#t-grad)" 
+          strokeWidth="4" 
+          strokeLinecap="round" 
+          strokeLinejoin="round" 
+          filter="url(#logo-glow)"
         />
-        <rect x="11" y="22" width="5" height="10" rx="1.5" fill="currentColor" opacity="0.45" />
-        <rect x="17.5" y="16" width="5" height="16" rx="1.5" fill="currentColor" opacity="0.7" />
-        <rect x="24" y="10" width="5" height="22" rx="1.5" fill="currentColor" />
       </svg>
 
       <div className="flex min-w-0 flex-col leading-none">
