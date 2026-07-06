@@ -78,8 +78,11 @@ export function Services() {
       const grid = gridRef.current;
       if (!section || !grid) return;
 
+      const isMobile = window.matchMedia('(max-width: 767px)').matches;
+      const mm = gsap.matchMedia();
+
       gsap.from('.services-heading-inner', {
-        y: 48,
+        y: isMobile ? 24 : 48,
         opacity: 0,
         duration: MOTION.reveal,
         ease: MOTION.revealEase,
@@ -91,7 +94,7 @@ export function Services() {
       });
 
       gsap.from('.services-intro', {
-        y: 36,
+        y: isMobile ? 16 : 36,
         opacity: 0,
         duration: MOTION.reveal,
         ease: MOTION.revealEase,
@@ -103,11 +106,12 @@ export function Services() {
       });
 
       gsap.from('.service-card', {
-        y: 48,
+        y: isMobile ? 24 : 48,
         opacity: 0,
-        duration: MOTION.reveal,
-        stagger: MOTION.revealStagger,
+        duration: isMobile ? 0.55 : MOTION.reveal,
+        stagger: isMobile ? 0.04 : MOTION.revealStagger,
         ease: MOTION.revealEase,
+        clearProps: isMobile ? 'all' : '',
         scrollTrigger: {
           trigger: grid,
           start: 'top 80%',
@@ -115,8 +119,7 @@ export function Services() {
         },
       });
 
-      const mm = gsap.matchMedia();
-
+      // Parallax columns — desktop only
       mm.add('(min-width: 768px)', () => {
         if (colLeftRef.current) {
           gsap.to(colLeftRef.current, {
@@ -144,6 +147,10 @@ export function Services() {
           });
         }
       });
+
+      // Hover image scale — desktop fine pointer only
+      const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      if (!hasFinePointer) return () => mm.revert();
 
       const cards = gsap.utils.toArray<HTMLElement>('.service-card', section);
       const cleanups: Array<() => void> = [];

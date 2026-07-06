@@ -97,29 +97,29 @@ export function Projects({ limit }: { limit?: number }) {
 
   useGSAP(
     () => {
-      const section = sectionRef.current;
-      const grid = gridRef.current;
-      if (!section || !grid) return;
+      const isMobile = window.matchMedia('(max-width: 767px)').matches;
 
       gsap.from('.projects-heading-inner', {
-        y: 56,
+        y: isMobile ? 24 : 56,
         opacity: 0,
         duration: MOTION.reveal,
         ease: MOTION.revealEase,
         scrollTrigger: {
           trigger: grid,
           start: 'top 88%',
-          end: 'top 62%',
-          scrub: 0.55,
+          // No scrub on mobile — simple fire-and-done
+          toggleActions: 'play none none none',
+          ...(isMobile ? {} : { end: 'top 62%', scrub: 0.55, toggleActions: undefined }),
         },
       });
 
       gsap.from('.project-card', {
-        y: 64,
+        y: isMobile ? 32 : 64,
         opacity: 0,
-        duration: MOTION.reveal,
-        stagger: MOTION.revealStagger,
+        duration: isMobile ? 0.55 : MOTION.reveal,
+        stagger: isMobile ? 0.04 : MOTION.revealStagger,
         ease: MOTION.revealEase,
+        clearProps: isMobile ? 'all' : '',
         scrollTrigger: {
           trigger: grid,
           start: 'top 82%',
@@ -155,42 +155,48 @@ export function Projects({ limit }: { limit?: number }) {
         }
       });
 
-      const cards = gsap.utils.toArray<HTMLElement>('.project-card', section);
-      const cleanups: Array<() => void> = [];
+      // Hover image scale — desktop only (touch devices skip)
+      const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      if (hasFinePointer) {
+        const cards = gsap.utils.toArray<HTMLElement>('.project-card', section);
+        const cleanups: Array<() => void> = [];
 
-      cards.forEach((card) => {
-        const imageInner = card.querySelector<HTMLElement>('.project-image-inner');
-        if (!imageInner) return;
-        gsap.set(imageInner, { scale: 1, force3D: true });
-        const onEnter = () =>
-          gsap.to(imageInner, {
-            scale: 1.04,
-            duration: 1.2,
-            ease: 'cubic-bezier(0.16, 1, 0.3, 1)',
-            overwrite: 'auto',
-            force3D: true,
+        cards.forEach((card) => {
+          const imageInner = card.querySelector<HTMLElement>('.project-image-inner');
+          if (!imageInner) return;
+          gsap.set(imageInner, { scale: 1, force3D: true });
+          const onEnter = () =>
+            gsap.to(imageInner, {
+              scale: 1.04,
+              duration: 1.2,
+              ease: 'cubic-bezier(0.16, 1, 0.3, 1)',
+              overwrite: 'auto',
+              force3D: true,
+            });
+          const onLeave = () =>
+            gsap.to(imageInner, {
+              scale: 1,
+              duration: 1.2,
+              ease: 'cubic-bezier(0.16, 1, 0.3, 1)',
+              overwrite: 'auto',
+              force3D: true,
+            });
+          card.addEventListener('mouseenter', onEnter);
+          card.addEventListener('mouseleave', onLeave);
+          cleanups.push(() => {
+            card.removeEventListener('mouseenter', onEnter);
+            card.removeEventListener('mouseleave', onLeave);
+            gsap.killTweensOf(imageInner);
           });
-        const onLeave = () =>
-          gsap.to(imageInner, {
-            scale: 1,
-            duration: 1.2,
-            ease: 'cubic-bezier(0.16, 1, 0.3, 1)',
-            overwrite: 'auto',
-            force3D: true,
-          });
-        card.addEventListener('mouseenter', onEnter);
-        card.addEventListener('mouseleave', onLeave);
-        cleanups.push(() => {
-          card.removeEventListener('mouseenter', onEnter);
-          card.removeEventListener('mouseleave', onLeave);
-          gsap.killTweensOf(imageInner);
         });
-      });
 
-      return () => {
-        mm.revert();
-        cleanups.forEach((fn) => fn());
-      };
+        return () => {
+          mm.revert();
+          cleanups.forEach((fn) => fn());
+        };
+      }
+
+      return () => mm.revert();
     },
     { scope: sectionRef }
   );

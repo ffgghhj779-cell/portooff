@@ -46,10 +46,15 @@ export function Blog() {
       const section = sectionRef.current;
       if (!section) return;
 
+      const isMobile = window.matchMedia('(max-width: 767px)').matches;
+      const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
       const rows = gsap.utils.toArray<HTMLElement>('.blog-row', section);
       const cleanups: Array<() => void> = [];
 
-      rows.forEach((row) => {
+      // Only attach hover listeners on desktop with fine pointer
+      if (hasFinePointer) {
+        rows.forEach((row) => {
         const imageInner = row.querySelector<HTMLElement>('.blog-image-inner');
         if (!imageInner) return;
 
@@ -78,35 +83,37 @@ export function Blog() {
         row.addEventListener('mouseenter', onEnter);
         row.addEventListener('mouseleave', onLeave);
 
-        cleanups.push(() => {
-          row.removeEventListener('mouseenter', onEnter);
-          row.removeEventListener('mouseleave', onLeave);
-          gsap.killTweensOf(imageInner);
+          cleanups.push(() => {
+            row.removeEventListener('mouseenter', onEnter);
+            row.removeEventListener('mouseleave', onLeave);
+            gsap.killTweensOf(imageInner);
+          });
         });
-      });
+      } // end hasFinePointer
 
       gsap.from('.blog-heading', {
-        y: 48,
+        y: isMobile ? 24 : 48,
         opacity: 0,
         duration: MOTION.reveal,
         ease: MOTION.revealEase,
         scrollTrigger: {
           trigger: section,
           start: 'top 85%',
-          end: 'top 60%',
-          scrub: 0.55,
+          toggleActions: 'play none none none',
         },
       });
 
       gsap.from('.blog-row', {
-        y: 48,
+        y: isMobile ? 20 : 48,
         opacity: 0,
-        duration: MOTION.reveal,
-        stagger: 0.08,
+        duration: isMobile ? 0.55 : MOTION.reveal,
+        stagger: isMobile ? 0.05 : 0.08,
         ease: MOTION.revealEase,
+        clearProps: isMobile ? 'all' : '',
         scrollTrigger: {
           trigger: section,
           start: 'top 78%',
+          toggleActions: 'play none none none',
         },
       });
 

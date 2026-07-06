@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import {
   createContext,
@@ -36,28 +36,36 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       return;
     }
 
+    // ── Mobile: skip Lenis entirely — native scroll is hardware-accelerated ──
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
+    const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+    if (isMobile || isTouch) {
+      // Let ScrollTrigger work with native scroll on mobile
+      ScrollTrigger.config({ ignoreMobileResize: true });
+      ScrollTrigger.normalizeScroll(false);
+      document.documentElement.classList.remove('lenis', 'lenis-smooth');
+      setLenisInstance(null);
+      return;
+    }
+
+    // ── Desktop: full Lenis smooth scroll ──
     document.documentElement.classList.add('lenis', 'lenis-smooth');
 
-    const isMobile = window.matchMedia('(max-width: 767px)').matches;
-
     const lenis = new Lenis({
-      duration: isMobile ? MOTION.lenisMobileDuration : MOTION.lenisDuration,
-      lerp: isMobile ? MOTION.lenisMobileLerp : MOTION.lenisLerp,
+      duration: MOTION.lenisDuration,
+      lerp: MOTION.lenisLerp,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      syncTouch: isMobile,
+      syncTouch: false,
       wheelMultiplier: MOTION.lenisWheelMultiplier,
-      touchMultiplier: isMobile
-        ? MOTION.lenisMobileTouchMultiplier
-        : MOTION.lenisTouchMultiplier,
+      touchMultiplier: MOTION.lenisTouchMultiplier,
       infinite: false,
     });
 
     setLenisInstance(lenis);
-
-    lenis.on('scroll', ScrollTrigger.update);
 
     lenis.on('scroll', ScrollTrigger.update);
 
@@ -84,7 +92,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       window.removeEventListener('resize', onResize);
       clearTimeout(resizeTimer);
       gsap.ticker.remove(ticker);
-      ScrollTrigger.killAll(); // Ensure complete cleanup of ScrollTriggers on unmount
+      ScrollTrigger.killAll();
       lenis.destroy();
       document.documentElement.classList.remove('lenis', 'lenis-smooth');
       setLenisInstance(null);

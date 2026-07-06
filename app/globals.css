@@ -272,19 +272,48 @@ body {
   transform: none !important;
 }
 
-.project-image-inner {
-  transform: translateZ(0);
-  backface-visibility: hidden;
+/* will-change only on desktop — GPU memory is precious on mobile */
+@media (hover: hover) and (pointer: fine) {
+  .project-image-inner {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
+  }
+
+  .service-image-inner {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
+  }
+
+  .project-media,
+  .service-media {
+    transform: translateZ(0);
+    will-change: transform;
+  }
 }
 
-.service-image-inner {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
+/* Mobile: plain rendering — no GPU compositing layers */
+@media (max-width: 767px) {
+  .project-image-inner,
+  .service-image-inner,
+  .blog-image-inner {
+    will-change: auto;
+    transform: none;
+    backface-visibility: visible;
+  }
 
-.project-media,
-.service-media {
-  transform: translateZ(0);
+  /* Disable mesh-glow heavy pseudo-element on mobile */
+  .mesh-glow::before {
+    display: none;
+  }
+
+  /* No translate promotion on text elements */
+  .hero-line-inner,
+  .hero-subtitle-inner,
+  .projects-heading-inner {
+    transform: none;
+  }
 }
 
 .custom-cursor {
