@@ -57,7 +57,7 @@ export function Logo({ theme = 'dark', showSlogan = true, size = 'md' }: LogoPro
 
       <div className="flex min-w-0 flex-col leading-none">
         <span
-          className={`font-display ${nameSize} font-bold tracking-tighter ${markClass} ${
+          className={`logo-brand-name font-display ${nameSize} font-bold tracking-tighter ${markClass} ${
             locale === 'ar' ? 'font-[family-name:var(--font-arabic)]' : 'lowercase'
           }`}
         >

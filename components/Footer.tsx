@@ -35,8 +35,10 @@ export function Footer() {
       const tellUsText = tellUsTextRef.current;
       if (!footer) return;
 
+      const isMobile = window.matchMedia('(max-width: 767px)').matches;
+
       gsap.from('.footer-reveal', {
-        y: 48,
+        y: isMobile ? 24 : 48,
         opacity: 0,
         duration: MOTION.reveal,
         stagger: 0.08,
@@ -44,19 +46,19 @@ export function Footer() {
         scrollTrigger: {
           trigger: footer,
           start: 'top 85%',
+          toggleActions: 'play none none none',
         },
       });
 
       gsap.from('.footer-cta-block', {
-        y: 56,
+        y: isMobile ? 24 : 56,
         opacity: 0,
         duration: MOTION.reveal,
         ease: MOTION.revealEase,
         scrollTrigger: {
           trigger: footer,
           start: 'top 88%',
-          end: 'top 55%',
-          scrub: 0.6,
+          toggleActions: 'play none none none',
         },
       });
 

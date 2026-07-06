@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { useDevice } from '@/components/DeviceProvider';
+import { useTranslations } from '@/lib/i18n/LocaleProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,6 +15,7 @@ const REEL_SRC =
 const POSTER_SRC = '/about-sphere.png';
 
 export function VideoShowcase() {
+  const t = useTranslations();
   const { isMobile } = useDevice();
   const containerRef = useRef<HTMLElement>(null);
   const videoWrapperRef = useRef<HTMLDivElement>(null);
@@ -50,7 +52,7 @@ export function VideoShowcase() {
       <div
         ref={videoWrapperRef}
         data-cursor="play"
-        data-cursor-label="Play"
+        data-cursor-label={t.common.play}
         className="media-hover relative mx-auto aspect-[16/9] w-[94%] overflow-hidden rounded-[2.5rem] bg-[#0a0a0a] will-change-transform md:w-[90%]"
       >
         {/* Desktop: autoplay video */}

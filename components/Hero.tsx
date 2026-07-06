@@ -172,13 +172,13 @@ export function Hero() {
                 href="/projects"
                 className="btn-pill inline-flex items-center bg-white text-black text-sm font-semibold"
               >
-                View Work
+                {t.hero.cta}
               </Link>
               <Link
                 href="/contact"
                 className="text-sm font-medium text-white/55 underline underline-offset-4"
               >
-                Get in touch
+                {t.hero.ctaSecondary}
               </Link>
             </div>
           </div>
@@ -205,7 +205,7 @@ export function Hero() {
                   <div
                     ref={mediaRef}
                     data-cursor="explore"
-                    data-cursor-label="Explore"
+                    data-cursor-label={t.common.explore}
                     className="media-hover absolute inset-[22%] overflow-hidden rounded-[2.5rem] border border-white/15 shadow-[0_24px_80px_rgba(0,0,0,0.5)]"
                     style={{ transform: 'translateZ(40px)' }}
                   >

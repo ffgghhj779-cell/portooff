@@ -1,25 +1,17 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import Link from 'next/link';
 import { MagneticButton } from './MagneticButton';
 import { SITE } from '@/lib/data/site';
+import { useTranslations } from '@/lib/i18n/LocaleProvider';
 
 export function ContactForm() {
+  const t = useTranslations();
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
   const [selectedBudget, setSelectedBudget] = useState<string | null>(null);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
-
-  const interests = [
-    'Site from scratch',
-    'UX/UI design',
-    'Product design',
-    'Web development',
-    'Motion design',
-    'Branding',
-    'Mobile development',
-  ];
 
   const budgets = ['10–20k EGP', '30–50k EGP', '50–100k EGP', '100k+ EGP'];
 
@@ -60,7 +52,7 @@ export function ContactForm() {
       setSelectedBudget(null);
     } catch (err) {
       setStatus('error');
-      setErrorMsg(err instanceof Error ? err.message : 'Failed to send message.');
+      setErrorMsg(err instanceof Error ? err.message : t.contact.messageSent);
     }
   };
 
@@ -69,20 +61,20 @@ export function ContactForm() {
       <div className="section-pad flex min-h-[70vh] w-full items-center">
         <div className="section-shell max-w-2xl text-center md:text-left">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-black/40">
-            Message sent
+            {t.contact.success}
           </p>
           <h1 className="heading-display type-section mb-6 font-bold tracking-tighter">
-            Thanks — we&apos;ll be in touch soon.
+            {t.contact.successBody}
           </h1>
           <p className="mb-8 text-lg text-black/60">
-            Prefer a quick call? Dial{' '}
+            {t.contact.callUs}{' '}
             <a href={`tel:${SITE.phone}`} className="font-semibold text-black underline">
               {SITE.phone}
             </a>
           </p>
           <MagneticButton>
             <Link href="/" className="btn-pill inline-block bg-black text-white">
-              Back to home
+              {t.contact.backHome}
             </Link>
           </MagneticButton>
         </div>
@@ -98,14 +90,12 @@ export function ContactForm() {
             {SITE.name} · {SITE.nameAr}
           </p>
           <h1 className="heading-display type-section mb-10 font-bold leading-[0.92]">
-            Hey! Tell us all
-            <br />
-            the things
+            {t.contact.title}
           </h1>
           <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-black/45">
-                Call us directly
+                {t.contact.callUs}
               </p>
               <a
                 href={`tel:${SITE.phone}`}
@@ -127,9 +117,9 @@ export function ContactForm() {
 
         <form className="flex flex-col gap-16" onSubmit={handleSubmit}>
           <div className="flex flex-col gap-6">
-            <label className="heading-display text-2xl font-bold">I&apos;m interested in...</label>
+            <label className="heading-display text-2xl font-bold">{t.contact.interestedIn}</label>
             <div className="flex flex-wrap gap-3">
-              {interests.map((interest) => (
+              {t.contact.interests.map((interest) => (
                 <button
                   key={interest}
                   type="button"
@@ -150,33 +140,33 @@ export function ContactForm() {
             <input
               name="name"
               type="text"
-              placeholder="Your name"
+              placeholder={t.contact.placeholderName}
               required
               className="w-full border-b border-black/20 bg-transparent pb-4 text-2xl placeholder-black/35 outline-none focus:border-black"
             />
             <input
               name="email"
               type="email"
-              placeholder="Email"
+              placeholder={t.contact.placeholderEmail}
               required
               className="w-full border-b border-black/20 bg-transparent pb-4 text-2xl placeholder-black/35 outline-none focus:border-black"
             />
             <input
               name="phone"
               type="tel"
-              placeholder="Phone (optional)"
+              placeholder={t.contact.placeholderPhone}
               className="w-full border-b border-black/20 bg-transparent pb-4 text-2xl placeholder-black/35 outline-none focus:border-black"
             />
             <input
               name="message"
               type="text"
-              placeholder="Tell us about your project"
+              placeholder={t.contact.placeholderMessage}
               className="w-full border-b border-black/20 bg-transparent pb-4 text-2xl placeholder-black/35 outline-none focus:border-black"
             />
           </div>
 
           <div className="flex flex-col gap-6">
-            <label className="heading-display text-2xl font-bold">Project budget</label>
+            <label className="heading-display text-2xl font-bold">{t.contact.budget}</label>
             <div className="flex flex-wrap gap-3">
               {budgets.map((budget) => (
                 <button
@@ -206,7 +196,7 @@ export function ContactForm() {
                 disabled={status === 'loading'}
                 className="rounded-full bg-black px-12 py-5 font-medium text-white disabled:opacity-60"
               >
-                {status === 'loading' ? 'Sending…' : 'Send request'}
+                {status === 'loading' ? t.contact.sending : t.contact.send}
               </button>
             </MagneticButton>
           </div>

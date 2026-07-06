@@ -10,6 +10,7 @@ import { Logo } from '@/components/Logo';
 import { LanguageToggle } from '@/components/LanguageToggle';
 import { useTranslations } from '@/lib/i18n/LocaleProvider';
 import { MOTION } from '@/lib/motion';
+import { SITE } from '@/lib/data/site';
 
 export function Menu() {
   const t = useTranslations();
@@ -174,9 +175,9 @@ export function Menu() {
             </p>
             {/* Quick social links in menu */}
             <div className="flex items-center gap-4 text-xs font-medium uppercase tracking-[0.16em] text-white/35">
-              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white/70 transition-colors">Ig</a>
-              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-white/70 transition-colors">Li</a>
-              <a href="https://www.behance.net" target="_blank" rel="noopener noreferrer" className="hover:text-white/70 transition-colors">Be</a>
+              <a href={SITE.social.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-white/70 transition-colors">Ig</a>
+              <a href={SITE.social.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-white/70 transition-colors">Li</a>
+              <a href={SITE.social.behance} target="_blank" rel="noopener noreferrer" className="hover:text-white/70 transition-colors">Be</a>
             </div>
           </div>
         </div>

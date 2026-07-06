@@ -1,41 +1,29 @@
-'use client';
+﻿'use client';
 
 import { useRef } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { MagneticButton } from './MagneticButton';
-import Image from 'next/image';
-import Link from 'next/link';
-import { HOVER_SCALE, MOTION } from '@/lib/motion';
+import { MOTION } from '@/lib/motion';
+import { useTranslations } from '@/lib/i18n/LocaleProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const HOVER_DURATION = MOTION.hover;
 
 /** Local images — always available, zero network dependency */
-const posts = [
-  {
-    title: 'How to Make UI/UX website // Frontend development',
-    date: '10/23/2024',
-    image: '/blog/ui-ux-course.png',
-    tag: 'DESIGN COURSE',
-  },
-  {
-    title: 'How to Cook an Emotional Site // Web Development',
-    date: '10/21/2024',
-    image: '/blog/emotional-web.png',
-    tag: 'DESIGN COURSE',
-  },
-  {
-    title: 'Cuberto Mouse Follower',
-    date: '4/11/2022',
-    image: '/blog/mouse-cursor.png',
-    tag: 'DEV SOURCE',
-  },
+const POST_IMAGES = [
+  '/blog/ui-ux-course.png',
+  '/blog/emotional-web.png',
+  '/blog/mouse-cursor.png',
 ] as const;
 
+const POST_DATES = ['10/23/2024', '10/21/2024', '4/11/2022'] as const;
+
 export function Blog() {
+  const t = useTranslations();
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -49,36 +37,33 @@ export function Blog() {
       const rows = gsap.utils.toArray<HTMLElement>('.blog-row', section);
       const cleanups: Array<() => void> = [];
 
-      // Only attach hover listeners on desktop with fine pointer
       if (hasFinePointer) {
         rows.forEach((row) => {
-        const imageInner = row.querySelector<HTMLElement>('.blog-image-inner');
-        if (!imageInner) return;
+          const imageInner = row.querySelector<HTMLElement>('.blog-image-inner');
+          if (!imageInner) return;
 
-        gsap.set(imageInner, { scale: 1, force3D: true });
+          gsap.set(imageInner, { scale: 1, force3D: true });
 
-        const onEnter = () => {
-          gsap.to(imageInner, {
-            scale: HOVER_SCALE,
-            duration: HOVER_DURATION,
-            ease: MOTION.hoverEase,
-            overwrite: 'auto',
-            force3D: true,
-          });
-        };
+          const onEnter = () =>
+            gsap.to(imageInner, {
+              scale: 1.05,
+              duration: HOVER_DURATION,
+              ease: MOTION.hoverEase,
+              overwrite: 'auto',
+              force3D: true,
+            });
 
-        const onLeave = () => {
-          gsap.to(imageInner, {
-            scale: 1,
-            duration: HOVER_DURATION,
-            ease: MOTION.hoverEase,
-            overwrite: 'auto',
-            force3D: true,
-          });
-        };
+          const onLeave = () =>
+            gsap.to(imageInner, {
+              scale: 1,
+              duration: HOVER_DURATION,
+              ease: MOTION.hoverEase,
+              overwrite: 'auto',
+              force3D: true,
+            });
 
-        row.addEventListener('mouseenter', onEnter);
-        row.addEventListener('mouseleave', onLeave);
+          row.addEventListener('mouseenter', onEnter);
+          row.addEventListener('mouseleave', onLeave);
 
           cleanups.push(() => {
             row.removeEventListener('mouseenter', onEnter);
@@ -86,7 +71,7 @@ export function Blog() {
             gsap.killTweensOf(imageInner);
           });
         });
-      } // end hasFinePointer
+      }
 
       gsap.from('.blog-heading', {
         y: isMobile ? 24 : 48,
@@ -125,58 +110,76 @@ export function Blog() {
     <section
       id="blog"
       ref={sectionRef}
-      className="section-pad w-full rounded-t-[2.5rem]"
+      className="section-pad relative w-full overflow-hidden bg-black text-white"
     >
-      <div className="section-shell flex flex-col gap-12 md:flex-row md:gap-16">
-        <div className="w-full md:w-1/3">
-          <h2 className="blog-heading heading-display type-section sticky top-32 font-bold tracking-tighter leading-none text-white">
-            Blog
+      <div className="section-shell">
+        <div className="mb-10 flex items-end justify-between md:mb-14">
+          <h2 className="blog-heading heading-display type-section font-bold tracking-tighter leading-none text-white">
+            {t.blog.title}
           </h2>
+          <Link
+            href="/blog"
+            className="hidden text-sm font-medium text-white/45 underline underline-offset-4 hover:text-white/80 md:block"
+          >
+            {t.blog.visitBlog}
+          </Link>
         </div>
 
-        <div className="flex w-full flex-col gap-12 md:w-2/3">
-          {posts.map((post) => (
-            <article
-              key={post.title}
-              className="blog-row group flex cursor-pointer flex-col items-start gap-6 md:flex-row md:items-center"
+        <div className="flex flex-col divide-y divide-white/[0.07]">
+          {t.blog.posts.map((post, i) => (
+            <Link
+              key={i}
+              href="/blog"
+              className="blog-row group flex items-center gap-5 py-6 md:gap-8 md:py-8"
+              data-cursor="explore"
+              data-cursor-label={t.common.explore}
             >
-              <div
-                data-cursor="explore"
-                data-cursor-label="Explore"
-                className="media-hover relative aspect-[4/3] w-full overflow-hidden rounded-[2.5rem] bg-white/5 transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[0.98] md:w-[42%]"
-              >
-                <div className="blog-image-inner absolute inset-0 will-change-transform transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]">
+              {/* Image */}
+              <div className="media-hover relative aspect-[4/3] w-28 shrink-0 overflow-hidden rounded-2xl bg-white/5 md:w-40">
+                <div className="blog-image-inner absolute inset-0">
                   <Image
-                    src={post.image}
+                    src={POST_IMAGES[i]}
                     alt={post.title}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 95vw, 44vw"
+                    sizes="(max-width: 768px) 112px, 160px"
                   />
                 </div>
               </div>
-              <div className="flex w-full flex-col items-start gap-3 md:w-[58%]">
-                <span className="inline-flex items-center rounded-full border border-white/15 px-4 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white/45">
+
+              {/* Text */}
+              <div className="flex flex-1 flex-col gap-2 min-w-0">
+                <span className="w-fit rounded-full bg-white/10 px-2.5 py-0.5 text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-white/50">
                   {post.tag}
                 </span>
-                <h3 className="heading-display text-lg font-bold tracking-tighter leading-[1.1] text-white md:text-2xl">
+                <p className="type-body-lg font-semibold tracking-tight text-white leading-snug truncate md:whitespace-normal">
                   {post.title}
-                </h3>
-                <p className="text-sm text-white/40">{post.date}</p>
+                </p>
+                <span className="text-xs text-white/30">{POST_DATES[i]}</span>
               </div>
-            </article>
-          ))}
 
-          <div className="mt-8">
-            <MagneticButton className="inline-block">
-              <Link
-                href="#blog"
-                className="btn-pill inline-block border border-white/30 text-white"
+              {/* Arrow */}
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                className="h-5 w-5 shrink-0 text-white/25 transition-all duration-300 group-hover:translate-x-1 group-hover:text-white/60"
               >
-                Visit our blog
-              </Link>
-            </MagneticButton>
-          </div>
+                <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
+          ))}
+        </div>
+
+        {/* Mobile: visit blog link */}
+        <div className="mt-8 md:hidden">
+          <Link
+            href="/blog"
+            className="text-sm font-medium text-white/45 underline underline-offset-4"
+          >
+            {t.blog.visitBlog}
+          </Link>
         </div>
       </div>
     </section>

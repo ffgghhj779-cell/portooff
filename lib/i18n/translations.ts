@@ -1,4 +1,4 @@
-export type Locale = 'en' | 'ar';
+﻿export type Locale = 'en' | 'ar';
 
 export const LOCALES: Locale[] = ['en', 'ar'];
 
@@ -19,6 +19,8 @@ export type TranslationKeys = {
   hero: {
     lines: [string, string, string];
     subtitle: string;
+    cta: string;
+    ctaSecondary: string;
   };
   whatWeDo: {
     body: string;
@@ -30,16 +32,18 @@ export type TranslationKeys = {
     viewAll: string;
     view: string;
   };
-    services: {
-      title: string;
-      intro: string;
-      viewAll: string;
-      items: Array<{ title: string; description: string }>;
-      cta: string;
-    };
+  services: {
+    title: string;
+    intro: string;
+    viewAll: string;
+    items: Array<{ title: string; description: string }>;
+    cta: string;
+  };
   blog: {
     title: string;
     readMore: string;
+    visitBlog: string;
+    posts: Array<{ title: string; tag: string }>;
   };
   footer: {
     idea: string;
@@ -59,14 +63,26 @@ export type TranslationKeys = {
     title: string;
     subtitle: string;
     send: string;
+    sending: string;
     success: string;
+    successBody: string;
     backHome: string;
+    callUs: string;
+    interestedIn: string;
+    budget: string;
+    interests: string[];
+    placeholderName: string;
+    placeholderEmail: string;
+    placeholderPhone: string;
+    placeholderMessage: string;
+    messageSent: string;
   };
   common: {
     explore: string;
     startProject: string;
     visitLive: string;
     allProjects: string;
+    play: string;
   };
 };
 
@@ -89,10 +105,12 @@ export const translations: Record<Locale, TranslationKeys> = {
       lines: ['Digital design', '& development', 'agency'],
       subtitle:
         'We help companies build scalable digital products with thoughtful design systems and carefully crafted development.',
+      cta: 'View Work',
+      ctaSecondary: 'Get in touch',
     },
     whatWeDo: {
       body:
-        'Since 2010, we have been helping our clients find exceptional solutions for their businesses, creating memorable websites and digital products.\n\nTasami doesn\'t do cookie-cutter solutions — we build products exactly as they were during the design phase, no shortcuts or simplifications.',
+        "Since 2010, we have been helping our clients find exceptional solutions for their businesses, creating memorable websites and digital products.\n\nTasami doesn't do cookie-cutter solutions — we build products exactly as they were during the design phase, no shortcuts or simplifications.",
       cta: 'What we do',
     },
     marquee: 'contact — contact — contact — ',
@@ -127,6 +145,12 @@ export const translations: Record<Locale, TranslationKeys> = {
     blog: {
       title: 'Latest insights',
       readMore: 'Read more',
+      visitBlog: 'Visit our blog',
+      posts: [
+        { title: 'How to Make UI/UX website // Frontend development', tag: 'DESIGN COURSE' },
+        { title: 'How to Cook an Emotional Site // Web Development',  tag: 'DESIGN COURSE' },
+        { title: 'Cuberto Mouse Follower',                            tag: 'DEV SOURCE'    },
+      ],
     },
     footer: {
       idea: 'Have an idea?',
@@ -145,17 +169,38 @@ export const translations: Record<Locale, TranslationKeys> = {
     contact: {
       title: 'Tell us about your project',
       subtitle: 'We typically respond within 24 hours.',
-      send: 'Send message',
-      success: 'Message sent — we\'ll be in touch soon.',
+      send: 'Send request',
+      sending: 'Sending…',
+      success: 'Message sent',
+      successBody: "Thanks — we'll be in touch soon.",
       backHome: 'Back to home',
+      callUs: 'Call us directly',
+      interestedIn: "I'm interested in...",
+      budget: 'Project budget',
+      interests: [
+        'Site from scratch',
+        'UX/UI design',
+        'Product design',
+        'Web development',
+        'Motion design',
+        'Branding',
+        'Mobile development',
+      ],
+      placeholderName: 'Your name',
+      placeholderEmail: 'Email',
+      placeholderPhone: 'Phone (optional)',
+      placeholderMessage: 'Tell us about your project',
+      messageSent: 'Message sent — we\'ll be in touch soon.',
     },
     common: {
       explore: 'Explore',
       startProject: 'Start a project',
       visitLive: 'Visit live site',
       allProjects: 'All projects',
+      play: 'Play',
     },
   },
+
   ar: {
     brand: {
       name: 'Tasami',
@@ -174,6 +219,8 @@ export const translations: Record<Locale, TranslationKeys> = {
       lines: ['تصميم رقمي', 'وتطوير', 'متقدم'],
       subtitle:
         'نساعد الشركات على بناء منتجات رقمية قابلة للتوسع — بتصميم مدروس وتطوير بمعايير عالمية.',
+      cta: 'شاهد أعمالنا',
+      ctaSecondary: 'تواصل معنا',
     },
     whatWeDo: {
       body:
@@ -210,6 +257,12 @@ export const translations: Record<Locale, TranslationKeys> = {
     blog: {
       title: 'آخر المقالات',
       readMore: 'اقرأ المزيد',
+      visitBlog: 'زيارة المدونة',
+      posts: [
+        { title: 'كيف تصنع موقع UI/UX // تطوير الواجهات', tag: 'دورة تصميم' },
+        { title: 'كيف تطبخ موقعاً عاطفياً // تطوير الويب', tag: 'دورة تصميم' },
+        { title: 'متتبع الفأرة من كيوبرتو',                 tag: 'مصدر تقني'  },
+      ],
     },
     footer: {
       idea: 'عندك فكرة؟',
@@ -228,15 +281,35 @@ export const translations: Record<Locale, TranslationKeys> = {
     contact: {
       title: 'أخبرنا عن مشروعك',
       subtitle: 'نرد عادةً خلال 24 ساعة.',
-      send: 'إرسال الرسالة',
-      success: 'تم الإرسال — سنتواصل معك قريباً.',
+      send: 'إرسال الطلب',
+      sending: 'جاري الإرسال…',
+      success: 'تم الإرسال',
+      successBody: 'شكراً — سنتواصل معك قريباً.',
       backHome: 'العودة للرئيسية',
+      callUs: 'اتصل بنا مباشرة',
+      interestedIn: 'أنا مهتم بـ...',
+      budget: 'ميزانية المشروع',
+      interests: [
+        'موقع من الصفر',
+        'تصميم UX/UI',
+        'تصميم المنتج',
+        'تطوير الويب',
+        'موشن جرافيك',
+        'الهوية البصرية',
+        'تطوير تطبيقات',
+      ],
+      placeholderName: 'اسمك',
+      placeholderEmail: 'البريد الإلكتروني',
+      placeholderPhone: 'رقم الهاتف (اختياري)',
+      placeholderMessage: 'أخبرنا عن مشروعك',
+      messageSent: 'تم الإرسال — سنتواصل معك قريباً.',
     },
     common: {
       explore: 'استكشف',
       startProject: 'ابدأ مشروعك',
       visitLive: 'زيارة الموقع',
       allProjects: 'كل المشاريع',
+      play: 'تشغيل',
     },
   },
 };

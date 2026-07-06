@@ -35,7 +35,7 @@ function ServiceCard({
           service.tall ? 'aspect-[4/5]' : 'aspect-[5/4]'
         }`}
         data-cursor="explore"
-        data-cursor-label="Explore"
+        data-cursor-label={t.common.explore}
       >
         <div className="service-image-inner absolute inset-0 will-change-transform transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]">
           <Image
