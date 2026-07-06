@@ -40,15 +40,15 @@ function ProjectCard({ project }: { project: Project }) {
           project.tall ? 'aspect-[4/5]' : 'aspect-[5/4]'
         }`}
       >
-        <div className="project-image-inner absolute inset-0 will-change-transform">
+        <div className="project-image-inner absolute inset-0">
           <Image
             src={project.image}
             alt={`${project.name} — ${project.tagline}`}
             fill
-            quality={92}
+            quality={85}
             className="object-cover"
             referrerPolicy="no-referrer"
-            sizes="(max-width: 768px) 100vw, 42vw"
+            sizes="(max-width: 768px) 96vw, 42vw"
           />
         </div>
         {/* Tags overlay — bottom left */}

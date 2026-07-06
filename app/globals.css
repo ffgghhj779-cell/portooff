@@ -719,3 +719,104 @@ main {
     padding-bottom: max(1rem, env(safe-area-inset-bottom));
   }
 }
+
+/* ═══════════════════════════════════════════════
+   🚀 CRITICAL MOBILE PERFORMANCE FIXES
+   ═══════════════════════════════════════════════ */
+
+/* —— Hero: enough top padding so text never hides behind navbar —— */
+@media (max-width: 767px) {
+  .hero-content-pad {
+    padding-top: max(5.5rem, calc(env(safe-area-inset-top) + 5rem));
+  }
+}
+
+/* —— Stop scroll chaining / rubber-band on iOS —— */
+body {
+  overscroll-behavior: none;
+}
+
+/* —— Sections off-screen: skip paint & layout —— */
+@media (max-width: 767px) {
+  section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+  }
+
+  /* But hero must always render */
+  section:first-of-type {
+    content-visibility: visible;
+    contain-intrinsic-size: auto;
+  }
+}
+
+/* —— CSS-only card entrance on mobile (no GSAP cost) —— */
+@keyframes card-fade-up {
+  from {
+    opacity: 0;
+    translate: 0 24px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .project-card {
+    animation: card-fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .project-card:nth-child(1) { animation-delay: 0.05s; }
+  .project-card:nth-child(2) { animation-delay: 0.10s; }
+  .project-card:nth-child(3) { animation-delay: 0.15s; }
+  .project-card:nth-child(4) { animation-delay: 0.20s; }
+  .project-card:nth-child(5) { animation-delay: 0.25s; }
+  .project-card:nth-child(6) { animation-delay: 0.30s; }
+}
+
+/* —— Remove ALL box-shadow on mobile (expensive paint) —— */
+@media (max-width: 767px) {
+  * {
+    box-shadow: none !important;
+  }
+}
+
+/* —— Backdrop-blur: reduce on mobile (very GPU expensive) —— */
+@media (max-width: 767px) {
+  .backdrop-blur-sm,
+  [class*="backdrop-blur"] {
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+  }
+}
+
+/* —— Text visibility: ensure nothing clips —— */
+.hero-line,
+.projects-heading,
+.services-heading,
+.blog-heading {
+  overflow: hidden;
+}
+
+/* Safe overflow for text wrapping elements */
+@media (max-width: 767px) {
+  .hero-line {
+    overflow: visible;
+  }
+}
+
+/* —— Smooth 120fps via CSS hint —— */
+@media (max-width: 767px) {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  }
+
+  /* Compositor-only properties for animated elements */
+  .project-card,
+  .service-card,
+  .blog-row {
+    contain: layout style;
+  }
+}

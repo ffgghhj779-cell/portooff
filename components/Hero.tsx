@@ -139,7 +139,7 @@ export function Hero() {
 
       <div
         ref={contentRef}
-        className="section-shell relative flex min-h-[100svh] flex-col justify-center pb-12 pt-24 sm:pb-16 sm:pt-28 md:pb-20 md:pt-32"
+        className="hero-content-pad section-shell relative flex min-h-[100svh] flex-col justify-center pb-12 pt-20 sm:pb-16 sm:pt-28 md:pb-20 md:pt-32"
       >
         <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-8">
           <div className="flex flex-col lg:col-span-6">
