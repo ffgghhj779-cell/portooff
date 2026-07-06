@@ -28,6 +28,7 @@ function ServiceCard({
 }: {
   service: { title: string; description: string; image: string; tall: boolean };
 }) {
+  const t = useTranslations();
   return (
     <article className="service-card group">
       <div
