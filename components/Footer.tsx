@@ -8,6 +8,7 @@ import { MOTION } from '@/lib/motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SITE } from '@/lib/data/site';
+import { useTranslations } from '@/lib/i18n/LocaleProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,6 +21,7 @@ const socialLinks = [
 ] as const;
 
 export function Footer() {
+  const t = useTranslations();
   const footerRef = useRef<HTMLElement>(null);
   const tellUsRef = useRef<HTMLAnchorElement>(null);
   const tellUsTextRef = useRef<HTMLSpanElement>(null);
@@ -104,7 +106,7 @@ export function Footer() {
         {!isContactPage && (
           <div className="footer-cta-block mb-24 text-center md:mb-32">
             <h2 className="heading-display mb-6 text-2xl font-medium text-white/70 md:text-4xl">
-              Have an idea?
+              {t.footer.idea}
             </h2>
             <Link
               ref={tellUsRef}
@@ -115,7 +117,7 @@ export function Footer() {
                 ref={tellUsTextRef}
                 className="tell-us-text type-display-xl block font-bold tracking-tighter leading-[1.05]"
               >
-                TELL US
+                {t.footer.tellUs}
               </span>
             </Link>
           </div>
@@ -124,7 +126,7 @@ export function Footer() {
         <div className="footer-reveal mb-16 grid grid-cols-1 gap-12 border-t border-white/10 pt-12 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-4">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-white/35">
-              Primary contact
+              {t.footer.primaryContact}
             </p>
             <a
               href={`tel:${SITE.phone}`}
@@ -142,27 +144,27 @@ export function Footer() {
 
           <div className="md:col-span-3 md:col-start-6">
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-white/35">
-              Navigate
+              {t.footer.navigate}
             </p>
             <nav className="flex flex-col gap-2 text-base font-medium">
               <Link href="#services" className="w-fit">
-                Services
+                {t.nav.services}
               </Link>
               <Link href="/projects" className="w-fit">
-                Projects
+                {t.nav.projects}
               </Link>
               <Link href="#blog" className="w-fit">
-                Blog
+                {t.nav.blog}
               </Link>
               <Link href="/contact" className="w-fit">
-                Contact
+                {t.nav.contact}
               </Link>
             </nav>
           </div>
 
           <div className="md:col-span-3 md:col-start-10">
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-white/35">
-              Social
+              {t.footer.social}
             </p>
             <div className="flex flex-wrap gap-3">
               {socialLinks.map((social) => (
@@ -181,10 +183,10 @@ export function Footer() {
 
         <div className="flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-sm text-white/40 md:flex-row md:items-center">
           <div className="flex flex-wrap items-center gap-4">
-            <Link href="/privacy">Privacy Policy</Link>
+            <Link href="/privacy">{t.footer.privacy}</Link>
             <span>© {new Date().getFullYear()} {SITE.name} ({SITE.nameAr})</span>
           </div>
-          <p className="text-white/30">Elite digital craftsmanship.</p>
+          <p className="text-white/30">{t.footer.tagline}</p>
         </div>
       </div>
     </footer>

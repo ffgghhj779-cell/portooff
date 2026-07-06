@@ -8,42 +8,24 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { MagneticButton } from './MagneticButton';
 import { HOVER_SCALE, MOTION } from '@/lib/motion';
+import { useTranslations } from '@/lib/i18n/LocaleProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const HOVER_DURATION = MOTION.hover;
 
-const services = [
-  {
-    title: 'Brand Identity',
-    description:
-      'Strategic design that positions AI products for trust and clarity.',
-    image:
-      'https://images.unsplash.com/photo-1614850523459-40c4e63ac874?q=80&w=1600&auto=format&fit=crop',
-    tall: false,
-  },
-  {
-    title: 'AI-enhanced UX/UI design',
-    description:
-      'Interfaces that adapt, predict, and respond intelligently.',
-    image:
-      'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1600&auto=format&fit=crop',
-    tall: true,
-  },
-  {
-    title: 'Custom development',
-    description:
-      'Frontend + backend + AI integrations — built for performance and scalability.',
-    image:
-      'https://images.unsplash.com/photo-1620641788421-a37b341781a6?q=80&w=1600&auto=format&fit=crop',
-    tall: false,
-  },
+const SERVICE_IMAGES = [
+  'https://images.unsplash.com/photo-1614850523459-40c4e63ac874?q=80&w=1600&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1600&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1620641788421-a37b341781a6?q=80&w=1600&auto=format&fit=crop',
 ] as const;
+
+const SERVICE_TALL = [false, true, false] as const;
 
 function ServiceCard({
   service,
 }: {
-  service: (typeof services)[number];
+  service: { title: string; description: string; image: string; tall: boolean };
 }) {
   return (
     <article className="service-card group">
@@ -79,6 +61,12 @@ function ServiceCard({
 }
 
 export function Services() {
+  const t = useTranslations();
+  const services = t.services.items.map((item, i) => ({
+    ...item,
+    image: SERVICE_IMAGES[i],
+    tall: SERVICE_TALL[i],
+  }));
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const colLeftRef = useRef<HTMLDivElement>(null);
@@ -212,7 +200,7 @@ export function Services() {
       <div className="section-shell">
         <div className="services-heading mb-10 overflow-hidden md:mb-14">
           <h2 className="services-heading-inner heading-display type-section font-bold tracking-tighter leading-none text-black">
-            Our services
+            {t.services.title}
           </h2>
         </div>
 
@@ -225,8 +213,7 @@ export function Services() {
             className="flex flex-col gap-12 md:gap-[5rem] lg:gap-[6.25rem]"
           >
             <p className="services-intro max-w-md text-base leading-[1.35] tracking-tight text-black/75 md:text-lg">
-              From motion design to AI-powered products — we design and build
-              interfaces for the future.
+              {t.services.intro}
             </p>
             <ServiceCard service={services[0]} />
             <ServiceCard service={services[2]} />
@@ -246,7 +233,7 @@ export function Services() {
               href="#services"
               className="btn-pill block bg-black text-white transition-colors hover:bg-black/90"
             >
-              View all services
+              {t.services.viewAll}
             </Link>
           </MagneticButton>
         </div>

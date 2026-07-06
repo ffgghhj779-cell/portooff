@@ -4,12 +4,14 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { useTranslations } from '@/lib/i18n/LocaleProvider';
+import { useDevice } from '@/components/DeviceProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const MARQUEE_TEXT = 'contact — contact — contact — ';
-
 export function Marquee() {
+  const t = useTranslations();
+  const { isMobile } = useDevice();
   const containerRef = useRef<HTMLElement>(null);
   const track1Ref = useRef<HTMLDivElement>(null);
   const track2Ref = useRef<HTMLDivElement>(null);
@@ -34,11 +36,10 @@ export function Marquee() {
       });
 
       const tick = () => {
-        const velocityBoost = Math.min(
-          Math.abs(velocityRef.current) * 0.004,
-          5.5
-        );
-        const speed = 0.6 + velocityBoost;
+        const velocityBoost = isMobile
+          ? 0
+          : Math.min(Math.abs(velocityRef.current) * 0.004, 5.5);
+        const speed = (isMobile ? 0.45 : 0.6) + velocityBoost;
 
         offset1Ref.current -= speed;
         offset2Ref.current += speed * 0.88;
@@ -56,8 +57,10 @@ export function Marquee() {
       gsap.ticker.add(tick);
       return () => gsap.ticker.remove(tick);
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [isMobile] }
   );
+
+  const marqueeText = t.marquee.repeat(4);
 
   return (
     <section
@@ -67,7 +70,7 @@ export function Marquee() {
       <div className="overflow-hidden whitespace-nowrap">
         <div ref={track1Ref} className="inline-flex will-change-transform">
           <span className="heading-display type-marquee px-2 font-medium lowercase tracking-tighter leading-none text-black">
-            {MARQUEE_TEXT.repeat(4)}
+            {marqueeText}
           </span>
         </div>
       </div>
@@ -77,7 +80,7 @@ export function Marquee() {
             className="heading-display type-marquee px-2 font-medium lowercase tracking-tighter leading-none text-transparent"
             style={{ WebkitTextStroke: '1px rgba(0,0,0,0.35)' }}
           >
-            {MARQUEE_TEXT.repeat(4)}
+            {marqueeText}
           </span>
         </div>
       </div>

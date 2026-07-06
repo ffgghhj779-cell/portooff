@@ -85,7 +85,7 @@ body {
 }
 
 .section-pad {
-  padding-block: 8rem;
+  padding-block: clamp(4rem, 10vw, 8rem);
 }
 
 .section-grid {
@@ -367,4 +367,46 @@ body {
   to {
     transform: translate3d(-4%, -2%, 0);
   }
+}
+
+/* ——— Arabic / RTL ——— */
+html[dir='rtl'] body {
+  font-family: var(--font-arabic), var(--font-inter), system-ui, sans-serif;
+}
+
+html[dir='rtl'] .font-display,
+html[dir='rtl'] .heading-display {
+  font-family: var(--font-arabic), var(--font-display), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* ——— Mobile performance & touch polish ——— */
+html[data-touch='true'] {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html[data-touch='true'] .btn-pill {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html[data-mobile='true'] .mesh-glow::before {
+  filter: blur(36px);
+  opacity: 0.22;
+}
+
+html[data-mobile='true'] .footer-ambient__blob {
+  filter: blur(52px);
+  opacity: 0.22;
+}
+
+html[data-mobile='true'] .footer-ambient__cables {
+  animation: none;
+  opacity: 0.1;
+}
+
+html[data-mobile='true'] .services-pin {
+  will-change: auto;
 }

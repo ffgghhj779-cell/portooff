@@ -6,17 +6,13 @@ import Link from 'next/link';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { useLenis } from '@/components/SmoothScroll';
+import { Logo } from '@/components/Logo';
+import { LanguageToggle } from '@/components/LanguageToggle';
+import { useTranslations } from '@/lib/i18n/LocaleProvider';
 import { MOTION } from '@/lib/motion';
 
-const NAV_LINKS = [
-  { href: '/', label: 'Home' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#services', label: 'Services' },
-  { href: '#blog', label: 'Blog' },
-  { href: '/contact', label: 'Contact' },
-] as const;
-
 export function Menu() {
+  const t = useTranslations();
   const rootRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const backdropRef = useRef<HTMLDivElement>(null);
@@ -28,6 +24,14 @@ export function Menu() {
   const [mounted, setMounted] = useState(false);
   const { lenis } = useLenis();
 
+  const NAV_LINKS = [
+    { href: '/', label: t.nav.home },
+    { href: '#projects', label: t.nav.projects },
+    { href: '#services', label: t.nav.services },
+    { href: '#blog', label: t.nav.blog },
+    { href: '/contact', label: t.nav.contact },
+  ] as const;
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -38,13 +42,8 @@ export function Menu() {
     else lenis.start();
   }, [isOpen, lenis]);
 
-  const closeMenu = () => {
-    setIsOpen(false);
-  };
-
-  const toggleMenu = () => {
-    setIsOpen((open) => !open);
-  };
+  const closeMenu = () => setIsOpen(false);
+  const toggleMenu = () => setIsOpen((open) => !open);
 
   useGSAP(
     () => {
@@ -72,29 +71,15 @@ export function Menu() {
           .to(backdrop, { opacity: 1, duration: 0.35 }, 0)
           .fromTo(
             overlay,
-            { clipPath: 'circle(0% at calc(100% - 3rem) 3rem)' },
+            { clipPath: 'circle(0% at calc(100% - 2.5rem) 2.5rem)' },
             {
-              clipPath: 'circle(150% at calc(100% - 3rem) 3rem)',
+              clipPath: 'circle(150% at calc(100% - 2.5rem) 2.5rem)',
               duration: MOTION.menuOpen,
             },
             0
           )
-          .to(
-            links,
-            {
-              yPercent: 0,
-              opacity: 1,
-              duration: 0.55,
-              stagger: 0.06,
-              ease: MOTION.menuEase,
-            },
-            0.15
-          )
-          .to(
-            brands,
-            { y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: 'expo.out' },
-            0.2
-          );
+          .to(links, { yPercent: 0, opacity: 1, duration: 0.55, stagger: 0.06 }, 0.12)
+          .to(brands, { y: 0, opacity: 1, duration: 0.45, stagger: 0.05 }, 0.18);
 
         if (lineTop && lineMid && lineBot) {
           gsap.to(lineTop, { rotate: 45, y: 10, duration: 0.28, ease: 'expo.out' });
@@ -121,7 +106,7 @@ export function Menu() {
           .to(brands, { y: -12, opacity: 0, duration: 0.3, stagger: 0.04 }, 0)
           .to(
             overlay,
-            { clipPath: 'circle(0% at calc(100% - 3rem) 3rem)', duration: 0.45 },
+            { clipPath: 'circle(0% at calc(100% - 2.5rem) 2.5rem)', duration: 0.45 },
             0.05
           )
           .to(backdrop, { opacity: 0, duration: 0.35 }, 0.08);
@@ -141,13 +126,13 @@ export function Menu() {
       <button
         type="button"
         onClick={toggleMenu}
-        className="magnetic fixed top-6 right-6 z-[70] flex flex-col gap-2 p-2 text-white mix-blend-difference md:right-12"
-        aria-label={isOpen ? 'Close menu' : 'Open menu'}
+        className="magnetic fixed top-4 end-4 z-[70] flex min-h-[44px] min-w-[44px] flex-col items-center justify-center gap-2 p-2 text-white mix-blend-difference sm:top-6 sm:end-6 md:end-12"
+        aria-label={isOpen ? t.menu.close : t.menu.open}
         aria-expanded={isOpen}
       >
-        <span ref={lineTopRef} className="block h-[2px] w-8 origin-center bg-white" />
-        <span ref={lineMidRef} className="block h-[2px] w-8 bg-white" />
-        <span ref={lineBotRef} className="block h-[2px] w-8 origin-center bg-white" />
+        <span ref={lineTopRef} className="block h-[2px] w-7 origin-center bg-white sm:w-8" />
+        <span ref={lineMidRef} className="block h-[2px] w-7 bg-white sm:w-8" />
+        <span ref={lineBotRef} className="block h-[2px] w-7 origin-center bg-white sm:w-8" />
       </button>
 
       <div
@@ -161,19 +146,20 @@ export function Menu() {
       <div
         ref={overlayRef}
         className="menu-overlay mesh-glow pointer-events-none fixed inset-0 z-[60] flex min-h-[100svh] flex-col bg-black text-white"
-        style={{ clipPath: 'circle(0% at calc(100% - 3rem) 3rem)' }}
+        style={{ clipPath: 'circle(0% at calc(100% - 2.5rem) 2.5rem)' }}
         data-lenis-prevent
         aria-hidden={!isOpen}
       >
-        <div className="section-shell flex min-h-[100svh] flex-1 flex-col justify-between py-28 md:py-36">
-          <p className="menu-brand font-display text-sm font-medium uppercase tracking-[0.32em] text-white/40">
-            Tasami · تسامي
-          </p>
+        <div className="section-shell flex min-h-[100svh] flex-1 flex-col justify-between py-24 sm:py-28 md:py-36">
+          <div className="menu-brand flex flex-wrap items-center justify-between gap-4">
+            <Logo theme="dark" showSlogan size="sm" />
+            <LanguageToggle theme="dark" />
+          </div>
 
-          <nav className="flex flex-col gap-2 md:gap-4" aria-label="Main menu">
+          <nav className="flex flex-col gap-1 sm:gap-2 md:gap-4" aria-label="Main menu">
             {NAV_LINKS.map((link) => (
               <div key={link.href} className="overflow-hidden py-0.5">
-                <Link href={link.href} onClick={closeMenu} className="menu-link block">
+                <Link href={link.href} onClick={closeMenu} className="menu-link block py-1">
                   <span className="menu-link-inner heading-display type-menu inline-block font-semibold tracking-tighter leading-[1.1] text-white">
                     {link.label}
                   </span>
@@ -183,7 +169,7 @@ export function Menu() {
           </nav>
 
           <p className="menu-brand max-w-sm text-sm leading-relaxed text-white/45">
-            Elite digital craftsmanship — Cairo & beyond.
+            {t.menu.tagline}
           </p>
         </div>
       </div>

@@ -19,6 +19,11 @@ export function MagneticButton({
       const el = magnetic.current;
       if (!el) return;
 
+      const prefersFinePointer = window.matchMedia(
+        '(hover: hover) and (pointer: fine)'
+      ).matches;
+      if (!prefersFinePointer) return;
+
       const xTo = gsap.quickTo(el, 'x', {
         duration: MOTION.magnetic,
         ease: 'expo.out',

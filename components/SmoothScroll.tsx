@@ -38,16 +38,20 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
 
     document.documentElement.classList.add('lenis', 'lenis-smooth');
 
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
+
     const lenis = new Lenis({
-      duration: MOTION.lenisDuration,
-      lerp: MOTION.lenisLerp,
+      duration: isMobile ? MOTION.lenisMobileDuration : MOTION.lenisDuration,
+      lerp: isMobile ? MOTION.lenisMobileLerp : MOTION.lenisLerp,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      syncTouch: true,
+      syncTouch: isMobile,
       wheelMultiplier: MOTION.lenisWheelMultiplier,
-      touchMultiplier: MOTION.lenisTouchMultiplier,
+      touchMultiplier: isMobile
+        ? MOTION.lenisMobileTouchMultiplier
+        : MOTION.lenisTouchMultiplier,
       infinite: false,
     });
 

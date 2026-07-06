@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { MagneticButton } from './MagneticButton';
 import { HOVER_SCALE, MOTION } from '@/lib/motion';
 import { PROJECTS, type Project } from '@/lib/data/projects';
+import { useTranslations } from '@/lib/i18n/LocaleProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,12 +26,13 @@ function splitColumns(items: Project[]) {
 }
 
 function ProjectCard({ project }: { project: Project }) {
+  const t = useTranslations();
   return (
     <Link
       href={`/projects/${project.slug}`}
       className="project-card group block"
       data-cursor="explore"
-      data-cursor-label="View"
+      data-cursor-label={t.projects.view}
     >
       <div
         className={`project-media relative w-full overflow-hidden rounded-[2rem] bg-[#111] md:rounded-[2.5rem] ${
@@ -58,6 +60,7 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 export function Projects({ limit }: { limit?: number }) {
+  const t = useTranslations();
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const colLeftRef = useRef<HTMLDivElement>(null);
@@ -175,7 +178,7 @@ export function Projects({ limit }: { limit?: number }) {
       <div className="section-shell">
         <div className="projects-heading mb-12 overflow-hidden md:mb-16">
           <h2 className="projects-heading-inner heading-display type-section font-bold tracking-tighter leading-none text-white">
-            Featured projects
+            {t.projects.title}
           </h2>
         </div>
 
@@ -208,7 +211,7 @@ export function Projects({ limit }: { limit?: number }) {
                 href="/projects"
                 className="btn-pill block border border-white/25 text-white transition-colors hover:bg-white hover:text-black"
               >
-                View all projects
+                {t.projects.viewAll}
               </Link>
             </MagneticButton>
           </div>

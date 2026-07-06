@@ -1,7 +1,8 @@
 export const SITE = {
   name: 'Tasami',
   nameAr: 'تسامي',
-  tagline: 'Digital design & development agency',
+  tagline: 'Elevate Your Digital Presence',
+  taglineAr: 'نرتقي بوجودك الرقمي',
   description:
     'We engineer competitive advantages through elite digital craftsmanship — design systems, product UI, and scalable web development.',
   url: 'https://portooff.vercel.app',

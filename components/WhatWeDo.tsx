@@ -6,12 +6,14 @@ import Image from 'next/image';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { MOTION } from '@/lib/motion';
+import { useTranslations } from '@/lib/i18n/LocaleProvider';
 import { MagneticButton } from './MagneticButton';
 import Link from 'next/link';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function WhatWeDo() {
+  const t = useTranslations();
   const sectionRef = useRef<HTMLElement>(null);
   const sphere1Ref = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
@@ -80,14 +82,17 @@ export function WhatWeDo() {
             ref={textRef}
             className="heading-display type-body-lg mb-8 font-medium tracking-tighter leading-[1.1] text-black/85"
           >
-            Since 2010, we have been helping our clients find exceptional
-            solutions for their businesses, creating memorable websites and
-            digital products.
-            <br />
-            <br />
-            Tasami doesn&apos;t do cookie-cutter solutions and we build products
-            exactly as they were during the design phase, no short cuts or
-            simplifications.
+            {t.whatWeDo.body.split('\n\n').map((paragraph, i) => (
+              <span key={i}>
+                {i > 0 && (
+                  <>
+                    <br />
+                    <br />
+                  </>
+                )}
+                {paragraph}
+              </span>
+            ))}
           </h2>
 
           <MagneticButton>
@@ -96,7 +101,7 @@ export function WhatWeDo() {
               data-reveal="up"
               className="btn-pill block border border-black/20 text-black hover:bg-black hover:text-white"
             >
-              What we do
+              {t.whatWeDo.cta}
             </Link>
           </MagneticButton>
         </div>
