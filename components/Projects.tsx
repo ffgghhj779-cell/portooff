@@ -34,6 +34,7 @@ function ProjectCard({ project }: { project: Project }) {
       data-cursor="explore"
       data-cursor-label={t.projects.view}
     >
+      {/* Image container */}
       <div
         className={`project-media relative w-full overflow-hidden rounded-[2.5rem] bg-[#111] ${
           project.tall ? 'aspect-[4/5]' : 'aspect-[5/4]'
@@ -50,14 +51,39 @@ function ProjectCard({ project }: { project: Project }) {
             sizes="(max-width: 768px) 100vw, 42vw"
           />
         </div>
+        {/* Tags overlay — bottom left */}
+        <div className="pointer-events-none absolute bottom-4 left-4 flex flex-wrap gap-1.5">
+          {project.tags.slice(0, 2).map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full bg-black/50 px-2.5 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-white/70 backdrop-blur-sm"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+        {/* Year badge — top right */}
+        <div className="pointer-events-none absolute top-4 right-4">
+          <span className="rounded-full bg-black/50 px-2.5 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-white/60 backdrop-blur-sm">
+            {project.year}
+          </span>
+        </div>
       </div>
-      <p className="project-caption mt-5 text-base leading-[1.35] tracking-tight text-white/90 md:mt-6 md:text-lg">
-        <span className="font-semibold text-white">{project.name}</span>
-        <span className="text-white/55"> – {project.tagline}</span>
-      </p>
+
+      {/* Caption */}
+      <div className="mt-5 md:mt-6">
+        <p className="project-caption text-base leading-[1.35] tracking-tight text-white/90 md:text-lg">
+          <span className="font-semibold text-white">{project.name}</span>
+          <span className="text-white/50"> – {project.tagline}</span>
+        </p>
+        <p className="mt-1.5 text-xs font-medium text-white/30 tracking-wide">
+          {project.clientType} · {project.market.split('—')[0].trim()}
+        </p>
+      </div>
     </Link>
   );
 }
+
 
 export function Projects({ limit }: { limit?: number }) {
   const t = useTranslations();

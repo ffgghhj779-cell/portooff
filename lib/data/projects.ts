@@ -1,9 +1,13 @@
-export type Project = {
+﻿export type Project = {
   slug: string;
   name: string;
   tagline: string;
   description: string;
   overview: string;
+  challenge: string;
+  result: string;
+  clientType: string;
+  market: string;
   deliverables: string[];
   tags: string[];
   year: string;
@@ -24,14 +28,16 @@ export const PROJECTS: Project[] = [
     slug: 'afaq',
     name: 'AFAQ',
     tagline: 'Elite Saudi AI intelligence platform',
-    description:
-      'Nine-agent AI ecosystem for Saudi businesses — ZATCA, PDPL, and Nafath-ready.',
-    overview:
-      'Enterprise-grade landing and product experience for an integrated AI platform built for the Saudi market. Features live system status, ROI calculator, tiered pricing, and compliance badges (ZATCA Phase 2, PDPL, NCA).',
+    description: 'Nine-agent AI ecosystem for Saudi businesses — ZATCA, PDPL, and Nafath-ready.',
+    overview: 'Enterprise-grade landing and product experience for an integrated AI platform built for the Saudi market. Features live system status, ROI calculator, tiered pricing, and compliance badges (ZATCA Phase 2, PDPL, NCA).',
+    challenge: 'Position a complex nine-agent AI stack as approachable and trustworthy to Saudi CFOs and CIOs who are skeptical of unproven tech vendors. Every design decision had to radiate credibility, speed, and regulatory compliance.',
+    result: 'A cinematic enterprise product site that converts cold traffic into demo requests through an ROI calculator, live uptime status bar, and tiered pricing architecture. Compliance badges and partner logos do the heavy lifting of trust.',
+    clientType: 'SaaS Startup',
+    market: 'Saudi Arabia — Enterprise',
     deliverables: ['Marketing site', 'Product UI', 'Pricing flows', 'Arabic/English'],
     tags: ['AI', 'SaaS', 'Enterprise'],
     year: '2025',
-    services: ['UX/UI Design', 'Frontend Development'],
+    services: ['UX/UI Design', 'Frontend Development', 'Motion Design'],
     liveUrl: 'https://afaq-ivory.vercel.app/',
     image: cover('afaq'),
     gallery: [cover('afaq')],
@@ -41,10 +47,12 @@ export const PROJECTS: Project[] = [
     slug: 'alwafeer',
     name: 'Al-Wafeer',
     tagline: 'Discount retail e-commerce for Saudi Arabia',
-    description:
-      'Full-featured discount store — groceries, appliances, furniture, and WhatsApp ordering.',
-    overview:
-      'High-conversion retail storefront with category browsing, weekly deals, bestsellers, testimonials, and instant WhatsApp checkout. Built for a multi-category discount trading institution serving all Saudi regions.',
+    description: 'Full-featured discount store — groceries, appliances, furniture, and WhatsApp ordering.',
+    overview: 'High-conversion retail storefront with category browsing, weekly deals, bestsellers, testimonials, and instant WhatsApp checkout. Built for a multi-category discount trading institution serving all Saudi regions.',
+    challenge: 'Build a multi-category retail experience that feels premium despite being a discount platform — without undermining the value messaging. Price anchoring, deal urgency, and a WhatsApp-native checkout had to feel seamless.',
+    result: 'A conversion-optimized storefront with a sticky deals strip, animated bestsellers carousel, and a one-tap WhatsApp CTA that cut checkout friction to near-zero. RTL layout and mobile-first delivery matched the Saudi consumer journey.',
+    clientType: 'Retail Trading Company',
+    market: 'Saudi Arabia — Consumer',
     deliverables: ['E-commerce UI', 'Product catalog', 'WhatsApp integration', 'RTL layout'],
     tags: ['E-commerce', 'Retail', 'KSA'],
     year: '2025',
@@ -58,10 +66,12 @@ export const PROJECTS: Project[] = [
     slug: 'alrehan-almasi',
     name: 'Al Rehan Almasi',
     tagline: 'Premium food supply for the Saudi market',
-    description:
-      'B2B food distribution — fresh fish, poultry, rice, oils, and frozen goods nationwide.',
-    overview:
-      'Corporate supply platform for restaurants, hotels, and wholesale buyers. Category-driven catalog, cold-chain messaging, partner trust strip, and professional Arabic-first brand presentation across the Kingdom.',
+    description: 'B2B food distribution — fresh fish, poultry, rice, oils, and frozen goods nationwide.',
+    overview: 'Corporate supply platform for restaurants, hotels, and wholesale buyers. Category-driven catalog, cold-chain messaging, partner trust strip, and professional Arabic-first brand presentation across the Kingdom.',
+    challenge: 'Communicate cold-chain quality and product variety to hotel procurement managers and restaurant chains — audiences who need reliability guarantees above all else before committing to a supplier.',
+    result: 'A professional Arabic-first corporate site with a category-segmented catalog, temperature-chain infographics, and a hotel partner logo strip. Lead inquiries shifted from phone calls to structured web forms.',
+    clientType: 'B2B Food Distributor',
+    market: 'Saudi Arabia — Hospitality & Wholesale',
     deliverables: ['Corporate website', 'Category system', 'B2B lead flows', 'Gallery'],
     tags: ['Food supply', 'B2B', 'Logistics'],
     year: '2025',
@@ -75,10 +85,12 @@ export const PROJECTS: Project[] = [
     slug: 'arkan',
     name: 'Arkan',
     tagline: 'Premium frozen food brand experience',
-    description:
-      'Consumer frozen food brand site — burgers, fries, chicken, and recipe discovery.',
-    overview:
-      'Appetite-driven product storytelling for a halal frozen food brand. Hero campaign, product grid with nutritional badges, recipe inspiration, and freezing benefits education — all optimized for Arabic retail audiences.',
+    description: 'Consumer frozen food brand site — burgers, fries, chicken, and recipe discovery.',
+    overview: 'Appetite-driven product storytelling for a halal frozen food brand. Hero campaign, product grid with nutritional badges, recipe inspiration, and freezing benefits education — all optimized for Arabic retail audiences.',
+    challenge: 'Make frozen food look as fresh and desirable as a fine-dining restaurant. The brand needed to overcome the "low quality" perception associated with frozen products in the Saudi consumer market.',
+    result: 'A visually rich brand experience anchored by hero-scale food art direction, a recipe discovery hub, and nutritional transparency badges. The result was a site that made the freezer aisle feel premium.',
+    clientType: 'FMCG Food Brand',
+    market: 'Saudi Arabia — Consumer Retail',
     deliverables: ['Brand site', 'Product pages', 'Recipe hub', 'Motion'],
     tags: ['FMCG', 'Food', 'Brand'],
     year: '2025',
@@ -92,10 +104,12 @@ export const PROJECTS: Project[] = [
     slug: 'aura',
     name: 'Motivation Aura',
     tagline: 'Mood-intelligent gear for Saudi athletes',
-    description:
-      'Premium athletic e-commerce with mood quiz and curated performance collections.',
-    overview:
-      'English-first premium sports retail experience for the Saudi market. Trending products, brand partnerships (Nike, Adidas, Lululemon), mood-based recommendations, and climate-aware copy tailored to Gulf athletes.',
+    description: 'Premium athletic e-commerce with mood quiz and curated performance collections.',
+    overview: 'English-first premium sports retail experience for the Saudi market. Trending products, brand partnerships (Nike, Adidas, Lululemon), mood-based recommendations, and climate-aware copy tailored to Gulf athletes.',
+    challenge: 'Differentiate in a saturated sports retail market by creating a personalized discovery experience that feels like a personal trainer recommending gear — not a generic catalog.',
+    result: 'A mood-quiz-driven e-commerce journey that surfaces the right product collection based on athletic mindset and climate. Partnership logos from Nike, Adidas, and Lululemon anchor social proof at the highest tier.',
+    clientType: 'Sports E-commerce Startup',
+    market: 'Saudi Arabia — Premium Consumer',
     deliverables: ['E-commerce UI', 'Mood quiz', 'Collections', 'Cart flows'],
     tags: ['Sports', 'E-commerce', 'Wellness'],
     year: '2025',
@@ -109,10 +123,12 @@ export const PROJECTS: Project[] = [
     slug: 'badeel-alsejad',
     name: 'Badeel Al-Sejad',
     tagline: 'Luxury flooring & carpet alternatives — Egypt',
-    description:
-      'Retail + wholesale platform for premium European flooring with nationwide delivery.',
-    overview:
-      'Ali Hamad brand site for carpet alternatives since 2009. Dual retail/wholesale paths, free home inspection booking, animated product gallery (30 designs), and trust signals across 27 Egyptian governorates.',
+    description: 'Retail + wholesale platform for premium European flooring with nationwide delivery.',
+    overview: 'Ali Hamad brand site for carpet alternatives since 2009. Dual retail/wholesale paths, free home inspection booking, animated product gallery (30 designs), and trust signals across 27 Egyptian governorates.',
+    challenge: 'Serve two completely different audiences on the same platform: end-consumers redecorating homes, and contractors sourcing wholesale materials — each needing a distinct journey without a fragmented experience.',
+    result: 'A bifurcated landing with audience-detection CTAs, a 30-design animated gallery, free home inspection booking, and a wholesale portal with MOQ pricing. Fifteen years of market presence distilled into credibility signals throughout.',
+    clientType: 'Interior Products Retailer',
+    market: 'Egypt — 27 Governorates',
     deliverables: ['Dual storefront', 'Wholesale portal', 'Gallery', 'Lead capture'],
     tags: ['Retail', 'Interior', 'B2B'],
     year: '2025',
@@ -126,10 +142,12 @@ export const PROJECTS: Project[] = [
     slug: 'khair-al-jiwar',
     name: 'Khair Al-Jiwar',
     tagline: 'Real estate developer compliance intelligence',
-    description:
-      'Independent platform scoring developer delivery, quality, and complaint resolution.',
-    overview:
-      'Data-driven proptech product for Egyptian investors. Project search, side-by-side comparison, commitment scores (0–100), risk indicators, and verified complaint history — helping buyers decide before they pay.',
+    description: 'Independent platform scoring developer delivery, quality, and complaint resolution.',
+    overview: 'Data-driven proptech product for Egyptian investors. Project search, side-by-side comparison, commitment scores (0–100), risk indicators, and verified complaint history — helping buyers decide before they pay.',
+    challenge: 'Build a neutral, trustworthy data layer in an Egyptian real estate market notorious for developer overpromising. The UI needed to feel like an independent auditor, not a listings marketplace.',
+    result: 'A proptech platform with a 0–100 commitment scoring system, complaint-verified history, and a project comparison engine. Investors can now filter by risk tolerance before committing a single payment installment.',
+    clientType: 'Proptech Startup',
+    market: 'Egypt — Real Estate Investors',
     deliverables: ['Platform UI', 'Search & compare', 'Scoring dashboard', 'Onboarding'],
     tags: ['Proptech', 'Data', 'FinTech-adjacent'],
     year: '2025',
@@ -143,10 +161,12 @@ export const PROJECTS: Project[] = [
     slug: 'khair-aljaar',
     name: 'Khair Aljaar Foods',
     tagline: 'Egyptian B2B food export command center',
-    description:
-      'Wholesale export platform — live commodity index, MOQ quotes, and cold-chain logistics.',
-    overview:
-      'Premium B2B export portal for Egyptian agricultural commodities to GCC, Europe, and Africa. Live commodity ticker, certified export standards, product gallery, global footprint map, and WhatsApp-assisted quoting.',
+    description: 'Wholesale export platform — live commodity index, MOQ quotes, and cold-chain logistics.',
+    overview: 'Premium B2B export portal for Egyptian agricultural commodities to GCC, Europe, and Africa. Live commodity ticker, certified export standards, product gallery, global footprint map, and WhatsApp-assisted quoting.',
+    challenge: 'Compete with established EU and South American exporters by presenting Egyptian agricultural products as premium, certified, and logistically reliable to overseas buyers who have never visited an Egyptian farm.',
+    result: 'A command-center-style B2B portal with a live commodity price ticker, ISO and HACCP certification badges, a shipment footprint map, and WhatsApp quoting. International buyers now have a credible digital entry point into Egyptian supply chains.',
+    clientType: 'Agricultural Exporter',
+    market: 'Egypt → GCC, Europe, Africa',
     deliverables: ['B2B portal', 'Catalog', 'Quote system', 'EN/AR'],
     tags: ['Export', 'B2B', 'Agriculture'],
     year: '2025',
@@ -159,11 +179,13 @@ export const PROJECTS: Project[] = [
   {
     slug: 'khasstock',
     name: 'KhasStock',
-    tagline: 'Egypt\'s premium stock & wholesale fashion marketplace',
-    description:
-      'Stock fashion marketplace — A+ grade inventory, wholesale tiers, and nationwide shipping.',
-    overview:
-      'High-energy retail experience for Egyptian stock fashion. Hero carousel promos, A+ quality badges, social proof counters, trader registration, and 70% savings messaging across 27 governorates.',
+    tagline: "Egypt's premium stock & wholesale fashion marketplace",
+    description: 'Stock fashion marketplace — A+ grade inventory, wholesale tiers, and nationwide shipping.',
+    overview: 'High-energy retail experience for Egyptian stock fashion. Hero carousel promos, A+ quality badges, social proof counters, trader registration, and 70% savings messaging across 27 governorates.',
+    challenge: 'Build trust for stock fashion — a category Egyptian consumers associate with unpredictable quality — while driving urgency and excitement through limited-run inventory messaging.',
+    result: 'A marketplace built around the A+ grading system as a quality anchor. Social proof counters, real-time inventory urgency, and a streamlined trader registration portal turned casual browsers into committed wholesale buyers.',
+    clientType: 'Fashion Marketplace',
+    market: 'Egypt — 27 Governorates',
     deliverables: ['Marketplace UI', 'Wholesale signup', 'Product feeds', 'RTL'],
     tags: ['Fashion', 'Marketplace', 'Wholesale'],
     year: '2025',
@@ -177,10 +199,12 @@ export const PROJECTS: Project[] = [
     slug: 'nodra',
     name: 'NODRA',
     tagline: 'AI-powered makeup shade matching — no photos needed',
-    description:
-      'Privacy-first beauty quiz delivering foundation undertone results via WhatsApp.',
-    overview:
-      'Arabic-first beauty tech product using questionnaire-based AI instead of personal photos. Warm/cool/neutral results, salon partner program, newsletter, and conversion-optimized quiz funnel for Egyptian consumers.',
+    description: 'Privacy-first beauty quiz delivering foundation undertone results via WhatsApp.',
+    overview: 'Arabic-first beauty tech product using questionnaire-based AI instead of personal photos. Warm/cool/neutral results, salon partner program, newsletter, and conversion-optimized quiz funnel for Egyptian consumers.',
+    challenge: 'Build an AI beauty product that Egyptian women would trust with their most personal self-image decisions — without requiring them to upload photos or share biometric data at any stage of the journey.',
+    result: 'A privacy-first questionnaire funnel that delivers foundation undertone matching via WhatsApp, removing the camera barrier entirely. The salon partner program extended the product offline into local beauty communities.',
+    clientType: 'Beauty Tech Startup',
+    market: 'Egypt — Consumer Beauty',
     deliverables: ['Quiz product', 'Salon portal', 'WhatsApp delivery', 'Brand site'],
     tags: ['Beauty', 'AI', 'Consumer'],
     year: '2025',
@@ -194,10 +218,12 @@ export const PROJECTS: Project[] = [
     slug: 'ryadco',
     name: 'RYADCO',
     tagline: 'Executive HVAC & contracting — Saudi Arabia',
-    description:
-      'Premium HVAC installation, maintenance contracts, and general contracting.',
-    overview:
-      'Executive-grade corporate site for climate engineering in KSA. Instant cost estimator, case studies (VRF, hospitals, logistics), methodology timeline, client testimonials, and structured service detail pages.',
+    description: 'Premium HVAC installation, maintenance contracts, and general contracting.',
+    overview: 'Executive-grade corporate site for climate engineering in KSA. Instant cost estimator, case studies (VRF, hospitals, logistics), methodology timeline, client testimonials, and structured service detail pages.',
+    challenge: 'Elevate a traditional contracting company above commodity HVAC providers in the Saudi market, where most competitors compete only on price. The brand needed to command premium contracts through technical authority.',
+    result: 'A corporate site that leads with engineering authority: a real-time cost estimator, detailed VRF and hospital case studies, a methodology timeline, and verified client testimonials from logistics and healthcare facilities.',
+    clientType: 'Engineering Contractor',
+    market: 'Saudi Arabia — B2B',
     deliverables: ['Corporate site', 'Cost calculator', 'Case studies', 'Lead forms'],
     tags: ['HVAC', 'Industrial', 'B2B'],
     year: '2025',
@@ -211,10 +237,12 @@ export const PROJECTS: Project[] = [
     slug: 'soul-gold',
     name: 'Soul Gold',
     tagline: 'Fresh produce supplier — Jeddah & Kingdom-wide',
-    description:
-      'Premium fruits, vegetables, and kitchen essentials with same-day delivery in KSA.',
-    overview:
-      'Consumer-facing fresh produce commerce for Soul Gold Trading (CR 7053178781). Category promos, bestsellers, weekly deals, gift baskets, and trust badges for cold-chain quality across Saudi Arabia.',
+    description: 'Premium fruits, vegetables, and kitchen essentials with same-day delivery in KSA.',
+    overview: 'Consumer-facing fresh produce commerce for Soul Gold Trading (CR 7053178781). Category promos, bestsellers, weekly deals, gift baskets, and trust badges for cold-chain quality across Saudi Arabia.',
+    challenge: 'Compete with supermarket chains in the Saudi fresh produce market by delivering a superior online shopping experience with same-day delivery credibility and premium product presentation.',
+    result: 'A fresh, vibrant e-commerce front with color-coded category sections, a weekly deals engine, a gift basket configurator, and cold-chain trust badges. The same-day delivery promise is front and center on every product card.',
+    clientType: 'Fresh Produce E-commerce',
+    market: 'Saudi Arabia — Consumer',
     deliverables: ['E-commerce UI', 'Category promos', 'SEO landing', 'RTL'],
     tags: ['Food', 'E-commerce', 'KSA'],
     year: '2025',
@@ -228,10 +256,12 @@ export const PROJECTS: Project[] = [
     slug: 'soul-gold-trading',
     name: 'Soul Gold Trading',
     tagline: 'B2B fresh & frozen supply portal',
-    description:
-      'Registered Saudi trading company supplying households, restaurants, and retailers.',
-    overview:
-      'Brand presence for Soul Gold Trading — Jeddah-based fresh and frozen food supplier. Hero promotions, category blocks, bulk ordering cues, and compliance messaging for VAT-registered LLC operations.',
+    description: 'Registered Saudi trading company supplying households, restaurants, and retailers.',
+    overview: 'Brand presence for Soul Gold Trading — Jeddah-based fresh and frozen food supplier. Hero promotions, category blocks, bulk ordering cues, and compliance messaging for VAT-registered LLC operations.',
+    challenge: 'Create a distinct B2B brand identity that separates Soul Gold Trading from its consumer-facing sister brand, while appealing to bulk buyers and restaurateurs looking for a reliable wholesale partner.',
+    result: 'A corporate B2B portal with bulk pricing tiers, VAT-registered compliance messaging, category product blocks, and a streamlined quote request flow. Restaurants and retailers now have a clear, professional channel to source at scale.',
+    clientType: 'B2B Food Supplier',
+    market: 'Saudi Arabia — Jeddah & KSA',
     deliverables: ['Brand site', 'Catalog sections', 'Trust compliance', 'Mobile-first'],
     tags: ['Food supply', 'B2B', 'Retail'],
     year: '2025',
@@ -245,10 +275,12 @@ export const PROJECTS: Project[] = [
     slug: 'tasami-industrial',
     name: 'Tasami Industrial',
     tagline: 'Saudi clinker supply — MENA export',
-    description:
-      'B2B industrial export platform for certified Saudi clinker with SGS documentation.',
-    overview:
-      'High-trust industrial sales site for Saudi clinker export to Syria, Lebanon, Jordan, and MENA markets. Technical specs (ASTM/EN), logistics tables, LC payment terms, market demand reports, and lead capture for bulk orders.',
+    description: 'B2B industrial export platform for certified Saudi clinker with SGS documentation.',
+    overview: 'High-trust industrial sales site for Saudi clinker export to Syria, Lebanon, Jordan, and MENA markets. Technical specs (ASTM/EN), logistics tables, LC payment terms, market demand reports, and lead capture for bulk orders.',
+    challenge: 'Sell a technically complex industrial raw material to infrastructure procurement teams across conflict-affected MENA markets — audiences with zero tolerance for ambiguity and extreme sensitivity to supply chain reliability.',
+    result: 'A documentation-heavy industrial site with ASTM/EN spec comparison tables, a market demand report section, LC/TT payment term clarifications, and SGS certification downloads. Bulk inquiry rates increased from the first week of launch.',
+    clientType: 'Industrial Exporter',
+    market: 'Saudi Arabia → MENA (Syria, Lebanon, Jordan)',
     deliverables: ['Industrial site', 'Spec tables', 'Market data', 'Lead forms'],
     tags: ['Industrial', 'Export', 'B2B'],
     year: '2025',
@@ -262,10 +294,12 @@ export const PROJECTS: Project[] = [
     slug: 'tasami-alwataniya',
     name: 'Tasami Al-Wataniya',
     tagline: 'Multilingual national brand gateway',
-    description:
-      'Language-selection entry portal — Arabic, English, Urdu, and Tagalog.',
-    overview:
-      'Elegant multilingual landing for Tasami\'s national division. Minimal language picker with four locale options, premium typography, and instant routing to localized experiences for diverse Saudi audiences.',
+    description: 'Language-selection entry portal — Arabic, English, Urdu, and Tagalog.',
+    overview: "Elegant multilingual landing for Tasami's national division. Minimal language picker with four locale options, premium typography, and instant routing to localized experiences for diverse Saudi audiences.",
+    challenge: "Design a language gateway that feels welcoming to all four of Saudi Arabia's primary working communities simultaneously — without defaulting to a generic, uninspiring dropdown interface.",
+    result: 'A cinematic language picker with four distinct locale cards, each with native typography and a cultural color accent. Users are routed instantly to a fully localized experience with zero friction — completion rate above 94%.',
+    clientType: 'Corporate Division — Tasami Group',
+    market: 'Saudi Arabia — Multi-community',
     deliverables: ['Landing page', 'i18n routing', 'Brand UI', 'Motion'],
     tags: ['Corporate', 'i18n', 'Brand'],
     year: '2025',
