@@ -42,6 +42,7 @@ function ProjectCard({ project }: { project: Project }) {
             src={project.image}
             alt={`${project.name} — ${project.tagline}`}
             fill
+            quality={92}
             className="object-cover transition-[filter] duration-700 group-hover:brightness-110"
             referrerPolicy="no-referrer"
             sizes="(max-width: 768px) 100vw, 42vw"

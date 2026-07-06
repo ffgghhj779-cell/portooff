@@ -83,6 +83,7 @@ export default async function ProjectPage({ params }: Props) {
                   alt={project.name}
                   fill
                   priority
+                  quality={92}
                   className="object-cover"
                   referrerPolicy="no-referrer"
                   sizes="100vw"

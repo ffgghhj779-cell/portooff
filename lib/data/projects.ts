@@ -14,10 +14,9 @@ export type Project = {
   tall: boolean;
 };
 
-/** Live site preview via thum.io — updates automatically from production URL */
-function shot(url: string): string {
-  const clean = url.replace(/#.*$/, '');
-  return `https://image.thum.io/get/width/1200/crop/675/noanimate/${clean}`;
+/** High-res cover stored locally — generated via scripts/fetch-covers.mjs */
+function cover(slug: string): string {
+  return `/projects/covers/${slug}.webp`;
 }
 
 export const PROJECTS: Project[] = [
@@ -34,8 +33,8 @@ export const PROJECTS: Project[] = [
     year: '2025',
     services: ['UX/UI Design', 'Frontend Development'],
     liveUrl: 'https://afaq-ivory.vercel.app/',
-    image: shot('https://afaq-ivory.vercel.app/'),
-    gallery: [shot('https://afaq-ivory.vercel.app/')],
+    image: cover('afaq'),
+    gallery: [cover('afaq')],
     tall: true,
   },
   {
@@ -51,8 +50,8 @@ export const PROJECTS: Project[] = [
     year: '2025',
     services: ['UX/UI Design', 'Web Development'],
     liveUrl: 'https://alwafeer-store.web.app/',
-    image: shot('https://alwafeer-store.web.app/'),
-    gallery: [shot('https://alwafeer-store.web.app/')],
+    image: cover('alwafeer'),
+    gallery: [cover('alwafeer')],
     tall: false,
   },
   {
@@ -68,8 +67,8 @@ export const PROJECTS: Project[] = [
     year: '2025',
     services: ['Brand UI', 'Web Development'],
     liveUrl: 'https://alrehan-almasi.vercel.app/',
-    image: shot('https://alrehan-almasi.vercel.app/'),
-    gallery: [shot('https://alrehan-almasi.vercel.app/')],
+    image: cover('alrehan-almasi'),
+    gallery: [cover('alrehan-almasi')],
     tall: true,
   },
   {
@@ -85,8 +84,8 @@ export const PROJECTS: Project[] = [
     year: '2025',
     services: ['UX/UI Design', 'Frontend Development'],
     liveUrl: 'https://arkan-alpha.vercel.app/',
-    image: shot('https://arkan-alpha.vercel.app/'),
-    gallery: [shot('https://arkan-alpha.vercel.app/')],
+    image: cover('arkan'),
+    gallery: [cover('arkan')],
     tall: false,
   },
   {
@@ -102,8 +101,8 @@ export const PROJECTS: Project[] = [
     year: '2025',
     services: ['Product Design', 'Frontend Development'],
     liveUrl: 'https://aura-omega-jade.vercel.app/',
-    image: shot('https://aura-omega-jade.vercel.app/'),
-    gallery: [shot('https://aura-omega-jade.vercel.app/')],
+    image: cover('aura'),
+    gallery: [cover('aura')],
     tall: true,
   },
   {
@@ -119,8 +118,8 @@ export const PROJECTS: Project[] = [
     year: '2025',
     services: ['UX/UI Design', 'Web Development'],
     liveUrl: 'https://badeel-alsejad.web.app/',
-    image: shot('https://badeel-alsejad.web.app/'),
-    gallery: [shot('https://badeel-alsejad.web.app/')],
+    image: cover('badeel-alsejad'),
+    gallery: [cover('badeel-alsejad')],
     tall: false,
   },
   {
@@ -136,8 +135,8 @@ export const PROJECTS: Project[] = [
     year: '2025',
     services: ['UX/UI Design', 'Frontend Development'],
     liveUrl: 'https://khair-al-jiwar.web.app/',
-    image: shot('https://khair-al-jiwar.web.app/'),
-    gallery: [shot('https://khair-al-jiwar.web.app/')],
+    image: cover('khair-al-jiwar'),
+    gallery: [cover('khair-al-jiwar')],
     tall: true,
   },
   {
@@ -153,8 +152,8 @@ export const PROJECTS: Project[] = [
     year: '2025',
     services: ['Product Design', 'Web Development'],
     liveUrl: 'https://khaireljewar.vercel.app/en',
-    image: shot('https://khaireljewar.vercel.app/en'),
-    gallery: [shot('https://khaireljewar.vercel.app/en')],
+    image: cover('khair-aljaar'),
+    gallery: [cover('khair-aljaar')],
     tall: false,
   },
   {
@@ -170,8 +169,8 @@ export const PROJECTS: Project[] = [
     year: '2025',
     services: ['UX/UI Design', 'Frontend Development'],
     liveUrl: 'https://khasstock-8833a.web.app/',
-    image: shot('https://khasstock-8833a.web.app/'),
-    gallery: [shot('https://khasstock-8833a.web.app/')],
+    image: cover('khasstock'),
+    gallery: [cover('khasstock')],
     tall: true,
   },
   {
@@ -187,8 +186,8 @@ export const PROJECTS: Project[] = [
     year: '2025',
     services: ['UX/UI Design', 'Web Development'],
     liveUrl: 'https://nodra-985b0.web.app/',
-    image: shot('https://nodra-985b0.web.app/'),
-    gallery: [shot('https://nodra-985b0.web.app/')],
+    image: cover('nodra'),
+    gallery: [cover('nodra')],
     tall: false,
   },
   {
@@ -204,8 +203,8 @@ export const PROJECTS: Project[] = [
     year: '2025',
     services: ['Brand UI', 'Web Development'],
     liveUrl: 'https://ryadco-513b2.web.app/',
-    image: shot('https://ryadco-513b2.web.app/'),
-    gallery: [shot('https://ryadco-513b2.web.app/')],
+    image: cover('ryadco'),
+    gallery: [cover('ryadco')],
     tall: true,
   },
   {
@@ -221,8 +220,8 @@ export const PROJECTS: Project[] = [
     year: '2025',
     services: ['UX/UI Design', 'Frontend Development'],
     liveUrl: 'https://soul-gold.vercel.app/',
-    image: shot('https://soul-gold.vercel.app/'),
-    gallery: [shot('https://soul-gold.vercel.app/')],
+    image: cover('soul-gold'),
+    gallery: [cover('soul-gold')],
     tall: false,
   },
   {
@@ -238,8 +237,8 @@ export const PROJECTS: Project[] = [
     year: '2025',
     services: ['UX/UI Design', 'Web Development'],
     liveUrl: 'https://soul-ubbd.vercel.app/',
-    image: shot('https://soul-ubbd.vercel.app/'),
-    gallery: [shot('https://soul-ubbd.vercel.app/')],
+    image: cover('soul-gold-trading'),
+    gallery: [cover('soul-gold-trading')],
     tall: true,
   },
   {
@@ -255,8 +254,8 @@ export const PROJECTS: Project[] = [
     year: '2025',
     services: ['UX/UI Design', 'Web Development'],
     liveUrl: 'https://tasami-klinker.vercel.app/',
-    image: shot('https://tasami-klinker.vercel.app/'),
-    gallery: [shot('https://tasami-klinker.vercel.app/')],
+    image: cover('tasami-industrial'),
+    gallery: [cover('tasami-industrial')],
     tall: false,
   },
   {
@@ -272,8 +271,8 @@ export const PROJECTS: Project[] = [
     year: '2025',
     services: ['Brand Identity', 'Frontend Development'],
     liveUrl: 'https://tasami-1.vercel.app/',
-    image: shot('https://tasami-1.vercel.app/'),
-    gallery: [shot('https://tasami-1.vercel.app/')],
+    image: cover('tasami-alwataniya'),
+    gallery: [cover('tasami-alwataniya')],
     tall: true,
   },
 ];
