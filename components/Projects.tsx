@@ -97,6 +97,10 @@ export function Projects({ limit }: { limit?: number }) {
 
   useGSAP(
     () => {
+      const section = sectionRef.current;
+      const grid = gridRef.current;
+      if (!section || !grid) return;
+
       const isMobile = window.matchMedia('(max-width: 767px)').matches;
 
       gsap.from('.projects-heading-inner', {
