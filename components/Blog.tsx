@@ -13,27 +13,24 @@ gsap.registerPlugin(ScrollTrigger);
 
 const HOVER_DURATION = MOTION.hover;
 
-/** Abstract 3D geometry / isometric UI only */
+/** Local images — always available, zero network dependency */
 const posts = [
   {
     title: 'How to Make UI/UX website // Frontend development',
     date: '10/23/2024',
-    image:
-      'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2070&auto=format&fit=crop',
+    image: '/blog/ui-ux-course.png',
     tag: 'DESIGN COURSE',
   },
   {
     title: 'How to Cook an Emotional Site // Web Development',
     date: '10/21/2024',
-    image:
-      'https://images.unsplash.com/photo-1614850523459-40c4e63ac874?q=80&w=2564&auto=format&fit=crop',
+    image: '/blog/emotional-web.png',
     tag: 'DESIGN COURSE',
   },
   {
     title: 'Cuberto Mouse Follower',
     date: '4/11/2022',
-    image:
-      'https://images.unsplash.com/photo-1617791160505-40fe982dbdcc?q=80&w=2426&auto=format&fit=crop',
+    image: '/blog/mouse-cursor.png',
     tag: 'DEV SOURCE',
   },
 ] as const;
@@ -154,8 +151,7 @@ export function Blog() {
                     alt={post.title}
                     fill
                     className="object-cover"
-                    referrerPolicy="no-referrer"
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 768px) 95vw, 44vw"
                   />
                 </div>
               </div>

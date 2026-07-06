@@ -68,11 +68,10 @@ export function WhatWeDo() {
             className="relative h-[260px] w-[260px] overflow-hidden rounded-[2.5rem] md:h-[340px] md:w-[340px]"
           >
             <Image
-              src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop"
-              alt="3D abstract spheres"
+              src="/about-sphere.png"
+              alt="3D abstract sphere"
               fill
-              className="object-cover opacity-80 mix-blend-multiply"
-              referrerPolicy="no-referrer"
+              className="object-cover opacity-90"
             />
           </div>
         </div>

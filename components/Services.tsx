@@ -14,10 +14,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 const HOVER_DURATION = MOTION.hover;
 
+/** Local images — always available, zero network dependency */
 const SERVICE_IMAGES = [
-  'https://images.unsplash.com/photo-1614850523459-40c4e63ac874?q=80&w=1600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1620641788421-a37b341781a6?q=80&w=1600&auto=format&fit=crop',
+  '/services/ux-design.png',
+  '/services/development.png',
+  '/services/brand-identity.png',
 ] as const;
 
 const SERVICE_TALL = [false, true, false] as const;
@@ -42,8 +43,7 @@ function ServiceCard({
             alt={service.title}
             fill
             className="object-cover"
-            referrerPolicy="no-referrer"
-            sizes="(max-width: 768px) 100vw, 42vw"
+            sizes="(max-width: 768px) 95vw, 44vw"
           />
         </div>
       </div>

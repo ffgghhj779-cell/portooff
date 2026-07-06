@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useRef } from 'react';
 import gsap from 'gsap';
@@ -11,8 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 const REEL_SRC =
   'https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-network-background-loop-31647-large.mp4';
 
-const POSTER_SRC =
-  'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1600&auto=format&fit=crop';
+const POSTER_SRC = '/about-sphere.png';
 
 export function VideoShowcase() {
   const { isMobile } = useDevice();
