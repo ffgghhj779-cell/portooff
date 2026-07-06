@@ -1,33 +1,33 @@
-'use client';
+﻿'use client';
 
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { HOVER_SCALE, MOTION } from '@/lib/motion';
+import { useDevice } from '@/components/DeviceProvider';
 
 gsap.registerPlugin(ScrollTrigger);
-
-const HOVER_DURATION = MOTION.hover;
 
 const REEL_SRC =
   'https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-network-background-loop-31647-large.mp4';
 
+const POSTER_SRC =
+  'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1600&auto=format&fit=crop';
+
 export function VideoShowcase() {
+  const { isMobile } = useDevice();
   const containerRef = useRef<HTMLElement>(null);
   const videoWrapperRef = useRef<HTMLDivElement>(null);
-  const mediaInnerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
       const container = containerRef.current;
       const wrapper = videoWrapperRef.current;
-      const mediaInner = mediaInnerRef.current;
       if (!container || !wrapper) return;
 
       gsap.fromTo(
         wrapper,
-        { scale: 0.9, opacity: 0.6 },
+        { scale: 0.88, opacity: 0.5 },
         {
           scale: 1,
           opacity: 1,
@@ -38,45 +38,12 @@ export function VideoShowcase() {
             trigger: container,
             start: 'top bottom',
             end: 'center center',
-            scrub: 0.85,
+            scrub: isMobile ? 0.5 : 0.85,
           },
         }
       );
-
-      if (!mediaInner) return;
-
-      gsap.set(mediaInner, { scale: 1, force3D: true });
-
-      const onEnter = () => {
-        gsap.to(mediaInner, {
-          scale: HOVER_SCALE,
-          duration: HOVER_DURATION,
-          ease: MOTION.hoverEase,
-          overwrite: 'auto',
-          force3D: true,
-        });
-      };
-
-      const onLeave = () => {
-        gsap.to(mediaInner, {
-          scale: 1,
-          duration: HOVER_DURATION,
-          ease: MOTION.hoverEase,
-          overwrite: 'auto',
-          force3D: true,
-        });
-      };
-
-      wrapper.addEventListener('mouseenter', onEnter);
-      wrapper.addEventListener('mouseleave', onLeave);
-
-      return () => {
-        wrapper.removeEventListener('mouseenter', onEnter);
-        wrapper.removeEventListener('mouseleave', onLeave);
-        gsap.killTweensOf(mediaInner);
-      };
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [isMobile] }
   );
 
   return (
@@ -87,7 +54,8 @@ export function VideoShowcase() {
         data-cursor-label="Play"
         className="media-hover relative mx-auto aspect-[16/9] w-[94%] overflow-hidden rounded-[2.5rem] bg-[#0a0a0a] will-change-transform md:w-[90%]"
       >
-        <div ref={mediaInnerRef} className="absolute inset-0 will-change-transform">
+        {/* Desktop: autoplay video */}
+        {!isMobile && (
           <video
             autoPlay
             muted
@@ -95,11 +63,34 @@ export function VideoShowcase() {
             playsInline
             preload="metadata"
             className="h-full w-full object-cover"
-            poster="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1600&auto=format&fit=crop"
+            poster={POSTER_SRC}
           >
             <source src={REEL_SRC} type="video/mp4" />
           </video>
-        </div>
+        )}
+
+        {/* Mobile: static poster — saves ~4MB of data */}
+        {isMobile && (
+          <div className="absolute inset-0">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={POSTER_SRC}
+              alt="Tasami showreel preview"
+              className="h-full w-full object-cover"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/15 backdrop-blur-sm">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6 translate-x-0.5 text-white">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Vignette */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
       </div>
     </section>
   );

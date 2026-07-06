@@ -78,8 +78,8 @@ export function Menu() {
             },
             0
           )
-          .to(links, { yPercent: 0, opacity: 1, duration: 0.55, stagger: 0.06 }, 0.12)
-          .to(brands, { y: 0, opacity: 1, duration: 0.45, stagger: 0.05 }, 0.18);
+          .to(links, { yPercent: 0, opacity: 1, duration: 0.45, stagger: 0.05 }, 0.1)
+          .to(brands, { y: 0, opacity: 1, duration: 0.4, stagger: 0.04 }, 0.15);
 
         if (lineTop && lineMid && lineBot) {
           gsap.to(lineTop, { rotate: 45, y: 10, duration: 0.28, ease: 'expo.out' });
@@ -156,11 +156,11 @@ export function Menu() {
             <LanguageToggle theme="dark" />
           </div>
 
-          <nav className="flex flex-col gap-1 sm:gap-2 md:gap-4" aria-label="Main menu">
+          <nav className="flex flex-col gap-0 sm:gap-1 md:gap-4" aria-label="Main menu">
             {NAV_LINKS.map((link) => (
-              <div key={link.href} className="overflow-hidden py-0.5">
-                <Link href={link.href} onClick={closeMenu} className="menu-link block py-1">
-                  <span className="menu-link-inner heading-display type-menu inline-block font-semibold tracking-tighter leading-[1.1] text-white">
+              <div key={link.href} className="overflow-hidden">
+                <Link href={link.href} onClick={closeMenu} className="menu-link group flex items-center py-2">
+                  <span className="menu-link-inner heading-display type-menu inline-block font-semibold tracking-tighter leading-[1.15] text-white transition-opacity duration-300 group-hover:opacity-60">
                     {link.label}
                   </span>
                 </Link>
@@ -168,9 +168,17 @@ export function Menu() {
             ))}
           </nav>
 
-          <p className="menu-brand max-w-sm text-sm leading-relaxed text-white/45">
-            {t.menu.tagline}
-          </p>
+          <div className="menu-brand flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <p className="max-w-sm text-sm leading-relaxed text-white/45">
+              {t.menu.tagline}
+            </p>
+            {/* Quick social links in menu */}
+            <div className="flex items-center gap-4 text-xs font-medium uppercase tracking-[0.16em] text-white/35">
+              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white/70 transition-colors">Ig</a>
+              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-white/70 transition-colors">Li</a>
+              <a href="https://www.behance.net" target="_blank" rel="noopener noreferrer" className="hover:text-white/70 transition-colors">Be</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

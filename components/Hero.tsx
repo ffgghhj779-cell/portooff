@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -131,7 +132,10 @@ export function Hero() {
       ref={sectionRef}
       className="mesh-glow relative z-10 min-h-[100svh] overflow-hidden bg-black"
     >
+      {/* Ambient top glow */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_45%_at_50%_0%,rgba(255,107,53,0.07),transparent)]" />
+      {/* Mobile bottom glow */}
+      <div className="hero-mobile-gradient pointer-events-none absolute inset-0 md:hidden" />
 
       <div
         ref={contentRef}
@@ -156,10 +160,26 @@ export function Hero() {
               </div>
             ))}
 
-            <div className="hero-subtitle mt-8 md:mt-12">
-              <p className="hero-subtitle-inner type-body-lg max-w-md font-medium tracking-tighter leading-[1.25] text-white/60 md:leading-[1.1]">
+            <div className="hero-subtitle mt-6 md:mt-12">
+              <p className="hero-subtitle-inner type-body-lg max-w-md font-medium tracking-tighter leading-[1.3] text-white/60 md:leading-[1.1]">
                 {t.hero.subtitle}
               </p>
+            </div>
+
+            {/* Mobile CTA — hidden on desktop */}
+            <div className="mt-8 flex items-center gap-4 md:hidden">
+              <Link
+                href="/projects"
+                className="btn-pill inline-flex items-center bg-white text-black text-sm font-semibold"
+              >
+                View Work
+              </Link>
+              <Link
+                href="/contact"
+                className="text-sm font-medium text-white/55 underline underline-offset-4"
+              >
+                Get in touch
+              </Link>
             </div>
           </div>
 

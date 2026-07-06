@@ -89,7 +89,13 @@ body {
   margin-inline: auto;
   width: 100%;
   max-width: 72rem;
-  padding-inline: 1.25rem;
+  padding-inline: 1.35rem;
+}
+
+@media (min-width: 480px) {
+  .section-shell {
+    padding-inline: 1.75rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -99,7 +105,7 @@ body {
 }
 
 .section-pad {
-  padding-block: clamp(4rem, 10vw, 8rem);
+  padding-block: clamp(3.5rem, 9vw, 8rem);
 }
 
 .section-grid {
@@ -113,30 +119,35 @@ body {
   line-height: 0.95;
 }
 
+/* ── Mobile-first type scale ── */
 .type-hero {
-  font-size: clamp(2.25rem, 6vw, 5.25rem);
+  /* 375px → 44px | 768px → 60px | 1440px → 84px */
+  font-size: clamp(2.75rem, 11.5vw, 5.25rem);
 }
 
 .type-section {
-  font-size: clamp(1.75rem, 3.5vw, 3rem);
+  /* 375px → 32px | 768px → 42px | 1440px → 48px */
+  font-size: clamp(2rem, 5.5vw, 3rem);
 }
 
 .type-marquee {
-  font-size: clamp(1.875rem, 4.5vw, 4rem);
+  font-size: clamp(2rem, 5.5vw, 4rem);
 }
 
 .type-menu {
-  font-size: clamp(1.875rem, 5vw, 3.75rem);
+  /* Big but not overflowing on 320px */
+  font-size: clamp(2rem, 8vw, 3.75rem);
 }
 
 .type-display-xl {
-  font-size: clamp(2rem, 7vw, 5rem);
+  /* Footer CTA — safe on 320px */
+  font-size: clamp(2.25rem, 8.5vw, 5rem);
 }
 
 .type-body-lg {
-  font-size: clamp(1.125rem, 2vw, 1.5rem);
-  line-height: 1.1;
-  letter-spacing: -0.03em;
+  font-size: clamp(1.0625rem, 2vw, 1.5rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 .radius-premium {
@@ -523,4 +534,159 @@ html.preloader-skipped .preloader {
 
 main {
   animation: page-fade-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ═══════════════════════════════════════════════
+   📱 MOBILE EXCELLENCE — Premium Mobile Layer
+   ═══════════════════════════════════════════════ */
+
+/* —— Touch target minimum: 44×44px —— */
+@media (pointer: coarse) {
+  a, button, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Disable heavy parallax scrub on mobile for 60fps */
+  .project-card .project-media,
+  .service-card .service-media,
+  .blog-row .media-hover {
+    transition: none !important;
+  }
+
+  /* Disable heavy will-change on scroll items */
+  .project-image-inner,
+  .service-image-inner,
+  .blog-image-inner {
+    will-change: auto;
+  }
+
+  /* Snap scrolling disabled — native feel */
+  .lenis-smooth {
+    scroll-behavior: auto;
+  }
+}
+
+/* —— Hero mobile: cinematic gradient underlay —— */
+@media (max-width: 767px) {
+  .hero-mobile-gradient {
+    background: radial-gradient(
+      ellipse 120% 60% at 50% 100%,
+      rgba(255, 107, 53, 0.12) 0%,
+      transparent 70%
+    );
+  }
+
+  /* Tighter subtitle on small screens */
+  .hero-subtitle-inner {
+    max-width: 90vw;
+  }
+
+  /* Cards: less tall on mobile for better scanning */
+  .project-card .aspect-\[4\/5\] {
+    aspect-ratio: 3 / 2;
+  }
+}
+
+/* —— Blog rows: stacked cleanly on mobile —— */
+@media (max-width: 767px) {
+  .blog-row {
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding-bottom: 2rem;
+  }
+  .blog-row:last-of-type {
+    border-bottom: none;
+  }
+}
+
+/* —— Footer: better mobile column stack —— */
+@media (max-width: 767px) {
+  .footer-grid-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .footer-social-mobile {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+}
+
+/* —— Mobile video showcase: hide video, show poster —— */
+@media (max-width: 767px) {
+  .video-showcase-mobile-only {
+    display: block;
+  }
+  .video-showcase-desktop-only {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .video-showcase-mobile-only {
+    display: none;
+  }
+  .video-showcase-desktop-only {
+    display: block;
+  }
+}
+
+/* —— Snap scroll for project cards on mobile —— */
+@media (max-width: 767px) {
+  .projects-snap-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 1rem;
+    padding-inline: 1.35rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .projects-snap-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .projects-snap-item {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    width: 78vw;
+  }
+}
+
+/* —— GPU hint: remove on mobile to save memory —— */
+@media (max-width: 767px) {
+  .mesh-glow {
+    background-attachment: initial;
+  }
+}
+
+/* —— Marquee: slightly faster on mobile for energy —— */
+@media (max-width: 767px) {
+  .marquee-track {
+    animation-duration: 18s;
+  }
+}
+
+/* —— Menu mobile: larger tap areas —— */
+@media (max-width: 767px) {
+  .menu-link {
+    display: flex;
+    align-items: center;
+    min-height: 56px;
+  }
+}
+
+/* —— Safe area insets (iPhone notch/home bar) —— */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .section-shell {
+    padding-inline: max(1.35rem, env(safe-area-inset-left));
+  }
+
+  footer {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
 }
