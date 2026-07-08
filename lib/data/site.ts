@@ -1,10 +1,10 @@
 export const SITE = {
   name: 'Tasami',
   nameAr: 'تسامي',
-  tagline: 'Elevate Your Digital Presence',
-  taglineAr: 'نرتقي بوجودك الرقمي',
+  tagline: 'We build digital things that actually work.',
+  taglineAr: 'نبني تجارب رقمية حقيقية.',
   description:
-    'We engineer competitive advantages through elite digital craftsmanship — design systems, product UI, and scalable web development.',
+    'A Cairo-based digital studio building websites and products for serious brands across Egypt and the Gulf — since 2020.',
   url: 'https://portooff.vercel.app',
   phone: '01144003490',
   email: 'hello@tasami.com',

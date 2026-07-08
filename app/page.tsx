@@ -1,111 +1,61 @@
 import { Navbar } from "@/components/Navbar";
-
 import { Hero } from "@/components/Hero";
-
-import { VideoShowcase } from "@/components/VideoShowcase";
-
-import { WhatWeDo } from "@/components/WhatWeDo";
-
+import { Numbers } from "@/components/Numbers";
+import { Story } from "@/components/Story";
 import { Marquee } from "@/components/Marquee";
-
 import { Projects } from "@/components/Projects";
-
 import { Services } from "@/components/Services";
-
-import { Blog } from "@/components/Blog";
-
+import { Belief } from "@/components/Belief";
 import { Footer } from "@/components/Footer";
 
-
-
 export default function Home() {
-
   return (
-
     <>
-
       <Navbar />
 
       <main className="overflow-x-hidden font-sans">
 
-        {/* Cuberto: dark hero + showreel */}
-
+        {/* ── Dark opening: hero statement + numbers strip ── */}
         <section data-scroll-theme="dark" className="theme-dark">
-
           <Hero />
-
-          <VideoShowcase />
-
+          <Numbers />
         </section>
 
-
-
-        {/* Cuberto: light zone — about + contact marquee */}
-
+        {/* ── Warm cream zone: origin story + marquee ── */}
         <section
-
           data-scroll-theme="light"
-
-          className="theme-light rounded-t-[2.5rem]"
-
+          className="rounded-t-[2.5rem]"
+          style={{ backgroundColor: '#f5f0ea' }}
         >
-
-          <WhatWeDo />
-
+          <Story />
           <Marquee />
-
         </section>
 
-
-
-        {/* Cuberto: dark projects masonry */}
-
+        {/* ── Dark zone: selected work ── */}
         <section data-scroll-theme="dark" className="theme-dark rounded-t-[2.5rem]">
-
           <Projects limit={6} />
-
         </section>
 
-
-
-        {/* Cuberto: light services */}
-
-        <section
-
-          data-scroll-theme="light"
-
-          className="theme-light rounded-t-[2.5rem]"
-
-        >
-
+        {/* ── Dark zone: how we work (services) ── */}
+        <section data-scroll-theme="dark" className="theme-dark">
           <Services />
-
         </section>
 
-
-
-        {/* Cuberto: dark footer zone — blog + CTA */}
-
+        {/* ── Warm cream zone: belief manifesto ── */}
         <section
-
-          data-scroll-theme="dark"
-
-          className="theme-dark rounded-t-[2.5rem]"
-
+          data-scroll-theme="light"
+          className="rounded-t-[2.5rem]"
+          style={{ backgroundColor: '#f5f0ea' }}
         >
+          <Belief />
+        </section>
 
-          <Blog />
-
+        {/* ── Dark footer ── */}
+        <section data-scroll-theme="dark" className="theme-dark rounded-t-[2.5rem]">
           <Footer />
-
         </section>
 
       </main>
-
     </>
-
   );
-
 }
-
-

@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -35,7 +35,7 @@ export function Navbar({ variant = 'auto' }: NavbarProps) {
 
           {/* Desktop nav links */}
           <div className={`hidden items-center gap-6 text-sm font-medium uppercase tracking-[0.16em] md:flex ${textClass}`}>
-            <Link href="/projects" className="nav-link-animated transition-opacity duration-300 hover:opacity-75">
+            <Link href="/work" className="nav-link-animated transition-opacity duration-300 hover:opacity-75">
               {t.nav.work}
             </Link>
             <Link href="/#services" className="nav-link-animated transition-opacity duration-300 hover:opacity-75">

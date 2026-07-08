@@ -35,10 +35,8 @@ export function Footer() {
       const tellUsText = tellUsTextRef.current;
       if (!footer) return;
 
-      const isMobile = window.matchMedia('(max-width: 767px)').matches;
-
       gsap.from('.footer-reveal', {
-        y: isMobile ? 24 : 48,
+        y: 24,
         opacity: 0,
         duration: MOTION.reveal,
         stagger: 0.08,
@@ -51,7 +49,7 @@ export function Footer() {
       });
 
       gsap.from('.footer-cta-block', {
-        y: isMobile ? 24 : 56,
+        y: 32,
         opacity: 0,
         duration: MOTION.reveal,
         ease: MOTION.revealEase,
@@ -95,21 +93,17 @@ export function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="section-pad relative z-10 w-full overflow-hidden !pt-8 text-white"
+      className="section-pad relative z-10 w-full overflow-hidden bg-[#050505] !pt-8 text-white"
     >
-      <div className="footer-ambient pointer-events-none absolute inset-0 z-0" aria-hidden="true">
-        <div className="footer-ambient__blob footer-ambient__blob--orange" />
-        <div className="footer-ambient__blob footer-ambient__blob--blue" />
-        <div className="footer-ambient__blob footer-ambient__blob--green" />
-        <div className="footer-ambient__cables" />
-      </div>
+      {/* No color blobs — pure matte black */}
 
       <div className="section-shell relative z-10 pb-12 pt-16 md:pb-16">
+        {/* CTA — only shown when not on contact page */}
         {!isContactPage && (
           <div className="footer-cta-block mb-24 text-center md:mb-32">
-            <h2 className="heading-display mb-6 text-2xl font-medium text-white/70 md:text-4xl">
+            <p className="mb-6 text-base font-normal text-white/40 md:text-lg">
               {t.footer.idea}
-            </h2>
+            </p>
             <Link
               ref={tellUsRef}
               href="/contact"
@@ -125,56 +119,57 @@ export function Footer() {
           </div>
         )}
 
-        <div className="footer-reveal mb-16 grid grid-cols-1 gap-12 border-t border-white/10 pt-12 md:grid-cols-12 md:gap-8">
+        {/* Footer grid */}
+        <div className="footer-reveal mb-16 grid grid-cols-1 gap-12 border-t border-white/[0.07] pt-12 md:grid-cols-12 md:gap-8">
+          {/* Contact */}
           <div className="md:col-span-4">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-white/35">
+            <p className="mb-3 text-[0.6rem] font-semibold uppercase tracking-[0.24em] text-white/30">
               {t.footer.primaryContact}
             </p>
             <a
               href={`tel:${SITE.phone}`}
-              className="mb-4 block text-3xl font-bold tracking-tight text-white md:text-4xl"
+              className="mb-4 block text-2xl font-semibold tracking-tight text-white transition-opacity hover:opacity-70 md:text-3xl"
             >
               {SITE.phone}
             </a>
             <a
               href={`mailto:${SITE.email}`}
-              className="inline-flex rounded-full border border-white/20 px-6 py-3 text-sm font-medium"
+              className="inline-flex rounded-full border border-white/15 px-5 py-2.5 text-sm font-medium text-white/70 transition-colors hover:border-white/30 hover:text-white"
             >
               {SITE.email}
             </a>
           </div>
 
+          {/* Navigate */}
           <div className="md:col-span-3 md:col-start-6">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-white/35">
+            <p className="mb-4 text-[0.6rem] font-semibold uppercase tracking-[0.24em] text-white/30">
               {t.footer.navigate}
             </p>
-            <nav className="flex flex-col gap-2 text-base font-medium">
-              <Link href="#services" className="w-fit">
+            <nav className="flex flex-col gap-2.5 text-sm font-medium text-white/60">
+              <Link href="/work" className="w-fit transition-colors hover:text-white">
+                {t.nav.work}
+              </Link>
+              <Link href="/#services" className="w-fit transition-colors hover:text-white">
                 {t.nav.services}
               </Link>
-              <Link href="/projects" className="w-fit">
-                {t.nav.projects}
-              </Link>
-              <Link href="#blog" className="w-fit">
-                {t.nav.blog}
-              </Link>
-              <Link href="/contact" className="w-fit">
+              <Link href="/contact" className="w-fit transition-colors hover:text-white">
                 {t.nav.contact}
               </Link>
             </nav>
           </div>
 
+          {/* Social */}
           <div className="md:col-span-3 md:col-start-10">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-white/35">
+            <p className="mb-4 text-[0.6rem] font-semibold uppercase tracking-[0.24em] text-white/30">
               {t.footer.social}
             </p>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2.5">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-xs font-semibold"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-xs font-semibold text-white/50 transition-colors hover:border-white/30 hover:text-white"
                 >
                   {social.abbr}
                 </a>
@@ -183,12 +178,15 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-sm text-white/40 md:flex-row md:items-center">
-          <div className="flex flex-wrap items-center gap-4">
-            <Link href="/privacy">{t.footer.privacy}</Link>
-            <span>© {new Date().getFullYear()} {SITE.name} ({SITE.nameAr})</span>
+        {/* Bottom bar */}
+        <div className="flex flex-col items-start justify-between gap-4 border-t border-white/[0.07] pt-8 text-xs text-white/30 md:flex-row md:items-center">
+          <div className="flex flex-wrap items-center gap-5">
+            <Link href="/privacy" className="transition-colors hover:text-white/60">
+              {t.footer.privacy}
+            </Link>
+            <span>© {new Date().getFullYear()} {SITE.name}</span>
           </div>
-          <p className="text-white/30">{t.footer.tagline}</p>
+          <p className="text-white/20">{t.footer.tagline}</p>
         </div>
       </div>
     </footer>

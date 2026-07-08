@@ -27,9 +27,8 @@ export function Menu() {
 
   const NAV_LINKS = [
     { href: '/', label: t.nav.home },
-    { href: '#projects', label: t.nav.projects },
-    { href: '#services', label: t.nav.services },
-    { href: '#blog', label: t.nav.blog },
+    { href: '/work', label: t.nav.work },
+    { href: '/#services', label: t.nav.services },
     { href: '/contact', label: t.nav.contact },
   ] as const;
 

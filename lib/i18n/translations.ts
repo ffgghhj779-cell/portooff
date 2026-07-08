@@ -1,4 +1,4 @@
-﻿export type Locale = 'en' | 'ar';
+export type Locale = 'en' | 'ar';
 
 export const LOCALES: Locale[] = ['en', 'ar'];
 
@@ -17,12 +17,21 @@ export type TranslationKeys = {
     blog: string;
   };
   hero: {
-    lines: [string, string, string];
+    label: string;
+    line1: string;
+    line2: string;
     subtitle: string;
     cta: string;
     ctaSecondary: string;
   };
-  whatWeDo: {
+  numbers: {
+    stat1: { value: string; label: string };
+    stat2: { value: string; label: string };
+    stat3: { value: string; label: string };
+  };
+  story: {
+    label: string;
+    heading: string;
     body: string;
     cta: string;
   };
@@ -32,18 +41,24 @@ export type TranslationKeys = {
     viewAll: string;
     view: string;
   };
+  projectStory: {
+    theBrand: string;
+    theProblem: string;
+    whatWeBuilt: string;
+    theOutcome: string;
+    previous: string;
+    next: string;
+  };
   services: {
     title: string;
     intro: string;
     viewAll: string;
-    items: Array<{ title: string; description: string }>;
+    items: Array<{ number: string; title: string; description: string }>;
     cta: string;
   };
-  blog: {
-    title: string;
-    readMore: string;
-    visitBlog: string;
-    posts: Array<{ title: string; tag: string }>;
+  belief: {
+    label: string;
+    body: string;
   };
   footer: {
     idea: string;
@@ -91,7 +106,7 @@ export const translations: Record<Locale, TranslationKeys> = {
     brand: {
       name: 'Tasami',
       nameAr: 'تسامي',
-      slogan: 'Elevate Your Digital Presence',
+      slogan: 'We build digital things that actually work.',
     },
     nav: {
       work: 'Work',
@@ -102,67 +117,81 @@ export const translations: Record<Locale, TranslationKeys> = {
       blog: 'Blog',
     },
     hero: {
-      lines: ['Digital design', '& development', 'agency'],
+      label: 'Cairo — Est. 2020',
+      line1: 'We build digital',
+      line2: 'things that work.',
       subtitle:
-        'We help companies build scalable digital products with thoughtful design systems and carefully crafted development.',
-      cta: 'View Work',
-      ctaSecondary: 'Get in touch',
+        'For brands in Egypt and the Gulf who are serious about what they put online.',
+      cta: 'See our work',
+      ctaSecondary: 'Start a conversation',
     },
-    whatWeDo: {
-      body:
-        "Since 2010, we have been helping our clients find exceptional solutions for their businesses, creating memorable websites and digital products.\n\nTasami doesn't do cookie-cutter solutions — we build products exactly as they were during the design phase, no shortcuts or simplifications.",
-      cta: 'What we do',
+    numbers: {
+      stat1: { value: '15', label: 'Brands built' },
+      stat2: { value: 'EG · KSA', label: 'Markets served' },
+      stat3: { value: '2025', label: 'All delivered' },
     },
-    marquee: 'contact — contact — contact — ',
+    story: {
+      label: 'Who we are',
+      heading: 'We started because bad websites bother us.',
+      body: 'Tasami was founded in Cairo in 2020 out of a simple frustration: too many businesses with genuine value were being let down by digital work that felt cheap, generic, or abandoned at the first sign of complexity.\n\nWe do not do templates, quick fixes, or hand-off packages. We stay involved until what we build is genuinely good — and we know the difference.',
+      cta: 'How we work',
+    },
+    marquee: 'Food & FMCG  ·  Real Estate  ·  SaaS & AI  ·  Agriculture & Export  ·  Industrial  ·  Beauty Tech  ·  Sports & Wellness  ·  E-commerce  ·  ',
     projects: {
-      title: 'Featured projects',
+      title: 'Selected work',
       viewAll: 'View all projects',
       view: 'View',
     },
+    projectStory: {
+      theBrand: 'The Brand',
+      theProblem: 'The Problem',
+      whatWeBuilt: 'What We Built',
+      theOutcome: 'The Outcome',
+      previous: 'Previous',
+      next: 'Next',
+    },
     services: {
-      title: 'Our services',
+      title: 'How we work',
       intro:
-        'From brand identity to full-stack products — we design and build interfaces for the future.',
-      viewAll: 'View all services',
+        'Three disciplines. One consistent standard.',
+      viewAll: 'Start a project',
       items: [
         {
-          title: 'Brand Identity',
+          number: '01',
+          title: 'Strategy & Brand Identity',
           description:
-            'Strategic design that positions your product for trust and clarity.',
+            'We figure out who you are and who you are talking to before we design anything. The visual work comes second.',
         },
         {
-          title: 'UX/UI Design',
-          description: 'Interfaces that feel premium, intuitive, and conversion-ready.',
+          number: '02',
+          title: 'UX / UI Design',
+          description:
+            'Interfaces designed for the people who will actually use them — not for a portfolio screenshot.',
         },
         {
-          title: 'Custom Development',
+          number: '03',
+          title: 'Development',
           description:
-            'Frontend + backend — built for performance, scalability, and polish.',
+            'We build what we design. There is no hand-off, no translation loss, no gap between what was promised and what ships.',
         },
       ],
       cta: 'Get in touch',
     },
-    blog: {
-      title: 'Latest insights',
-      readMore: 'Read more',
-      visitBlog: 'Visit our blog',
-      posts: [
-        { title: 'How to Make UI/UX website // Frontend development', tag: 'DESIGN COURSE' },
-        { title: 'How to Cook an Emotional Site // Web Development',  tag: 'DESIGN COURSE' },
-        { title: 'Cuberto Mouse Follower',                            tag: 'DEV SOURCE'    },
-      ],
+    belief: {
+      label: 'What we believe',
+      body: 'The internet has too many impressive-looking things that do very little. Our job is the opposite — to make things that are quietly useful, built with care, and designed to last longer than a trend cycle.',
     },
     footer: {
-      idea: 'Have an idea?',
-      tellUs: 'TELL US',
-      primaryContact: 'Primary contact',
+      idea: 'Have a project in mind?',
+      tellUs: "Let's talk.",
+      primaryContact: 'Get in touch',
       navigate: 'Navigate',
-      social: 'Social',
+      social: 'Follow us',
       privacy: 'Privacy Policy',
-      tagline: 'Elite digital craftsmanship.',
+      tagline: 'Tasami — Cairo, Egypt. Est. 2020.',
     },
     menu: {
-      tagline: 'Elite digital craftsmanship — Cairo & beyond.',
+      tagline: 'Built in Cairo. Working across Egypt and the Gulf.',
       open: 'Open menu',
       close: 'Close menu',
     },
@@ -178,19 +207,19 @@ export const translations: Record<Locale, TranslationKeys> = {
       interestedIn: "I'm interested in...",
       budget: 'Project budget',
       interests: [
-        'Site from scratch',
-        'UX/UI design',
+        'A website from scratch',
+        'UX / UI design',
         'Product design',
         'Web development',
         'Motion design',
-        'Branding',
+        'Brand identity',
         'Mobile development',
       ],
       placeholderName: 'Your name',
-      placeholderEmail: 'Email',
+      placeholderEmail: 'Email address',
       placeholderPhone: 'Phone (optional)',
       placeholderMessage: 'Tell us about your project',
-      messageSent: 'Message sent — we\'ll be in touch soon.',
+      messageSent: "Message sent — we'll be in touch soon.",
     },
     common: {
       explore: 'Explore',
@@ -205,7 +234,7 @@ export const translations: Record<Locale, TranslationKeys> = {
     brand: {
       name: 'Tasami',
       nameAr: 'تسامي',
-      slogan: 'نرتقي بوجودك الرقمي',
+      slogan: 'نبني تجارب رقمية حقيقية.',
     },
     nav: {
       work: 'أعمالنا',
@@ -216,65 +245,80 @@ export const translations: Record<Locale, TranslationKeys> = {
       blog: 'المدونة',
     },
     hero: {
-      lines: ['تصميم رقمي', 'وتطوير', 'متقدم'],
+      label: 'القاهرة — تأسست 2020',
+      line1: 'نبني أشياء رقمية',
+      line2: 'تعمل فعلاً.',
       subtitle:
-        'نساعد الشركات على بناء منتجات رقمية قابلة للتوسع — بتصميم مدروس وتطوير بمعايير عالمية.',
-      cta: 'شاهد أعمالنا',
-      ctaSecondary: 'تواصل معنا',
+        'للعلامات التجارية في مصر والخليج التي تهتم بجودة ما تقدمه على الإنترنت.',
+      cta: 'اكتشف أعمالنا',
+      ctaSecondary: 'ابدأ محادثة',
     },
-    whatWeDo: {
-      body:
-        'منذ 2010، نساعد عملاءنا على إيجاد حلول استثنائية لأعمالهم — مواقع وتجارب رقمية لا تُنسى.\n\nتسامي لا تقدّم قوالب جاهزة — نبني المنتج كما صُمّم بالضبط، بدون اختصارات أو تبسيط.',
-      cta: 'ماذا نفعل',
+    numbers: {
+      stat1: { value: '١٥', label: 'علامة تجارية بنيناها' },
+      stat2: { value: 'مصر · السعودية', label: 'أسواق نخدمها' },
+      stat3: { value: '٢٠٢٥', label: 'جميعها سُلّمت' },
     },
-    marquee: 'تواصل — تواصل — تواصل — ',
+    story: {
+      label: 'من نحن',
+      heading: 'بدأنا لأن المواقع السيئة تزعجنا.',
+      body: 'تأسست تسامي في القاهرة عام 2020، من إحباط بسيط: كثير من الأعمال التي تملك قيمة حقيقية، تُخذل يومياً بتجارب رقمية رخيصة أو مكررة أو متروكة عند أول تعقيد.\n\nلا نعمل بقوالب جاهزة، ولا بحلول سريعة، ولا نسلّم الملفات ونختفي. نبقى حتى يكون ما نبنيه جيداً فعلاً — ونحن نعرف الفرق.',
+      cta: 'طريقة عملنا',
+    },
+    marquee: 'غذاء ومستهلكات  ·  عقارات  ·  SaaS والذكاء الاصطناعي  ·  زراعة وتصدير  ·  صناعة  ·  تقنية تجميل  ·  رياضة وصحة  ·  تجارة إلكترونية  ·  ',
     projects: {
-      title: 'مشاريع مميزة',
+      title: 'أعمال مختارة',
       viewAll: 'عرض كل المشاريع',
       view: 'عرض',
     },
+    projectStory: {
+      theBrand: 'العلامة التجارية',
+      theProblem: 'التحدي',
+      whatWeBuilt: 'ما بنيناه',
+      theOutcome: 'النتيجة',
+      previous: 'السابق',
+      next: 'التالي',
+    },
     services: {
-      title: 'خدماتنا',
-      intro:
-        'من الهوية البصرية إلى المنتجات الكاملة — نصمّم ونبني تجارب رقمية للمستقبل.',
-      viewAll: 'عرض كل الخدمات',
+      title: 'طريقة عملنا',
+      intro: 'ثلاثة تخصصات. معيار واحد لا يتنازل.',
+      viewAll: 'ابدأ مشروعاً',
       items: [
         {
-          title: 'الهوية البصرية',
-          description: 'تصميم استراتيجي يبني الثقة ويوضّح قيمة علامتك.',
+          number: '٠١',
+          title: 'الاستراتيجية والهوية البصرية',
+          description:
+            'نفهم هويتك ومن تخاطب قبل أن نرسم أي شيء. العمل البصري يأتي في المرتبة الثانية.',
         },
         {
-          title: 'تصميم UX/UI',
-          description: 'واجهات فاخرة، سهلة الاستخدام، ومحسّنة للتحويل.',
+          number: '٠٢',
+          title: 'تصميم UX / UI',
+          description:
+            'واجهات مصممة للناس الذين سيستخدمونها فعلاً — لا لصورة في معرض الأعمال.',
         },
         {
-          title: 'تطوير مخصص',
-          description: 'واجهات وخلفيات — أداء عالٍ، قابلية توسع، وتفاصيل دقيقة.',
+          number: '٠٣',
+          title: 'التطوير',
+          description:
+            'نبني ما نصممه. لا تسليم ملفات، لا فجوة بين ما وُعد به وما يُطلق.',
         },
       ],
       cta: 'تواصل معنا',
     },
-    blog: {
-      title: 'آخر المقالات',
-      readMore: 'اقرأ المزيد',
-      visitBlog: 'زيارة المدونة',
-      posts: [
-        { title: 'كيف تصنع موقع UI/UX // تطوير الواجهات', tag: 'دورة تصميم' },
-        { title: 'كيف تطبخ موقعاً عاطفياً // تطوير الويب', tag: 'دورة تصميم' },
-        { title: 'متتبع الفأرة من كيوبرتو',                 tag: 'مصدر تقني'  },
-      ],
+    belief: {
+      label: 'ما نؤمن به',
+      body: 'الإنترنت مليء بأشياء تبدو مبهرة وتفعل القليل. عملنا عكس ذلك تماماً — نصنع ما هو مفيد بهدوء، مبني بعناية، ومصمم ليدوم أطول من أي موضة.',
     },
     footer: {
-      idea: 'عندك فكرة؟',
-      tellUs: 'تواصل معنا',
+      idea: 'لديك مشروع في ذهنك؟',
+      tellUs: 'تحدّث معنا.',
       primaryContact: 'للتواصل المباشر',
       navigate: 'تصفح',
-      social: 'سوشيال',
+      social: 'تابعنا',
       privacy: 'سياسة الخصوصية',
-      tagline: 'حرفية رقمية بمعايير عالمية.',
+      tagline: 'تسامي — القاهرة، مصر. تأسست 2020.',
     },
     menu: {
-      tagline: 'حرفية رقمية — القاهرة وخارجها.',
+      tagline: 'من القاهرة. نعمل عبر مصر والخليج.',
       open: 'فتح القائمة',
       close: 'إغلاق القائمة',
     },
@@ -291,7 +335,7 @@ export const translations: Record<Locale, TranslationKeys> = {
       budget: 'ميزانية المشروع',
       interests: [
         'موقع من الصفر',
-        'تصميم UX/UI',
+        'تصميم UX / UI',
         'تصميم المنتج',
         'تطوير الويب',
         'موشن جرافيك',

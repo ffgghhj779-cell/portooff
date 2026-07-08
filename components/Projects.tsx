@@ -7,13 +7,11 @@ import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { MagneticButton } from './MagneticButton';
-import { HOVER_SCALE, MOTION } from '@/lib/motion';
+import { MOTION } from '@/lib/motion';
 import { PROJECTS, type Project } from '@/lib/data/projects';
-import { useTranslations } from '@/lib/i18n/LocaleProvider';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 
 gsap.registerPlugin(ScrollTrigger);
-
-const HOVER_DURATION = MOTION.hover;
 
 function splitColumns(items: Project[]) {
   const left: Project[] = [];
@@ -26,10 +24,10 @@ function splitColumns(items: Project[]) {
 }
 
 function ProjectCard({ project }: { project: Project }) {
-  const t = useTranslations();
+  const { t, locale } = useLocale();
   return (
     <Link
-      href={`/projects/${project.slug}`}
+      href={`/work/${project.slug}`}
       className="project-card group block"
       data-cursor="explore"
       data-cursor-label={t.projects.view}
@@ -43,7 +41,7 @@ function ProjectCard({ project }: { project: Project }) {
         <div className="project-image-inner absolute inset-0">
           <Image
             src={project.image}
-            alt={`${project.name} — ${project.tagline}`}
+            alt={`${project.name[locale]} — ${project.tagline[locale]}`}
             fill
             quality={85}
             className="object-cover"
@@ -73,11 +71,11 @@ function ProjectCard({ project }: { project: Project }) {
       {/* Caption */}
       <div className="mt-5 md:mt-6">
         <p className="project-caption text-base leading-[1.35] tracking-tight text-white/90 md:text-lg">
-          <span className="font-semibold text-white">{project.name}</span>
-          <span className="text-white/50"> – {project.tagline}</span>
+          <span className="font-semibold text-white">{project.name[locale]}</span>
+          <span className="text-white/50"> – {project.tagline[locale]}</span>
         </p>
         <p className="mt-1.5 text-xs font-medium text-white/30 tracking-wide">
-          {project.clientType} · {project.market.split('—')[0].trim()}
+          {project.tags.join(' · ')}
         </p>
       </div>
     </Link>
@@ -86,7 +84,7 @@ function ProjectCard({ project }: { project: Project }) {
 
 
 export function Projects({ limit }: { limit?: number }) {
-  const t = useTranslations();
+  const { t } = useLocale();
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const colLeftRef = useRef<HTMLDivElement>(null);
@@ -244,7 +242,7 @@ export function Projects({ limit }: { limit?: number }) {
           <div className="mt-16 flex justify-center md:mt-24">
             <MagneticButton>
               <Link
-                href="/projects"
+                href="/work"
                 className="btn-pill block border border-white/25 text-white transition-colors hover:bg-white hover:text-black"
               >
                 {t.projects.viewAll}

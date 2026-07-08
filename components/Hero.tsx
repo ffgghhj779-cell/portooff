@@ -1,7 +1,6 @@
 'use client';
 
 import { useRef } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -17,110 +16,36 @@ export function Hero() {
   const { isMobile } = useDevice();
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const floatRef = useRef<HTMLDivElement>(null);
-  const floatInnerRef = useRef<HTMLDivElement>(null);
-  const geoRef = useRef<HTMLDivElement>(null);
-  const mediaRef = useRef<HTMLDivElement>(null);
-
-  const heroLines = t.hero.lines;
 
   useGSAP(
     () => {
-      const section = sectionRef.current;
-      if (!section) return;
-
       const mm = gsap.matchMedia();
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
-        gsap.from('.hero-line-inner', {
-          y: isMobile ? 28 : 48,
-          duration: isMobile ? 0.65 : MOTION.reveal,
-          stagger: isMobile ? 0.05 : MOTION.revealStagger,
+        // Stagger in the label, two heading lines, subtitle, CTAs
+        gsap.from('.hero-reveal', {
+          y: isMobile ? 20 : 36,
+          opacity: 0,
+          duration: isMobile ? 0.6 : MOTION.reveal,
+          stagger: isMobile ? 0.06 : 0.1,
           ease: MOTION.revealEase,
-          clearProps: 'transform',
+          clearProps: 'transform,opacity',
         });
 
-        if (!isMobile) {
-          gsap.from('.hero-orb', {
-            scale: 0.75,
-            duration: 0.55,
-            ease: 'expo.out',
-            clearProps: 'transform',
-            delay: 0.12,
-          });
-        }
-
-        gsap.from('.hero-subtitle-inner', {
-          y: isMobile ? 18 : 28,
-          duration: MOTION.reveal,
-          ease: MOTION.revealEase,
-          clearProps: 'transform',
-          delay: isMobile ? 0.12 : 0.22,
-        });
-
-        if (floatRef.current && !isMobile) {
-          gsap.from(floatRef.current, {
-            y: 56,
-            duration: 0.8,
-            ease: 'expo.out',
-            clearProps: 'transform',
-            delay: 0.18,
+        // Subtle parallax on scroll — desktop only
+        if (contentRef.current && !isMobile) {
+          gsap.to(contentRef.current, {
+            yPercent: 8,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top top',
+              end: 'bottom top',
+              scrub: 0.8,
+            },
           });
         }
       });
-
-      if (floatInnerRef.current && !isMobile) {
-        gsap.to(floatInnerRef.current, {
-          y: -16,
-          duration: 3.6,
-          ease: 'sine.inOut',
-          yoyo: true,
-          repeat: -1,
-          force3D: true,
-        });
-      }
-
-      if (geoRef.current && !isMobile) {
-        gsap.to(geoRef.current, {
-          rotateY: 16,
-          rotateX: -8,
-          rotateZ: 3,
-          duration: 5,
-          ease: 'sine.inOut',
-          yoyo: true,
-          repeat: -1,
-          force3D: true,
-        });
-      }
-
-      if (contentRef.current && !isMobile) {
-        gsap.to(contentRef.current, {
-          yPercent: 10,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 0.75,
-          },
-        });
-      }
-
-      if (floatRef.current && !isMobile) {
-        gsap.to(floatRef.current, {
-          y: -120,
-          x: 28,
-          rotateZ: -5,
-          ease: 'none',
-          force3D: true,
-          scrollTrigger: {
-            trigger: section,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1.1,
-          },
-        });
-      }
 
       return () => mm.revert();
     },
@@ -130,102 +55,75 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="mesh-glow relative z-10 min-h-[100svh] overflow-hidden bg-black"
+      className="relative z-10 min-h-[100svh] overflow-hidden bg-black"
     >
-      {/* Ambient top glow */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_45%_at_50%_0%,rgba(255,107,53,0.07),transparent)]" />
-      {/* Mobile bottom glow */}
-      <div className="hero-mobile-gradient pointer-events-none absolute inset-0 md:hidden" />
+      {/* Single, subtle top vignette — no color blobs */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_40%_at_50%_0%,rgba(255,255,255,0.03),transparent)]" />
 
       <div
         ref={contentRef}
-        className="hero-content-pad section-shell relative flex min-h-[100svh] flex-col justify-center pb-12 pt-20 sm:pb-16 sm:pt-28 md:pb-20 md:pt-32"
+        className="hero-content-pad section-shell relative flex min-h-[100svh] flex-col justify-end pb-16 pt-24 sm:pb-20 sm:pt-32 md:justify-center md:pb-24 md:pt-36"
       >
-        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-8">
-          <div className="flex flex-col lg:col-span-6">
-            {heroLines.map((text, index) => (
-              <div key={text} className="hero-line">
-                <h1
-                  className={`hero-line-inner heading-display type-hero flex items-center gap-3 md:gap-5 ${
-                    index === 1 ? 'font-light italic' : 'font-medium'
-                  } tracking-tighter leading-none text-white`}
-                >
-                  {index === 1 && !isMobile && (
-                    <span className="hero-orb inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/20 sm:h-14 sm:w-14 md:h-[5.5rem] md:w-[5.5rem]">
-                      <span className="h-2 w-2 rounded-full bg-white/90 shadow-[0_0_12px_rgba(255,255,255,0.55)]" />
-                    </span>
-                  )}
-                  {text}
-                </h1>
+        {/* Established label */}
+        <div className="hero-reveal mb-10 md:mb-14">
+          <span className="inline-block rounded-full border border-white/15 px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.28em] text-white/40">
+            {t.hero.label}
+          </span>
+        </div>
+
+        {/* Main heading — two lines, no 3D objects */}
+        <div className="max-w-3xl lg:max-w-4xl">
+          <div className="hero-line hero-reveal overflow-hidden">
+            <h1 className="heading-display type-hero font-medium leading-none tracking-tighter text-white">
+              {t.hero.line1}
+            </h1>
+          </div>
+          <div className="hero-line hero-reveal overflow-hidden">
+            <h1 className="heading-display type-hero font-medium leading-none tracking-tighter text-white/50">
+              {t.hero.line2}
+            </h1>
+          </div>
+        </div>
+
+        {/* Divider + subtitle row */}
+        <div className="hero-reveal mt-10 flex flex-col gap-8 md:mt-14 md:flex-row md:items-end md:justify-between">
+          <p className="max-w-sm text-base font-normal leading-relaxed text-white/45 md:text-lg">
+            {t.hero.subtitle}
+          </p>
+
+          {/* CTAs */}
+          <div className="flex shrink-0 items-center gap-5">
+            <Link
+              href="/work"
+              className="btn-pill inline-flex items-center bg-white text-sm font-semibold text-black"
+            >
+              {t.hero.cta}
+            </Link>
+            <Link
+              href="/contact"
+              className="text-sm font-medium text-white/40 underline underline-offset-4 transition-colors hover:text-white/70"
+            >
+              {t.hero.ctaSecondary}
+            </Link>
+          </div>
+        </div>
+
+        {/* Scroll indicator — desktop only */}
+        {!isMobile && (
+          <div
+            className="hero-reveal pointer-events-none absolute bottom-10 left-1/2 -translate-x-1/2"
+            aria-hidden="true"
+          >
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-[0.55rem] font-semibold uppercase tracking-[0.3em] text-white/20">
+                Scroll
+              </span>
+              <div className="h-10 w-[1px] overflow-hidden bg-white/10">
+                <div className="h-full w-full origin-top animate-[scroll-line_2s_ease-in-out_infinite] bg-white/40" />
               </div>
-            ))}
-
-            <div className="hero-subtitle mt-6 md:mt-12">
-              <p className="hero-subtitle-inner type-body-lg max-w-md font-medium tracking-tighter leading-[1.3] text-white/60 md:leading-[1.1]">
-                {t.hero.subtitle}
-              </p>
-            </div>
-
-            {/* Mobile CTA — hidden on desktop */}
-            <div className="mt-8 flex items-center gap-4 md:hidden">
-              <Link
-                href="/projects"
-                className="btn-pill inline-flex items-center bg-white text-black text-sm font-semibold"
-              >
-                {t.hero.cta}
-              </Link>
-              <Link
-                href="/contact"
-                className="text-sm font-medium text-white/55 underline underline-offset-4"
-              >
-                {t.hero.ctaSecondary}
-              </Link>
             </div>
           </div>
-
-          {!isMobile && (
-            <div
-              ref={floatRef}
-              className="relative mx-auto hidden w-full max-w-md items-center justify-center lg:col-span-6 lg:flex lg:max-w-none lg:justify-end"
-            >
-              <div
-                ref={floatInnerRef}
-                className="relative w-[min(85vw,24rem)] md:w-[26rem] lg:w-[30rem]"
-                style={{ perspective: '1200px' }}
-              >
-                <div
-                  ref={geoRef}
-                  className="relative aspect-square w-full"
-                  style={{ transformStyle: 'preserve-3d' }}
-                >
-                  <div className="absolute inset-[8%] rounded-[2.5rem] border border-white/10 bg-white/[0.03] backdrop-blur-sm" />
-                  <div className="absolute inset-[14%] rotate-12 rounded-[2.5rem] border border-glow-blue/30 bg-glow-blue/5" />
-                  <div className="absolute inset-[20%] -rotate-6 rounded-[2.5rem] border border-glow-green/25 bg-glow-green/5" />
-
-                  <div
-                    ref={mediaRef}
-                    data-cursor="explore"
-                    data-cursor-label={t.common.explore}
-                    className="media-hover absolute inset-[22%] overflow-hidden rounded-[2.5rem] border border-white/15 shadow-[0_24px_80px_rgba(0,0,0,0.5)]"
-                    style={{ transform: 'translateZ(40px)' }}
-                  >
-                    <Image
-                      src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1600&auto=format&fit=crop"
-                      alt="Abstract geometry"
-                      fill
-                      priority
-                      quality={85}
-                      className="object-cover"
-                      referrerPolicy="no-referrer"
-                      sizes="(max-width: 768px) 80vw, 400px"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-tr from-black/35 via-transparent to-glow-orange/10" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
+        )}
       </div>
     </section>
   );

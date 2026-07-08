@@ -14,17 +14,14 @@ export function Marquee() {
   const { isMobile } = useDevice();
   const containerRef = useRef<HTMLElement>(null);
   const track1Ref = useRef<HTMLDivElement>(null);
-  const track2Ref = useRef<HTMLDivElement>(null);
   const velocityRef = useRef(0);
-  const offset1Ref = useRef(0);
-  const offset2Ref = useRef(0);
+  const offsetRef = useRef(0);
 
   useGSAP(
     () => {
       const container = containerRef.current;
       const track1 = track1Ref.current;
-      const track2 = track2Ref.current;
-      if (!container || !track1 || !track2) return;
+      if (!container || !track1) return;
 
       ScrollTrigger.create({
         trigger: container,
@@ -38,20 +35,14 @@ export function Marquee() {
       const tick = () => {
         const velocityBoost = isMobile
           ? 0
-          : Math.min(Math.abs(velocityRef.current) * 0.004, 5.5);
-        const speed = (isMobile ? 0.45 : 0.6) + velocityBoost;
+          : Math.min(Math.abs(velocityRef.current) * 0.003, 4);
+        const speed = (isMobile ? 0.4 : 0.55) + velocityBoost;
 
-        offset1Ref.current -= speed;
-        offset2Ref.current += speed * 0.88;
+        offsetRef.current -= speed;
+        const halfWidth = track1.scrollWidth / 2;
+        if (Math.abs(offsetRef.current) >= halfWidth) offsetRef.current = 0;
 
-        const halfWidth1 = track1.scrollWidth / 2;
-        const halfWidth2 = track2.scrollWidth / 2;
-
-        if (Math.abs(offset1Ref.current) >= halfWidth1) offset1Ref.current = 0;
-        if (Math.abs(offset2Ref.current) >= halfWidth2) offset2Ref.current = 0;
-
-        gsap.set(track1, { x: offset1Ref.current, force3D: true });
-        gsap.set(track2, { x: offset2Ref.current, force3D: true });
+        gsap.set(track1, { x: offsetRef.current, force3D: true });
       };
 
       gsap.ticker.add(tick);
@@ -60,26 +51,17 @@ export function Marquee() {
     { scope: containerRef, dependencies: [isMobile] }
   );
 
-  const marqueeText = t.marquee.repeat(4);
+  // Repeat text enough to fill double viewport width
+  const marqueeText = t.marquee.repeat(3);
 
   return (
     <section
       ref={containerRef}
-      className="overflow-hidden border-y border-black/[0.06] py-14 md:py-16"
+      className="overflow-hidden border-y border-black/[0.07] bg-[#f5f0ea] py-10 md:py-12"
     >
       <div className="overflow-hidden whitespace-nowrap">
         <div ref={track1Ref} className="inline-flex will-change-transform">
-          <span className="heading-display type-marquee px-2 font-medium lowercase tracking-tighter leading-none text-black">
-            {marqueeText}
-          </span>
-        </div>
-      </div>
-      <div className="mt-4 overflow-hidden whitespace-nowrap md:mt-5">
-        <div ref={track2Ref} className="inline-flex will-change-transform">
-          <span
-            className="heading-display type-marquee px-2 font-medium lowercase tracking-tighter leading-none text-transparent"
-            style={{ WebkitTextStroke: '1px rgba(0,0,0,0.35)' }}
-          >
+          <span className="heading-display type-marquee px-2 font-medium lowercase tracking-tighter leading-none text-black/70">
             {marqueeText}
           </span>
         </div>

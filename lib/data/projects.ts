@@ -1,20 +1,20 @@
-﻿export type Project = {
+export type LocalizedString = {
+  en: string;
+  ar: string;
+};
+
+export type Project = {
   slug: string;
-  name: string;
-  tagline: string;
-  description: string;
-  overview: string;
-  challenge: string;
-  result: string;
-  clientType: string;
-  market: string;
-  deliverables: string[];
+  name: LocalizedString;
+  tagline: LocalizedString;
+  brand: LocalizedString;
+  problem: LocalizedString;
+  built: LocalizedString;
+  outcome: LocalizedString;
   tags: string[];
   year: string;
-  services: string[];
   liveUrl?: string;
   image: string;
-  gallery: string[];
   tall: boolean;
 };
 
@@ -25,290 +25,453 @@ function cover(slug: string): string {
 
 export const PROJECTS: Project[] = [
   {
-    slug: 'afaq',
-    name: 'AFAQ',
-    tagline: 'Elite Saudi AI intelligence platform',
-    description: 'Nine-agent AI ecosystem for Saudi businesses — ZATCA, PDPL, and Nafath-ready.',
-    overview: 'Enterprise-grade landing and product experience for an integrated AI platform built for the Saudi market. Features live system status, ROI calculator, tiered pricing, and compliance badges (ZATCA Phase 2, PDPL, NCA).',
-    challenge: 'Position a complex nine-agent AI stack as approachable and trustworthy to Saudi CFOs and CIOs who are skeptical of unproven tech vendors. Every design decision had to radiate credibility, speed, and regulatory compliance.',
-    result: 'A cinematic enterprise product site that converts cold traffic into demo requests through an ROI calculator, live uptime status bar, and tiered pricing architecture. Compliance badges and partner logos do the heavy lifting of trust.',
-    clientType: 'SaaS Startup',
-    market: 'Saudi Arabia — Enterprise',
-    deliverables: ['Marketing site', 'Product UI', 'Pricing flows', 'Arabic/English'],
-    tags: ['AI', 'SaaS', 'Enterprise'],
+    slug: 'tasami-alwataniya',
+    name: {
+      en: 'Tasami Al-Wataniah',
+      ar: 'تسامي الوطنية'
+    },
+    tagline: {
+      en: 'Multilingual national brand gateway',
+      ar: 'بوابة العلامة التجارية الوطنية متعددة اللغات'
+    },
+    brand: {
+      en: 'Tasami Al-Wataniah is a corporate entity requiring a multilingual digital presence to serve a diverse audience across Saudi Arabia and beyond.',
+      ar: 'تسامي الوطنية هي كيان مؤسسي يتطلب تواجدًا رقميًا متعدد اللغات لخدمة جمهور متنوع في جميع أنحاء المملكة العربية السعودية وخارجها.'
+    },
+    problem: {
+      en: 'The client needed a unified digital gateway that could seamlessly handle multiple languages (Arabic, English, Urdu, Tagalog) without compromising performance or user experience.',
+      ar: 'احتاج العميل إلى بوابة رقمية موحدة يمكنها التعامل بسلاسة مع لغات متعددة (العربية، الإنجليزية، الأردية، التاغالوغية) دون التضحية بالأداء أو تجربة المستخدم.'
+    },
+    built: {
+      en: 'We developed a highly responsive, multilingual corporate portal. The architecture was built to instantly route users to their preferred language while maintaining a unified corporate identity across all localized versions.',
+      ar: 'قمنا بتطوير بوابة مؤسسية متعددة اللغات وسريعة الاستجابة. تم بناء الهيكلية لتوجيه المستخدمين فوراً إلى لغتهم المفضلة مع الحفاظ على هوية مؤسسية موحدة عبر جميع النسخ المترجمة.'
+    },
+    outcome: {
+      en: 'A frictionless entry point for a global workforce and client base, ensuring accessibility and brand consistency across four distinct languages.',
+      ar: 'نقطة دخول سلسة لقوة عاملة وقاعدة عملاء عالمية، مما يضمن سهولة الوصول واتساق العلامة التجارية عبر أربع لغات مختلفة.'
+    },
+    tags: ['Corporate', 'i18n', 'Brand'],
     year: '2025',
-    services: ['UX/UI Design', 'Frontend Development', 'Motion Design'],
-    liveUrl: 'https://afaq-ivory.vercel.app/',
-    image: cover('afaq'),
-    gallery: [cover('afaq')],
-    tall: true,
+    liveUrl: 'https://tasami-1.vercel.app/',
+    image: cover('tasami-alwataniya'),
+    tall: true
   },
   {
     slug: 'alwafeer',
-    name: 'Al-Wafeer',
-    tagline: 'Discount retail e-commerce for Saudi Arabia',
-    description: 'Full-featured discount store — groceries, appliances, furniture, and WhatsApp ordering.',
-    overview: 'High-conversion retail storefront with category browsing, weekly deals, bestsellers, testimonials, and instant WhatsApp checkout. Built for a multi-category discount trading institution serving all Saudi regions.',
-    challenge: 'Build a multi-category retail experience that feels premium despite being a discount platform — without undermining the value messaging. Price anchoring, deal urgency, and a WhatsApp-native checkout had to feel seamless.',
-    result: 'A conversion-optimized storefront with a sticky deals strip, animated bestsellers carousel, and a one-tap WhatsApp CTA that cut checkout friction to near-zero. RTL layout and mobile-first delivery matched the Saudi consumer journey.',
-    clientType: 'Retail Trading Company',
-    market: 'Saudi Arabia — Consumer',
-    deliverables: ['E-commerce UI', 'Product catalog', 'WhatsApp integration', 'RTL layout'],
+    name: {
+      en: 'Al-Wafeer Discounts',
+      ar: 'مؤسسة الوفير للتخفيضات'
+    },
+    tagline: {
+      en: 'Discount retail e-commerce for Saudi Arabia',
+      ar: 'منصة تجارة إلكترونية للتخفيضات في السعودية'
+    },
+    brand: {
+      en: 'Al-Wafeer is a prominent Saudi retail and FMCG enterprise offering daily essentials, frozen foods, appliances, and home goods at highly competitive prices.',
+      ar: 'الوفير هي مؤسسة سعودية بارزة في مجال التجزئة والمواد الاستهلاكية تقدم السلع الأساسية، والأطعمة المجمدة، والأجهزة، والأدوات المنزلية بأسعار تنافسية للغاية.'
+    },
+    problem: {
+      en: 'Al-Wafeer needed to transition its massive daily discount model into a seamless e-commerce experience capable of handling heavy traffic, vast inventories, and time-sensitive promotions.',
+      ar: 'احتاجت الوفير إلى تحويل نموذج التخفيضات اليومية الضخم الخاص بها إلى تجربة تجارة إلكترونية سلسة قادرة على التعامل مع الزيارات العالية، والمخزونات الضخمة، والعروض الحساسة للوقت.'
+    },
+    built: {
+      en: 'A high-performance e-commerce platform optimized for high conversion. We integrated dynamic product categorization, urgency drivers (weekly mega-deals), and a streamlined checkout process tailored for the Saudi market.',
+      ar: 'منصة تجارة إلكترونية عالية الأداء محسنة لزيادة المبيعات. قمنا بدمج تصنيف ديناميكي للمنتجات، ومحفزات الاستعجال (عروض أسبوعية كبرى)، وعملية دفع مبسطة مصممة للسوق السعودي.'
+    },
+    outcome: {
+      en: 'A robust digital storefront that successfully digitized their discount model, resulting in over 10,000 happy customers and a seamless shopping experience for bulk and retail buyers.',
+      ar: 'واجهة متجر رقمية قوية نجحت في رقمنة نموذج التخفيضات الخاص بهم، مما أدى إلى أكثر من 10,000 عميل سعيد وتجربة تسوق سلسة لمشتري الجملة والتجزئة.'
+    },
     tags: ['E-commerce', 'Retail', 'KSA'],
     year: '2025',
-    services: ['UX/UI Design', 'Web Development'],
     liveUrl: 'https://alwafeer-store.web.app/',
     image: cover('alwafeer'),
-    gallery: [cover('alwafeer')],
-    tall: false,
-  },
-  {
-    slug: 'alrehan-almasi',
-    name: 'Al Rehan Almasi',
-    tagline: 'Premium food supply for the Saudi market',
-    description: 'B2B food distribution — fresh fish, poultry, rice, oils, and frozen goods nationwide.',
-    overview: 'Corporate supply platform for restaurants, hotels, and wholesale buyers. Category-driven catalog, cold-chain messaging, partner trust strip, and professional Arabic-first brand presentation across the Kingdom.',
-    challenge: 'Communicate cold-chain quality and product variety to hotel procurement managers and restaurant chains — audiences who need reliability guarantees above all else before committing to a supplier.',
-    result: 'A professional Arabic-first corporate site with a category-segmented catalog, temperature-chain infographics, and a hotel partner logo strip. Lead inquiries shifted from phone calls to structured web forms.',
-    clientType: 'B2B Food Distributor',
-    market: 'Saudi Arabia — Hospitality & Wholesale',
-    deliverables: ['Corporate website', 'Category system', 'B2B lead flows', 'Gallery'],
-    tags: ['Food supply', 'B2B', 'Logistics'],
-    year: '2025',
-    services: ['Brand UI', 'Web Development'],
-    liveUrl: 'https://alrehan-almasi.vercel.app/',
-    image: cover('alrehan-almasi'),
-    gallery: [cover('alrehan-almasi')],
-    tall: true,
-  },
-  {
-    slug: 'arkan',
-    name: 'Arkan',
-    tagline: 'Premium frozen food brand experience',
-    description: 'Consumer frozen food brand site — burgers, fries, chicken, and recipe discovery.',
-    overview: 'Appetite-driven product storytelling for a halal frozen food brand. Hero campaign, product grid with nutritional badges, recipe inspiration, and freezing benefits education — all optimized for Arabic retail audiences.',
-    challenge: 'Make frozen food look as fresh and desirable as a fine-dining restaurant. The brand needed to overcome the "low quality" perception associated with frozen products in the Saudi consumer market.',
-    result: 'A visually rich brand experience anchored by hero-scale food art direction, a recipe discovery hub, and nutritional transparency badges. The result was a site that made the freezer aisle feel premium.',
-    clientType: 'FMCG Food Brand',
-    market: 'Saudi Arabia — Consumer Retail',
-    deliverables: ['Brand site', 'Product pages', 'Recipe hub', 'Motion'],
-    tags: ['FMCG', 'Food', 'Brand'],
-    year: '2025',
-    services: ['UX/UI Design', 'Frontend Development'],
-    liveUrl: 'https://arkan-alpha.vercel.app/',
-    image: cover('arkan'),
-    gallery: [cover('arkan')],
-    tall: false,
+    tall: false
   },
   {
     slug: 'aura',
-    name: 'Motivation Aura',
-    tagline: 'Mood-intelligent gear for Saudi athletes',
-    description: 'Premium athletic e-commerce with mood quiz and curated performance collections.',
-    overview: 'English-first premium sports retail experience for the Saudi market. Trending products, brand partnerships (Nike, Adidas, Lululemon), mood-based recommendations, and climate-aware copy tailored to Gulf athletes.',
-    challenge: 'Differentiate in a saturated sports retail market by creating a personalized discovery experience that feels like a personal trainer recommending gear — not a generic catalog.',
-    result: 'A mood-quiz-driven e-commerce journey that surfaces the right product collection based on athletic mindset and climate. Partnership logos from Nike, Adidas, and Lululemon anchor social proof at the highest tier.',
-    clientType: 'Sports E-commerce Startup',
-    market: 'Saudi Arabia — Premium Consumer',
-    deliverables: ['E-commerce UI', 'Mood quiz', 'Collections', 'Cart flows'],
+    name: {
+      en: 'Motivation Aura',
+      ar: 'موتيفيشن أورا'
+    },
+    tagline: {
+      en: 'Mood-intelligent gear for Saudi athletes',
+      ar: 'معدات رياضية تعتمد على الحالة المزاجية للرياضيين'
+    },
+    brand: {
+      en: 'Motivation Aura is a premium sports equipment and mental conditioning platform curated specifically for the elite Saudi athlete.',
+      ar: 'موتيفيشن أورا هي منصة للمعدات الرياضية الفاخرة والتهيئة الذهنية مصممة خصيصًا لنخبة الرياضيين في السعودية.'
+    },
+    problem: {
+      en: 'The sports retail market is crowded with generic stores. The client wanted to create an emotional, psychology-driven shopping experience that matches premium gear to the athlete\'s current mental state.',
+      ar: 'سوق التجزئة الرياضية مزدحم بالمتاجر التقليدية. أراد العميل ابتكار تجربة تسوق عاطفية مدفوعة بعلم النفس تطابق المعدات الفاخرة مع الحالة الذهنية الحالية للرياضي.'
+    },
+    built: {
+      en: 'We engineered the first "mood-intelligent" gear platform in the Kingdom. The core feature is a dynamic Mood Quiz that reads the user\'s mental frequency and curates precise product recommendations accordingly.',
+      ar: 'هندسنا أول منصة معدات "ذكية مزاجياً" في المملكة. الميزة الأساسية هي اختبار مزاج ديناميكي يقرأ التردد الذهني للمستخدم وينسق توصيات المنتجات بدقة بناءً على ذلك.'
+    },
+    outcome: {
+      en: 'A highly differentiated, premium e-commerce experience that transcends traditional retail, creating a deep psychological connection with the modern Saudi athlete.',
+      ar: 'تجربة تجارة إلكترونية فاخرة ومميزة تتجاوز التجزئة التقليدية، مما يخلق ارتباطًا نفسيًا عميقًا مع الرياضي السعودي الحديث.'
+    },
     tags: ['Sports', 'E-commerce', 'Wellness'],
     year: '2025',
-    services: ['Product Design', 'Frontend Development'],
     liveUrl: 'https://aura-omega-jade.vercel.app/',
     image: cover('aura'),
-    gallery: [cover('aura')],
-    tall: true,
+    tall: true
   },
   {
-    slug: 'badeel-alsejad',
-    name: 'Badeel Al-Sejad',
-    tagline: 'Luxury flooring & carpet alternatives — Egypt',
-    description: 'Retail + wholesale platform for premium European flooring with nationwide delivery.',
-    overview: 'Ali Hamad brand site for carpet alternatives since 2009. Dual retail/wholesale paths, free home inspection booking, animated product gallery (30 designs), and trust signals across 27 Egyptian governorates.',
-    challenge: 'Serve two completely different audiences on the same platform: end-consumers redecorating homes, and contractors sourcing wholesale materials — each needing a distinct journey without a fragmented experience.',
-    result: 'A bifurcated landing with audience-detection CTAs, a 30-design animated gallery, free home inspection booking, and a wholesale portal with MOQ pricing. Fifteen years of market presence distilled into credibility signals throughout.',
-    clientType: 'Interior Products Retailer',
-    market: 'Egypt — 27 Governorates',
-    deliverables: ['Dual storefront', 'Wholesale portal', 'Gallery', 'Lead capture'],
-    tags: ['Retail', 'Interior', 'B2B'],
+    slug: 'arkan',
+    name: {
+      en: 'Arkan',
+      ar: 'أركان'
+    },
+    tagline: {
+      en: 'Premium frozen food brand experience',
+      ar: 'تجربة علامة تجارية فاخرة للأطعمة المجمدة'
+    },
+    brand: {
+      en: 'Arkan is a trusted Middle Eastern food manufacturer specializing in high-quality frozen poultry and meat products.',
+      ar: 'أركان هي شركة تصنيع أغذية شرق أوسطية موثوقة متخصصة في منتجات الدواجن واللحوم المجمدة عالية الجودة.'
+    },
+    problem: {
+      en: 'Arkan required a digital presence that communicated their rigorous quality standards, lack of preservatives, and Halal certification to health-conscious families and wholesale buyers.',
+      ar: 'احتاجت أركان إلى تواجد رقمي ينقل معايير الجودة الصارمة الخاصة بها، وخلو منتجاتها من المواد الحافظة، وشهادة الحلال للعائلات المهتمة بالصحة ومشتري الجملة.'
+    },
+    built: {
+      en: 'A clean, appetizing digital showcase highlighting their product range. We structured the site around transparency—bringing nutritional facts, product purity, and culinary inspiration to the forefront.',
+      ar: 'واجهة عرض رقمية نظيفة ومشهية تسلط الضوء على مجموعة منتجاتهم. نظمنا الموقع حول الشفافية—مما جعل الحقائق الغذائية ونقاء المنتج والإلهام في الطهي في الواجهة.'
+    },
+    outcome: {
+      en: 'A modern brand platform that elevates frozen food from a commodity to a premium, trusted choice for family dining across the region.',
+      ar: 'منصة علامة تجارية حديثة ترتقي بالأطعمة المجمدة من مجرد سلعة إلى خيار فاخر وموثوق لتناول الطعام العائلي في جميع أنحاء المنطقة.'
+    },
+    tags: ['FMCG', 'Food', 'Brand'],
     year: '2025',
-    services: ['UX/UI Design', 'Web Development'],
-    liveUrl: 'https://badeel-alsejad.web.app/',
-    image: cover('badeel-alsejad'),
-    gallery: [cover('badeel-alsejad')],
-    tall: false,
+    liveUrl: 'https://arkan-alpha.vercel.app/',
+    image: cover('arkan'),
+    tall: false
   },
   {
-    slug: 'khair-al-jiwar',
-    name: 'Khair Al-Jiwar',
-    tagline: 'Real estate developer compliance intelligence',
-    description: 'Independent platform scoring developer delivery, quality, and complaint resolution.',
-    overview: 'Data-driven proptech product for Egyptian investors. Project search, side-by-side comparison, commitment scores (0–100), risk indicators, and verified complaint history — helping buyers decide before they pay.',
-    challenge: 'Build a neutral, trustworthy data layer in an Egyptian real estate market notorious for developer overpromising. The UI needed to feel like an independent auditor, not a listings marketplace.',
-    result: 'A proptech platform with a 0–100 commitment scoring system, complaint-verified history, and a project comparison engine. Investors can now filter by risk tolerance before committing a single payment installment.',
-    clientType: 'Proptech Startup',
-    market: 'Egypt — Real Estate Investors',
-    deliverables: ['Platform UI', 'Search & compare', 'Scoring dashboard', 'Onboarding'],
-    tags: ['Proptech', 'Data', 'FinTech-adjacent'],
+    slug: 'afaq',
+    name: {
+      en: 'AFAQ',
+      ar: 'آفاق'
+    },
+    tagline: {
+      en: 'Elite Saudi AI intelligence platform',
+      ar: 'منصة ذكاء اصطناعي نخبوية سعودية'
+    },
+    brand: {
+      en: 'AFAQ is a next-generation Saudi AI intelligence ecosystem providing automated business management and compliance solutions.',
+      ar: 'آفاق هي منظومة ذكاء اصطناعي سعودية من الجيل القادم توفر حلولاً مؤتمتة لإدارة الأعمال والامتثال.'
+    },
+    problem: {
+      en: 'The client needed to market a highly complex 9-Agent AI system to Saudi enterprises while proving absolute compliance with ZATCA Phase 2, PDPL, and NCA security standards.',
+      ar: 'احتاج العميل إلى تسويق نظام ذكاء اصطناعي معقد مكون من 9 وكلاء للشركات السعودية، مع إثبات الامتثال المطلق لمعايير الأمن التابعة لـ ZATCA المرحلة الثانية وPDPL وNCA.'
+    },
+    built: {
+      en: 'A sleek, ultra-fast tech platform. We translated complex AI capabilities into clear business value, featuring interactive ROI calculators and a dark-mode, terminal-inspired aesthetic that signals elite engineering.',
+      ar: 'منصة تقنية أنيقة وفائقة السرعة. قمنا بترجمة قدرات الذكاء الاصطناعي المعقدة إلى قيمة تجارية واضحة، مع حاسبات عائد استثمار تفاعلية وجمالية مستوحاة من الشاشات الطرفية توحي بالهندسة النخبوية.'
+    },
+    outcome: {
+      en: 'A commanding digital presence that positions AFAQ as the definitive, secure AI infrastructure choice for the Saudi enterprise market.',
+      ar: 'حضور رقمي قوي يضع آفاق كخيار البنية التحتية الآمنة والنهائية للذكاء الاصطناعي لسوق الشركات السعودية.'
+    },
+    tags: ['AI', 'SaaS', 'Enterprise'],
     year: '2025',
-    services: ['UX/UI Design', 'Frontend Development'],
-    liveUrl: 'https://khair-al-jiwar.web.app/',
-    image: cover('khair-al-jiwar'),
-    gallery: [cover('khair-al-jiwar')],
-    tall: true,
+    liveUrl: 'https://afaq-ivory.vercel.app/',
+    image: cover('afaq'),
+    tall: true
   },
   {
     slug: 'khair-aljaar',
-    name: 'Khair Aljaar Foods',
-    tagline: 'Egyptian B2B food export command center',
-    description: 'Wholesale export platform — live commodity index, MOQ quotes, and cold-chain logistics.',
-    overview: 'Premium B2B export portal for Egyptian agricultural commodities to GCC, Europe, and Africa. Live commodity ticker, certified export standards, product gallery, global footprint map, and WhatsApp-assisted quoting.',
-    challenge: 'Compete with established EU and South American exporters by presenting Egyptian agricultural products as premium, certified, and logistically reliable to overseas buyers who have never visited an Egyptian farm.',
-    result: 'A command-center-style B2B portal with a live commodity price ticker, ISO and HACCP certification badges, a shipment footprint map, and WhatsApp quoting. International buyers now have a credible digital entry point into Egyptian supply chains.',
-    clientType: 'Agricultural Exporter',
-    market: 'Egypt → GCC, Europe, Africa',
-    deliverables: ['B2B portal', 'Catalog', 'Quote system', 'EN/AR'],
+    name: {
+      en: 'Khair Aljaar Foods',
+      ar: 'خير الجوار للأغذية'
+    },
+    tagline: {
+      en: 'Egyptian B2B food export command center',
+      ar: 'مركز قيادة تصدير الأغذية المصري B2B'
+    },
+    brand: {
+      en: 'Khair Aljaar Foods is a premium Egyptian food export corporation serving the GCC, Europe, and Africa with over 50,000 MT annual capacity.',
+      ar: 'خير الجوار للأغذية هي شركة مصرية فاخرة لتصدير الأغذية تخدم دول مجلس التعاون الخليجي وأوروبا وأفريقيا بقدرة سنوية تتجاوز 50,000 طن متري.'
+    },
+    problem: {
+      en: 'The company needed a sophisticated B2B command center that didn\'t just list products, but functioned as a live trading platform for international wholesale buyers demanding rigorous export certifications.',
+      ar: 'احتاجت الشركة إلى مركز قيادة B2B متطور لا يعرض المنتجات فحسب، بل يعمل كمنصة تداول حية لمشتري الجملة الدوليين الذين يتطلبون شهادات تصدير صارمة.'
+    },
+    built: {
+      en: 'A comprehensive B2B export platform featuring a live commodity index, instant quotation systems, and detailed cold-chain logistics data. The interface was designed to build immediate trust with global importers.',
+      ar: 'منصة تصدير B2B شاملة تتميز بمؤشر أسعار سلع حي، وأنظمة تسعير فورية، وبيانات تفصيلية لسلسلة التبريد اللوجستية. تم تصميم الواجهة لبناء ثقة فورية مع المستوردين العالميين.'
+    },
+    outcome: {
+      en: 'A digital infrastructure that successfully handles massive B2B export operations, positioning Khair Aljaar as a transparent, uncompromising leader in the global food supply chain.',
+      ar: 'بنية تحتية رقمية تتعامل بنجاح مع عمليات التصدير B2B الضخمة، مما يضع خير الجوار كشركة رائدة شفافة ولا تساوم في سلسلة التوريد الغذائي العالمية.'
+    },
     tags: ['Export', 'B2B', 'Agriculture'],
     year: '2025',
-    services: ['Product Design', 'Web Development'],
     liveUrl: 'https://khaireljewar.vercel.app/en',
     image: cover('khair-aljaar'),
-    gallery: [cover('khair-aljaar')],
-    tall: false,
+    tall: false
   },
   {
-    slug: 'khasstock',
-    name: 'KhasStock',
-    tagline: "Egypt's premium stock & wholesale fashion marketplace",
-    description: 'Stock fashion marketplace — A+ grade inventory, wholesale tiers, and nationwide shipping.',
-    overview: 'High-energy retail experience for Egyptian stock fashion. Hero carousel promos, A+ quality badges, social proof counters, trader registration, and 70% savings messaging across 27 governorates.',
-    challenge: 'Build trust for stock fashion — a category Egyptian consumers associate with unpredictable quality — while driving urgency and excitement through limited-run inventory messaging.',
-    result: 'A marketplace built around the A+ grading system as a quality anchor. Social proof counters, real-time inventory urgency, and a streamlined trader registration portal turned casual browsers into committed wholesale buyers.',
-    clientType: 'Fashion Marketplace',
-    market: 'Egypt — 27 Governorates',
-    deliverables: ['Marketplace UI', 'Wholesale signup', 'Product feeds', 'RTL'],
-    tags: ['Fashion', 'Marketplace', 'Wholesale'],
+    slug: 'badeel-alsejad',
+    name: {
+      en: 'Ali Hamad',
+      ar: 'علي حمد'
+    },
+    tagline: {
+      en: 'Luxury flooring & carpet alternatives',
+      ar: 'أرضيات فاخرة وبديل السجاد'
+    },
+    brand: {
+      en: 'Ali Hamad is a leading Egyptian supplier of modern flooring and luxury carpet alternatives with over 15 years of market experience.',
+      ar: 'علي حمد هو مورد مصري رائد للأرضيات الحديثة وبدائل السجاد الفاخرة مع خبرة تزيد عن 15 عاماً في السوق.'
+    },
+    problem: {
+      en: 'The brand needed to serve two distinct audiences (B2B wholesale distributors and B2C retail customers) simultaneously without confusing the user journey.',
+      ar: 'احتاجت العلامة التجارية إلى خدمة جمهورين مختلفين (موزعي الجملة B2B وعملاء التجزئة B2C) في وقت واحد دون إرباك رحلة المستخدم.'
+    },
+    built: {
+      en: 'A dual-purpose e-commerce and lead generation platform. We implemented an interactive, swipeable gallery showcasing 30+ real-world installations, alongside dedicated portals for wholesale pricing and individual home consultations.',
+      ar: 'منصة مزدوجة للتجارة الإلكترونية وجلب العملاء. قمنا بتنفيذ معرض تفاعلي يعرض أكثر من 30 تركيباً واقعياً، إلى جانب بوابات مخصصة لتسعير الجملة واستشارات المنازل الفردية.'
+    },
+    outcome: {
+      en: 'A streamlined sales funnel that efficiently captures both individual homeowners and large-scale distributors across 27 Egyptian governorates.',
+      ar: 'مسار مبيعات مبسط يستقطب بكفاءة كل من أصحاب المنازل الأفراد والموزعين على نطاق واسع عبر 27 محافظة مصرية.'
+    },
+    tags: ['Retail', 'Interior', 'B2B'],
     year: '2025',
-    services: ['UX/UI Design', 'Frontend Development'],
-    liveUrl: 'https://khasstock-8833a.web.app/',
-    image: cover('khasstock'),
-    gallery: [cover('khasstock')],
-    tall: true,
+    liveUrl: 'https://badeel-alsejad.web.app/#/',
+    image: cover('badeel-alsejad'),
+    tall: true
+  },
+  {
+    slug: 'khair-al-jiwar',
+    name: {
+      en: 'Khair Al-Jiwar',
+      ar: 'خير الجوار العقارية'
+    },
+    tagline: {
+      en: 'Real estate developer compliance intelligence',
+      ar: 'تحليل التزام المطورين العقاريين'
+    },
+    brand: {
+      en: 'Khair Al-Jiwar is Egypt\'s premier real estate analytics platform, dedicated to tracking developer compliance and project risk.',
+      ar: 'خير الجوار هي منصة التحليلات العقارية الرائدة في مصر، والمكرسة لتتبع امتثال المطورين ومخاطر المشاريع.'
+    },
+    problem: {
+      en: 'Real estate investors in Egypt lacked a centralized, unbiased source of truth regarding developer delivery rates, complaint resolution, and actual construction quality.',
+      ar: 'افتقر المستثمرون العقاريون في مصر إلى مصدر مركزي ومحايد للحقيقة فيما يتعلق بمعدلات تسليم المطورين، وحل الشكاوى، وجودة البناء الفعلية.'
+    },
+    built: {
+      en: 'A data-driven analytical engine that ranks real estate projects based on a proprietary "Commitment Score." We built intuitive comparison tools, risk indicators, and advanced search filters for high-end compounds.',
+      ar: 'محرك تحليلي يعتمد على البيانات يصنف المشاريع العقارية بناءً على "نقاط التزام" خاصة. قمنا ببناء أدوات مقارنة بديهية، ومؤشرات مخاطر، وعوامل تصفية بحث متقدمة للمجمعات السكنية الراقية.'
+    },
+    outcome: {
+      en: 'A disruptive, transparent platform that empowers investors to make safe, data-backed decisions before committing capital to off-plan developments.',
+      ar: 'منصة شفافة ومبتكرة تمكن المستثمرين من اتخاذ قرارات آمنة مدعومة بالبيانات قبل الالتزام برأس المال في مشاريع قيد الإنشاء.'
+    },
+    tags: ['Proptech', 'Data', 'FinTech'],
+    year: '2025',
+    liveUrl: 'https://khair-al-jiwar.web.app/#/',
+    image: cover('khair-al-jiwar'),
+    tall: false
   },
   {
     slug: 'nodra',
-    name: 'NODRA',
-    tagline: 'AI-powered makeup shade matching — no photos needed',
-    description: 'Privacy-first beauty quiz delivering foundation undertone results via WhatsApp.',
-    overview: 'Arabic-first beauty tech product using questionnaire-based AI instead of personal photos. Warm/cool/neutral results, salon partner program, newsletter, and conversion-optimized quiz funnel for Egyptian consumers.',
-    challenge: 'Build an AI beauty product that Egyptian women would trust with their most personal self-image decisions — without requiring them to upload photos or share biometric data at any stage of the journey.',
-    result: 'A privacy-first questionnaire funnel that delivers foundation undertone matching via WhatsApp, removing the camera barrier entirely. The salon partner program extended the product offline into local beauty communities.',
-    clientType: 'Beauty Tech Startup',
-    market: 'Egypt — Consumer Beauty',
-    deliverables: ['Quiz product', 'Salon portal', 'WhatsApp delivery', 'Brand site'],
+    name: {
+      en: 'NODRA',
+      ar: 'نُدرة'
+    },
+    tagline: {
+      en: 'AI-powered makeup shade matching',
+      ar: 'تطابق ألوان المكياج بالذكاء الاصطناعي'
+    },
+    brand: {
+      en: 'NODRA is an innovative, privacy-first AI beauty platform that matches users with their perfect makeup shade without requiring personal photos.',
+      ar: 'نُدرة هي منصة تجميل مبتكرة تعتمد على الذكاء الاصطناعي وتعطي الأولوية للخصوصية لمطابقة المستخدمات مع درجة المكياج المثالية دون الحاجة لصور شخصية.'
+    },
+    problem: {
+      en: 'Consumers frequently waste money on the wrong foundation shades, and beauty salons suffer from high return rates. The challenge was creating a highly accurate matching system that respected user privacy.',
+      ar: 'كثيراً ما تهدر المستهلكات أموالهن على درجات كريم الأساس الخاطئة، وتعاني صالونات التجميل من معدلات إرجاع عالية. كان التحدي هو إنشاء نظام مطابقة دقيق للغاية يحترم خصوصية المستخدم.'
+    },
+    built: {
+      en: 'An intelligent, photo-free AI diagnostic tool. We designed an engaging, conversational quiz interface that determines the user\'s undertone and seamlessly delivers personalized brand recommendations via WhatsApp.',
+      ar: 'أداة تشخيص ذكية بالذكاء الاصطناعي بدون صور. صممنا واجهة اختبار تفاعلية تحدد النغمة التحتية للمستخدم وتقدم بسلاسة توصيات مخصصة للعلامات التجارية عبر واتساب.'
+    },
+    outcome: {
+      en: 'A viral, user-friendly tool that bridges the gap between digital discovery and physical beauty products, serving both individual consumers and professional salons.',
+      ar: 'أداة سريعة الانتشار وسهلة الاستخدام تسد الفجوة بين الاكتشاف الرقمي ومنتجات التجميل المادية، وتخدم كلاً من المستهلكات الأفراد والصالونات المحترفة.'
+    },
     tags: ['Beauty', 'AI', 'Consumer'],
     year: '2025',
-    services: ['UX/UI Design', 'Web Development'],
     liveUrl: 'https://nodra-985b0.web.app/',
     image: cover('nodra'),
-    gallery: [cover('nodra')],
-    tall: false,
+    tall: true
+  },
+  {
+    slug: 'khasstock',
+    name: {
+      en: 'KhasStock',
+      ar: 'خاص ستوك'
+    },
+    tagline: {
+      en: 'Egypt\'s premium stock fashion marketplace',
+      ar: 'بورصة الاستوك المصري للملابس'
+    },
+    brand: {
+      en: 'KhasStock is Egypt\'s first specialized "stock clothing exchange," offering premium original fashion brands at massive wholesale discounts.',
+      ar: 'خاص ستوك هي أول "بورصة ملابس استوك" متخصصة في مصر، تقدم علامات أزياء أصلية فاخرة بخصومات جملة ضخمة.'
+    },
+    problem: {
+      en: 'The client needed to digitize a traditionally offline, chaotic clearance market into a premium, organized, and eco-friendly shopping experience.',
+      ar: 'احتاج العميل إلى رقمنة سوق التصفية التقليدي الفوضوي وغير المتصل بالإنترنت وتحويله إلى تجربة تسوق فاخرة ومنظمة وصديقة للبيئة.'
+    },
+    built: {
+      en: 'A dynamic e-commerce environment featuring real-time "stock exchange" style indicators, highlighting limited quantities, active viewers, and deep B2B/B2C pricing tiers.',
+      ar: 'بيئة تجارة إلكترونية ديناميكية تتميز بمؤشرات حية بأسلوب "البورصة"، وتسلط الضوء على الكميات المحدودة، والمشاهدين النشطين، ومستويات تسعير B2B/B2C العميقة.'
+    },
+    outcome: {
+      en: 'A high-urgency, highly engaging digital marketplace that successfully gamifies the stock clothing buying experience for over 50,000 customers.',
+      ar: 'سوق رقمي عالي الاستعجال والتفاعل نجح في تحويل تجربة شراء الملابس الاستوك إلى لعبة ممتعة لأكثر من 50,000 عميل.'
+    },
+    tags: ['Fashion', 'Marketplace', 'Wholesale'],
+    year: '2025',
+    liveUrl: 'https://khasstock-8833a.web.app/',
+    image: cover('khasstock'),
+    tall: false
   },
   {
     slug: 'ryadco',
-    name: 'RYADCO',
-    tagline: 'Executive HVAC & contracting — Saudi Arabia',
-    description: 'Premium HVAC installation, maintenance contracts, and general contracting.',
-    overview: 'Executive-grade corporate site for climate engineering in KSA. Instant cost estimator, case studies (VRF, hospitals, logistics), methodology timeline, client testimonials, and structured service detail pages.',
-    challenge: 'Elevate a traditional contracting company above commodity HVAC providers in the Saudi market, where most competitors compete only on price. The brand needed to command premium contracts through technical authority.',
-    result: 'A corporate site that leads with engineering authority: a real-time cost estimator, detailed VRF and hospital case studies, a methodology timeline, and verified client testimonials from logistics and healthcare facilities.',
-    clientType: 'Engineering Contractor',
-    market: 'Saudi Arabia — B2B',
-    deliverables: ['Corporate site', 'Cost calculator', 'Case studies', 'Lead forms'],
+    name: {
+      en: 'RYADCO',
+      ar: 'الرياضكو'
+    },
+    tagline: {
+      en: 'Executive HVAC & contracting',
+      ar: 'مقاولات وحلول تكييف تنفيذية'
+    },
+    brand: {
+      en: 'RYADCO is an elite HVAC and climate engineering contracting firm operating within the Kingdom of Saudi Arabia.',
+      ar: 'الرياضكو هي شركة مقاولات وهندسة مناخ وتكييف نخبوية تعمل داخل المملكة العربية السعودية.'
+    },
+    problem: {
+      en: 'RYADCO needed to elevate its brand from a standard contracting company to a premium engineering consultancy, communicating executive-level execution and absolute reliability.',
+      ar: 'احتاجت الرياضكو إلى الارتقاء بعلامتها التجارية من شركة مقاولات عادية إلى استشارات هندسية فاخرة، مع إيصال مستوى التنفيذ التنفيذي والموثوقية المطلقة.'
+    },
+    built: {
+      en: 'A strictly professional, corporate platform that emphasizes engineering precision. We integrated interactive cost calculators, structured service modules, and a strong emphasis on transparent, documented delivery.',
+      ar: 'منصة مؤسسية احترافية بحتة تؤكد على الدقة الهندسية. قمنا بدمج حاسبات تكلفة تفاعلية، ووحدات خدمة منظمة، وتركيز قوي على التسليم الشفاف والموثق.'
+    },
+    outcome: {
+      en: 'A digital presence that radiates authority and trust, successfully securing high-value commercial and residential climate engineering contracts.',
+      ar: 'حضور رقمي يشع بالسلطة والثقة، مما نجح في تأمين عقود هندسة مناخية تجارية وسكنية عالية القيمة.'
+    },
     tags: ['HVAC', 'Industrial', 'B2B'],
     year: '2025',
-    services: ['Brand UI', 'Web Development'],
-    liveUrl: 'https://ryadco-513b2.web.app/',
+    liveUrl: 'https://ryadco-513b2.web.app/#/',
     image: cover('ryadco'),
-    gallery: [cover('ryadco')],
-    tall: true,
-  },
-  {
-    slug: 'soul-gold',
-    name: 'Soul Gold',
-    tagline: 'Fresh produce supplier — Jeddah & Kingdom-wide',
-    description: 'Premium fruits, vegetables, and kitchen essentials with same-day delivery in KSA.',
-    overview: 'Consumer-facing fresh produce commerce for Soul Gold Trading (CR 7053178781). Category promos, bestsellers, weekly deals, gift baskets, and trust badges for cold-chain quality across Saudi Arabia.',
-    challenge: 'Compete with supermarket chains in the Saudi fresh produce market by delivering a superior online shopping experience with same-day delivery credibility and premium product presentation.',
-    result: 'A fresh, vibrant e-commerce front with color-coded category sections, a weekly deals engine, a gift basket configurator, and cold-chain trust badges. The same-day delivery promise is front and center on every product card.',
-    clientType: 'Fresh Produce E-commerce',
-    market: 'Saudi Arabia — Consumer',
-    deliverables: ['E-commerce UI', 'Category promos', 'SEO landing', 'RTL'],
-    tags: ['Food', 'E-commerce', 'KSA'],
-    year: '2025',
-    services: ['UX/UI Design', 'Frontend Development'],
-    liveUrl: 'https://soul-gold.vercel.app/',
-    image: cover('soul-gold'),
-    gallery: [cover('soul-gold')],
-    tall: false,
-  },
-  {
-    slug: 'soul-gold-trading',
-    name: 'Soul Gold Trading',
-    tagline: 'B2B fresh & frozen supply portal',
-    description: 'Registered Saudi trading company supplying households, restaurants, and retailers.',
-    overview: 'Brand presence for Soul Gold Trading — Jeddah-based fresh and frozen food supplier. Hero promotions, category blocks, bulk ordering cues, and compliance messaging for VAT-registered LLC operations.',
-    challenge: 'Create a distinct B2B brand identity that separates Soul Gold Trading from its consumer-facing sister brand, while appealing to bulk buyers and restaurateurs looking for a reliable wholesale partner.',
-    result: 'A corporate B2B portal with bulk pricing tiers, VAT-registered compliance messaging, category product blocks, and a streamlined quote request flow. Restaurants and retailers now have a clear, professional channel to source at scale.',
-    clientType: 'B2B Food Supplier',
-    market: 'Saudi Arabia — Jeddah & KSA',
-    deliverables: ['Brand site', 'Catalog sections', 'Trust compliance', 'Mobile-first'],
-    tags: ['Food supply', 'B2B', 'Retail'],
-    year: '2025',
-    services: ['UX/UI Design', 'Web Development'],
-    liveUrl: 'https://soul-ubbd.vercel.app/',
-    image: cover('soul-gold-trading'),
-    gallery: [cover('soul-gold-trading')],
-    tall: true,
+    tall: true
   },
   {
     slug: 'tasami-industrial',
-    name: 'Tasami Industrial',
-    tagline: 'Saudi clinker supply — MENA export',
-    description: 'B2B industrial export platform for certified Saudi clinker with SGS documentation.',
-    overview: 'High-trust industrial sales site for Saudi clinker export to Syria, Lebanon, Jordan, and MENA markets. Technical specs (ASTM/EN), logistics tables, LC payment terms, market demand reports, and lead capture for bulk orders.',
-    challenge: 'Sell a technically complex industrial raw material to infrastructure procurement teams across conflict-affected MENA markets — audiences with zero tolerance for ambiguity and extreme sensitivity to supply chain reliability.',
-    result: 'A documentation-heavy industrial site with ASTM/EN spec comparison tables, a market demand report section, LC/TT payment term clarifications, and SGS certification downloads. Bulk inquiry rates increased from the first week of launch.',
-    clientType: 'Industrial Exporter',
-    market: 'Saudi Arabia → MENA (Syria, Lebanon, Jordan)',
-    deliverables: ['Industrial site', 'Spec tables', 'Market data', 'Lead forms'],
+    name: {
+      en: 'Tasami Industrial',
+      ar: 'تسامي الصناعية'
+    },
+    tagline: {
+      en: 'Saudi clinker supply — MENA export',
+      ar: 'توريد الكلينكر السعودي - تصدير للشرق الأوسط'
+    },
+    brand: {
+      en: 'Tasami Industrial is a major player in the Saudi industrial manufacturing sector, specializing in the export and supply of premium clinker and cement products.',
+      ar: 'تسامي الصناعية هي لاعب رئيسي في قطاع التصنيع الصناعي السعودي، متخصصة في تصدير وتوريد منتجات الكلينكر والأسمنت الفاخرة.'
+    },
+    problem: {
+      en: 'The industrial sector often suffers from outdated, clunky digital footprints. Tasami Industrial needed a modern platform to facilitate massive B2B international supply chain logistics.',
+      ar: 'غالبًا ما يعاني القطاع الصناعي من بصمات رقمية قديمة وغير عملية. احتاجت تسامي الصناعية إلى منصة حديثة لتسهيل لوجستيات سلسلة التوريد الدولية B2B الضخمة.'
+    },
+    built: {
+      en: 'A streamlined, data-heavy B2B portal. We focused on technical specifications, quality certifications, and logistical capabilities, wrapping complex industrial data in a sleek, accessible interface.',
+      ar: 'بوابة B2B مبسطة وغنية بالبيانات. ركزنا على المواصفات الفنية، وشهادات الجودة، والقدرات اللوجستية، مع تغليف البيانات الصناعية المعقدة في واجهة أنيقة يسهل الوصول إليها.'
+    },
+    outcome: {
+      en: 'A commanding industrial platform that bridges the gap between Saudi manufacturing capabilities and global market demands.',
+      ar: 'منصة صناعية قوية تسد الفجوة بين قدرات التصنيع السعودية ومتطلبات السوق العالمية.'
+    },
     tags: ['Industrial', 'Export', 'B2B'],
     year: '2025',
-    services: ['UX/UI Design', 'Web Development'],
     liveUrl: 'https://tasami-klinker.vercel.app/',
     image: cover('tasami-industrial'),
-    gallery: [cover('tasami-industrial')],
-    tall: false,
+    tall: false
   },
   {
-    slug: 'tasami-alwataniya',
-    name: 'Tasami Al-Wataniya',
-    tagline: 'Multilingual national brand gateway',
-    description: 'Language-selection entry portal — Arabic, English, Urdu, and Tagalog.',
-    overview: "Elegant multilingual landing for Tasami's national division. Minimal language picker with four locale options, premium typography, and instant routing to localized experiences for diverse Saudi audiences.",
-    challenge: "Design a language gateway that feels welcoming to all four of Saudi Arabia's primary working communities simultaneously — without defaulting to a generic, uninspiring dropdown interface.",
-    result: 'A cinematic language picker with four distinct locale cards, each with native typography and a cultural color accent. Users are routed instantly to a fully localized experience with zero friction — completion rate above 94%.',
-    clientType: 'Corporate Division — Tasami Group',
-    market: 'Saudi Arabia — Multi-community',
-    deliverables: ['Landing page', 'i18n routing', 'Brand UI', 'Motion'],
-    tags: ['Corporate', 'i18n', 'Brand'],
+    slug: 'alrehan-almasi',
+    name: {
+      en: 'Al Rehan Almasi',
+      ar: 'الرهان الماسي'
+    },
+    tagline: {
+      en: 'Premium food supply for the Saudi market',
+      ar: 'توريد غذائي فاخر للسوق السعودي'
+    },
+    brand: {
+      en: 'Al Rehan Almasi is a trusted B2B partner for the supply of fresh and frozen food products.',
+      ar: 'الرهان الماسي هو شريك B2B موثوق لتوريد المنتجات الغذائية الطازجة والمجمدة.'
+    },
+    problem: {
+      en: 'The company required a digital catalog that could efficiently showcase a vast inventory to corporate clients (restaurants, hotels) while streamlining the quotation process.',
+      ar: 'احتاجت الشركة إلى كتالوج رقمي يمكنه عرض مخزون هائل بكفاءة للعملاء من الشركات (المطاعم، الفنادق) مع تبسيط عملية طلب عروض الأسعار.'
+    },
+    built: {
+      en: 'A clean, corporate supply chain portal emphasizing reliability. We built a structured catalog system with direct "Request for Quote" functionalities to accelerate the B2B sales cycle.',
+      ar: 'بوابة سلسلة توريد مؤسسية ونظيفة تؤكد على الموثوقية. قمنا ببناء نظام كتالوج منظم مع وظائف "طلب عرض سعر" مباشرة لتسريع دورة مبيعات B2B.'
+    },
+    outcome: {
+      en: 'An optimized digital supply chain hub that connects premium food products with high-volume commercial buyers effortlessly.',
+      ar: 'مركز سلسلة توريد رقمي محسن يربط المنتجات الغذائية الفاخرة بالمشترين التجاريين ذوي الحجم الكبير بسهولة.'
+    },
+    tags: ['Food supply', 'B2B', 'Logistics'],
     year: '2025',
-    services: ['Brand Identity', 'Frontend Development'],
-    liveUrl: 'https://tasami-1.vercel.app/',
-    image: cover('tasami-alwataniya'),
-    gallery: [cover('tasami-alwataniya')],
-    tall: true,
+    liveUrl: 'https://alrehan-almasi.vercel.app/',
+    image: cover('alrehan-almasi'),
+    tall: true
   },
+  {
+    slug: 'soul-gold',
+    name: {
+      en: 'Soul Gold',
+      ar: 'صول الذهبية'
+    },
+    tagline: {
+      en: 'Fresh produce supplier & Artisan Food E-commerce',
+      ar: 'مورد منتجات طازجة وتجارة إلكترونية للأغذية الفاخرة'
+    },
+    brand: {
+      en: 'Soul Gold is an artisan, farm-to-table e-commerce brand delivering premium, organic fresh produce and specialty foods across Saudi Arabia.',
+      ar: 'صول الذهبية هي علامة تجارية للتجارة الإلكترونية من المزرعة إلى المائدة تقدم منتجات طازجة عضوية وفاخرة وأطعمة متخصصة في جميع أنحاء المملكة العربية السعودية.'
+    },
+    problem: {
+      en: 'The brand needed to communicate the luxury and purity of its "Alchemy of Taste" philosophy while managing the practicalities of same-day fresh food delivery.',
+      ar: 'احتاجت العلامة التجارية إلى إيصال فخامة ونقاء فلسفتها "خيمياء المذاق" مع إدارة الجوانب العملية لتوصيل الطعام الطازج في نفس اليوم.'
+    },
+    built: {
+      en: 'An elegant, high-end e-commerce experience. We utilized rich, organic art direction paired with highly functional features like a countdown timer for same-day delivery and an exclusive VIP loyalty program.',
+      ar: 'تجربة تجارة إلكترونية أنيقة وراقية. استخدمنا توجهاً فنياً غنياً وعضوياً مقترناً بميزات وظيفية عالية مثل مؤقت العد التنازلي للتوصيل في نفس اليوم وبرنامج ولاء VIP حصري.'
+    },
+    outcome: {
+      en: 'A premium digital boutique that successfully positions fresh produce as a luxury lifestyle choice for the discerning Saudi consumer.',
+      ar: 'بوتيك رقمي فاخر ينجح في وضع المنتجات الطازجة كخيار أسلوب حياة فاخر للمستهلك السعودي المميز.'
+    },
+    tags: ['Food', 'E-commerce', 'KSA'],
+    year: '2025',
+    liveUrl: 'https://soul-gold.vercel.app/',
+    image: cover('soul-gold'),
+    tall: false
+  }
 ];
 
 export function getProject(slug: string) {
