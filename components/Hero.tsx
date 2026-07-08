@@ -118,8 +118,8 @@ export function Hero() {
               <span className="text-[0.55rem] font-semibold uppercase tracking-[0.3em] text-[#B8976A]/50">
                 Scroll
               </span>
-              <div className="h-10 w-[1px] overflow-hidden bg-[#B8976A]/10">
-                <div className="h-full w-full origin-top animate-[scroll-line_2s_ease-in-out_infinite] bg-[#B8976A]/80" />
+              <div className="h-10 w-[2px] overflow-hidden bg-[#B8976A]/10 rounded-full">
+                <div className="h-full w-full origin-top animate-[scroll-line_2s_ease-in-out_infinite] bg-[#B8976A]/80 rounded-full" />
               </div>
             </div>
           </div>

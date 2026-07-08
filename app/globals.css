@@ -104,6 +104,8 @@ html.lenis {
 
 body {
   background-color: #0A0A0A;
+  background-image: radial-gradient(circle at top center, rgba(184,151,106, 0.1), transparent 70%);
+  background-attachment: fixed;
   color: #EAE8E3;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -242,7 +244,7 @@ body {
 
 @media (hover: hover) and (pointer: fine) {
   .project-card:hover {
-    box-shadow: 0 0 40px var(--color-gold-subtle);
+    box-shadow: 0 0 60px rgba(184, 151, 106, 0.18);
   }
 }
 
