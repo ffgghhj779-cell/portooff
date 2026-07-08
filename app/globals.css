@@ -698,14 +698,13 @@ body {
   }
 }
 
- . r e v e a l - t e x t   { 
-     o p a c i t y :   0 ; 
-     t r a n s f o r m :   t r a n s l a t e Y ( 1 6 p x ) ; 
-     t r a n s i t i o n :   o p a c i t y   0 . 8 s   c u b i c - b e z i e r ( 0 . 1 6 ,   1 ,   0 . 3 ,   1 ) ,   t r a n s f o r m   0 . 8 s   c u b i c - b e z i e r ( 0 . 1 6 ,   1 ,   0 . 3 ,   1 ) ; 
- } 
- . r e v e a l - t e x t . i s - r e v e a l e d   { 
-     o p a c i t y :   1 ; 
-     t r a n s f o r m :   t r a n s l a t e Y ( 0 ) ; 
- } 
-  
- 
+.reveal-text {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-text.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
