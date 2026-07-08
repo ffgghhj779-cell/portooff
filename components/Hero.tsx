@@ -55,7 +55,7 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative z-10 min-h-[100svh] overflow-hidden bg-black"
+      className="relative z-10 min-h-[100svh] overflow-hidden bg-[#0A0A0A]"
     >
       {/* Single, subtle top vignette — no color blobs */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_40%_at_50%_0%,rgba(255,255,255,0.03),transparent)]" />
@@ -66,7 +66,7 @@ export function Hero() {
       >
         {/* Established label */}
         <div className="hero-reveal mb-10 md:mb-14">
-          <span className="inline-block rounded-full border border-white/15 px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.28em] text-white/40">
+          <span className="inline-block rounded-full border border-[#B8976A]/30 px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.28em] text-[#B8976A]/70">
             {t.hero.label}
           </span>
         </div>
@@ -115,11 +115,11 @@ export function Hero() {
             aria-hidden="true"
           >
             <div className="flex flex-col items-center gap-2">
-              <span className="text-[0.55rem] font-semibold uppercase tracking-[0.3em] text-white/20">
+              <span className="text-[0.55rem] font-semibold uppercase tracking-[0.3em] text-[#B8976A]/50">
                 Scroll
               </span>
-              <div className="h-10 w-[1px] overflow-hidden bg-white/10">
-                <div className="h-full w-full origin-top animate-[scroll-line_2s_ease-in-out_infinite] bg-white/40" />
+              <div className="h-10 w-[1px] overflow-hidden bg-[#B8976A]/10">
+                <div className="h-full w-full origin-top animate-[scroll-line_2s_ease-in-out_infinite] bg-[#B8976A]/80" />
               </div>
             </div>
           </div>

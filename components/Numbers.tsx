@@ -36,19 +36,19 @@ export function Numbers() {
   return (
     <section
       ref={sectionRef}
-      className="border-y border-white/[0.06] bg-black py-12 md:py-14"
+      className="border-y border-[#B8976A]/20 bg-[#0A0A0A] py-12 md:py-14"
     >
       <div className="section-shell">
-        <dl className="grid grid-cols-3 divide-x divide-white/[0.06]">
+        <dl className="grid grid-cols-3 divide-x divide-[#B8976A]/15">
           {stats.map((stat, i) => (
             <div
               key={i}
               className="numbers-item flex flex-col items-center gap-1.5 px-4 text-center md:px-8"
             >
-              <dt className="heading-display text-2xl font-semibold tracking-tighter text-white md:text-4xl">
+              <dt className="heading-display text-2xl font-semibold tracking-tighter text-[#B8976A] md:text-4xl">
                 {stat.value}
               </dt>
-              <dd className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-white/30 md:text-[0.7rem]">
+              <dd className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-[#EAE8E3]/40 md:text-[0.7rem]">
                 {stat.label}
               </dd>
             </div>

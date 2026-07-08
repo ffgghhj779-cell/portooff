@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { MagneticButton } from '@/components/MagneticButton';
@@ -14,6 +15,25 @@ type Props = {
 
 export function ProjectContent({ project, prev, next }: Props) {
   const { t, locale, dir } = useLocale();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    const elements = document.querySelectorAll('.reveal-text');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <main className="overflow-x-hidden font-sans">
@@ -103,42 +123,42 @@ export function ProjectContent({ project, prev, next }: Props) {
       {/* ── Storytelling Layout ── */}
       <section data-scroll-theme="dark" className="theme-dark">
         <div className="section-shell">
-          <div className="grid gap-14 border-t border-[#EAE8E3]/10 pt-20 md:grid-cols-12 md:gap-20 my-20 md:my-32">
+          <div className="grid gap-14 border-t border-[#B8976A]/20 pt-20 md:grid-cols-12 md:gap-20 my-20 md:my-32">
             {/* The Brand */}
             <div className="md:col-span-12 lg:col-span-10 lg:col-start-2">
               
-              <div className="mb-24 md:mb-32 border-b border-[#EAE8E3]/10 pb-20">
-                <p className="mb-6 text-[0.65rem] font-semibold uppercase tracking-[0.26em] text-[#EAE8E3]/40">
+              <div className="mb-24 md:mb-32 border-b border-[#B8976A]/15 pb-20">
+                <p className="mb-6 text-[0.65rem] font-semibold uppercase tracking-[0.26em] text-[#B8976A]/50 reveal-text">
                   01 — {t.projectStory.theBrand}
                 </p>
-                <h2 className="heading-display text-3xl font-bold leading-[1.3] text-[#EAE8E3] md:text-4xl lg:text-5xl max-w-5xl">
+                <h2 className="heading-display text-3xl font-bold leading-[1.3] text-[#EAE8E3] md:text-4xl lg:text-5xl max-w-5xl reveal-text">
                   {project.brand[locale]}
                 </h2>
               </div>
 
               {/* The Problem */}
-              <div className="mb-24 md:mb-32 grid gap-10 md:grid-cols-12 border-b border-[#EAE8E3]/10 pb-20">
+              <div className="mb-24 md:mb-32 grid gap-10 md:grid-cols-12 border-b border-[#B8976A]/15 pb-20">
                 <div className="md:col-span-4">
-                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.26em] text-[#EAE8E3]/40">
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.26em] text-[#B8976A]/50 reveal-text">
                     02 — {t.projectStory.theProblem}
                   </p>
                 </div>
                 <div className="md:col-span-8">
-                  <p className="text-xl leading-[1.9] text-[#EAE8E3]/80 md:text-2xl font-light">
+                  <p className="text-xl leading-[1.9] text-[#EAE8E3]/80 md:text-2xl font-light reveal-text">
                     {project.problem[locale]}
                   </p>
                 </div>
               </div>
 
               {/* What We Built */}
-              <div className="mb-24 md:mb-32 grid gap-10 md:grid-cols-12 border-b border-[#EAE8E3]/10 pb-20">
+              <div className="mb-24 md:mb-32 grid gap-10 md:grid-cols-12 border-b border-[#B8976A]/15 pb-20">
                 <div className="md:col-span-4">
-                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.26em] text-[#EAE8E3]/40">
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.26em] text-[#B8976A]/50 reveal-text">
                     03 — {t.projectStory.whatWeBuilt}
                   </p>
                 </div>
                 <div className="md:col-span-8">
-                  <p className="text-xl leading-[1.9] text-[#EAE8E3]/80 md:text-2xl font-light">
+                  <p className="text-xl leading-[1.9] text-[#EAE8E3]/80 md:text-2xl font-light reveal-text">
                     {project.built[locale]}
                   </p>
                 </div>
@@ -147,12 +167,12 @@ export function ProjectContent({ project, prev, next }: Props) {
               {/* The Outcome */}
               <div className="grid gap-10 md:grid-cols-12 pb-10">
                 <div className="md:col-span-4">
-                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.26em] text-[#EAE8E3]/40">
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.26em] text-[#B8976A]/50 reveal-text">
                     04 — {t.projectStory.theOutcome}
                   </p>
                 </div>
                 <div className="md:col-span-8">
-                  <p className="text-xl leading-[1.9] text-[#EAE8E3]/80 md:text-2xl font-light">
+                  <p className="text-xl leading-[1.9] text-[#EAE8E3]/80 md:text-2xl font-light reveal-text">
                     {project.outcome[locale]}
                   </p>
                 </div>

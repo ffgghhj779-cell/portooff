@@ -54,7 +54,7 @@ function ProjectCard({ project }: { project: Project }) {
           {project.tags.slice(0, 2).map((tag) => (
             <span
               key={tag}
-              className="rounded-full bg-black/50 px-2.5 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-white/70 backdrop-blur-sm"
+              className="rounded-full border border-[#EAE8E3]/20 bg-transparent px-2.5 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-[#EAE8E3]/60 backdrop-blur-sm"
             >
               {tag}
             </span>
@@ -62,7 +62,7 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
         {/* Year badge — top right */}
         <div className="pointer-events-none absolute top-4 right-4">
-          <span className="rounded-full bg-black/50 px-2.5 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-white/60 backdrop-blur-sm">
+          <span className="rounded-full border border-[#EAE8E3]/20 bg-transparent px-2.5 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-[#EAE8E3]/60 backdrop-blur-sm">
             {project.year}
           </span>
         </div>
@@ -207,7 +207,7 @@ export function Projects({ limit }: { limit?: number }) {
     <section
       id="projects"
       ref={sectionRef}
-      className="section-pad relative w-full overflow-hidden bg-black text-white"
+      className="section-pad relative w-full overflow-hidden bg-[#0A0A0A] text-white"
     >
       <div className="section-shell">
         <div className="projects-heading mb-12 overflow-hidden md:mb-16">
