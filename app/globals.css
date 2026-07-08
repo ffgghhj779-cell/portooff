@@ -249,13 +249,12 @@ body {
 }
 
 .project-image-inner img {
-  filter: grayscale(40%) brightness(0.82);
-  transition: filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .project-card:hover .project-image-inner img {
-    filter: grayscale(0%) brightness(0.9) sepia(10%) hue-rotate(5deg);
+    transform: scale(1.05);
   }
 }
 

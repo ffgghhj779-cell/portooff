@@ -18,27 +18,9 @@ export type Project = {
   tall: boolean;
 };
 
-const UNSPLASH_IDS: Record<string, string> = {
-  'tasami-alwataniya': '1503387762-592deb58ef4e',
-  'alwafeer': '1586528116311-ad8ed7c152a5',
-  'aura': '1518611012118-696072aa579a',
-  'arkan': '1550751827-4bd374c3f58b',
-  'afaq': '1620641788421-7a1c342ea42e',
-  'khair-aljaar': '1486406146926-c627a92ad1ab',
-  'badeel-alsejad': '1600607686527-6fb886090705',
-  'khair-al-jiwar': '1497366216548-37526070297c',
-  'nodra': '1618005182384-a83a8bd57fbe',
-  'khasstock': '1504307651254-35680f35aa9e',
-  'ryadco': '1518770660439-4636190af475',
-  'tasami-industrial': '1518206019315-1b2c4e16d414',
-  'alrehan-almasi': '1505935428862-770b6f24f629',
-  'soul-gold': '1488459716781-31db52582fe9'
-};
-
-/** Abstract premium cover from Unsplash */
+/** Minimalist typographic SVG cover */
 function cover(slug: string): string {
-  const id = UNSPLASH_IDS[slug];
-  return `https://images.unsplash.com/photo-${id}?q=80&w=800&auto=format&fit=crop`;
+  return `/projects/logos/${slug}.svg`;
 }
 
 export const PROJECTS: Project[] = [

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <radialGradient id="goldGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="rgba(184, 151, 106, 0.15)" />
+      <stop offset="100%" stop-color="rgba(184, 151, 106, 0)" />
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(234, 232, 227, 0.02)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0A0A0A" />
+  <rect width="100%" height="100%" fill="url(#grid)" />
+  <rect width="100%" height="100%" fill="url(#goldGlow)" />
+  <rect x="40" y="40" width="1120" height="820" fill="none" stroke="rgba(184, 151, 106, 0.1)" stroke-width="1" />
+
+  <text x="50%" y="48%" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" 
+        font-size="72" font-weight="700" fill="#EAE8E3" text-anchor="middle" dominant-baseline="middle" letter-spacing="0.15em">
+    MOTIVATION AURA
+  </text>
+  
+  <text x="50%" y="56%" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" 
+        font-size="14" font-weight="500" fill="rgba(184, 151, 106, 0.6)" text-anchor="middle" dominant-baseline="middle" letter-spacing="0.4em">
+    CASE STUDY
+  </text>
+</svg>
