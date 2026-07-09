@@ -55,7 +55,7 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative z-10 min-h-[100svh] overflow-hidden bg-[#0A0A0A]"
+      className="relative z-10 min-h-[100svh] overflow-hidden bg-transparent"
     >
       {/* Single, subtle top vignette — no color blobs */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_40%_at_50%_0%,rgba(255,255,255,0.03),transparent)]" />
@@ -79,7 +79,7 @@ export function Hero() {
             </h1>
           </div>
           <div className="hero-line hero-reveal overflow-hidden">
-            <h1 className="heading-display type-hero font-medium leading-none tracking-tighter text-white/50">
+            <h1 className="heading-display type-hero font-light md:font-medium leading-none tracking-tighter text-[#B8976A]">
               {t.hero.line2}
             </h1>
           </div>
@@ -95,7 +95,7 @@ export function Hero() {
           <div className="flex shrink-0 items-center gap-5">
             <Link
               href="/work"
-              className="btn-pill inline-flex items-center bg-white text-sm font-semibold text-black"
+              className="btn-pill inline-flex items-center border border-[#B8976A] text-[#B8976A] bg-transparent hover:bg-[#B8976A] hover:text-[#141210] transition-colors duration-300 text-sm font-semibold"
             >
               {t.hero.cta}
             </Link>

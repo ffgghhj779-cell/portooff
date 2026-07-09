@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Cairo, Inter, Space_Grotesk } from 'next/font/google';
+import { Alexandria, Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import { ClientProviders } from '@/components/ClientProviders';
 import { baseMetadata } from '@/lib/metadata';
@@ -17,10 +17,10 @@ const spaceGrotesk = Space_Grotesk({
   display: 'swap',
 });
 
-const cairo = Cairo({
+const alexandria = Alexandria({
   variable: '--font-arabic',
   subsets: ['arabic', 'latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
   display: 'swap',
 });
 
@@ -52,7 +52,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${cairo.variable} font-sans antialiased selection:bg-white/10 selection:text-white`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${alexandria.variable} font-sans antialiased selection:bg-white/10 selection:text-white`}
         suppressHydrationWarning
       >
         <ClientProviders>{children}</ClientProviders>

@@ -21,28 +21,27 @@
 ══════════════════════════════════ */
 :root[dir="rtl"],
 html[dir="rtl"] {
-  /* Switch all text to Cairo */
-  font-family: var(--font-arabic), 'Cairo', sans-serif;
+  /* Switch all text to Alexandria for Arabic */
+  font-family: var(--font-arabic), 'Alexandria', sans-serif;
 }
 
 html[dir="rtl"] body,
 html[dir="rtl"] * {
-  font-family: var(--font-arabic), 'Cairo', sans-serif !important;
-  letter-spacing: 0 !important;       /* Arabic doesn't use tracking */
+  font-family: var(--font-arabic), 'Alexandria', sans-serif !important;
+  letter-spacing: 0 !important; /* Arabic doesn't use tracking */
 }
 
-/* Headings in Arabic — no tracking, slightly relaxed line-height */
+/* Headings in Arabic — elegant lighter weight for massive text */
 html[dir="rtl"] .heading-display,
 html[dir="rtl"] h1,
 html[dir="rtl"] h2,
 html[dir="rtl"] h3 {
-  font-family: var(--font-arabic), 'Cairo', sans-serif !important;
+  font-family: var(--font-arabic), 'Alexandria', sans-serif !important;
   letter-spacing: 0 !important;
-  line-height: 1.15 !important;
-  font-weight: 700;
+  line-height: 1.25 !important;
+  font-weight: 300 !important; /* Elegant light weight */
 }
 
-/* Nav links in Arabic */
 html[dir="rtl"] nav a,
 html[dir="rtl"] .nav-link-animated {
   letter-spacing: 0 !important;
@@ -112,17 +111,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-}
-
-/* Organic Film Grain Overlay */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.05;
 }
 
 .theme-dark {
