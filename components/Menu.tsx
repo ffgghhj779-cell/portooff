@@ -160,7 +160,7 @@ export function Menu() {
             {NAV_LINKS.map((link) => (
               <div key={link.href} className="overflow-hidden">
                 <Link href={link.href} onClick={closeMenu} className="menu-link group flex items-center py-2">
-                  <span className="menu-link-inner heading-display type-menu inline-block font-semibold tracking-tighter leading-[1.15] text-white transition-opacity duration-300 group-hover:opacity-60">
+                  <span className="menu-link-inner heading-display type-menu inline-block font-semibold tracking-tighter leading-[1.15] text-[#CFCAC2] transition-colors duration-300 group-hover:text-[#B8976A]">
                     {link.label}
                   </span>
                 </Link>
