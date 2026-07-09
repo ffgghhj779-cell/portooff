@@ -29,7 +29,7 @@ export const PROJECTS: Project[] = [
     slug: 'eladawigroup',
     name: {
       en: 'El Adawi Group',
-      ar: 'مجموعة العدوي'
+      ar: 'El Adawi Group'
     },
     tagline: {
       en: 'Premium Wholesale Paints',
@@ -61,7 +61,7 @@ export const PROJECTS: Project[] = [
     slug: 'esteemmedia',
     name: {
       en: 'Esteem Media',
-      ar: 'إستيم ميديا'
+      ar: 'Esteem Media'
     },
     tagline: {
       en: 'Elite Media Production',
