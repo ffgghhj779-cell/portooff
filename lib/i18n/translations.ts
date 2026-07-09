@@ -118,11 +118,11 @@ export const translations: Record<Locale, TranslationKeys> = {
     },
     hero: {
       label: 'Cairo — Est. 2020',
-      line1: 'We build digital',
-      line2: 'things that work.',
+      line1: 'Premium Web Design',
+      line2: '& App Development.',
       subtitle:
-        'For brands in Egypt and the Gulf who are serious about what they put online.',
-      cta: 'See our work',
+        'We design and develop fast, beautiful websites and mobile apps that help ambitious brands grow their business and engage customers.',
+      cta: 'Explore our work',
       ctaSecondary: 'Start a conversation',
     },
     numbers: {
@@ -246,10 +246,10 @@ export const translations: Record<Locale, TranslationKeys> = {
     },
     hero: {
       label: 'القاهرة — تأسست 2020',
-      line1: 'نصمم منتجات رقمية',
-      line2: 'ذات أثر حقيقي.',
+      line1: 'نبني مواقع وتطبيقات',
+      line2: 'تليق بعلامتك التجارية.',
       subtitle:
-        'للعلامات التجارية الطموحة في مصر والخليج التي لا تساوم على جودة حضورها الرقمي.',
+        'في تسامي، نبني حلولاً رقمية (مواقع، متاجر، وتطبيقات) تساعد الشركات على مضاعفة أرباحها وتسهيل وصولها للعملاء.',
       cta: 'اكتشف أعمالنا',
       ctaSecondary: 'ابدأ محادثة',
     },
