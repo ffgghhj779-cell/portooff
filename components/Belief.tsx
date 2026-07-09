@@ -53,7 +53,7 @@ export function Belief() {
           {/* Signature line */}
           <div className="belief-reveal mt-10 flex items-center gap-3 md:mt-12">
             <div className="h-[1px] w-8 bg-black/25" />
-            <span className="text-sm font-medium text-black/40">Tasami</span>
+            <span className="text-sm font-medium text-black/40">Madar</span>
           </div>
         </div>
       </div>

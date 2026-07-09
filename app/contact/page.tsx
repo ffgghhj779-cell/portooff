@@ -5,7 +5,7 @@ import { pageMetadata } from '@/lib/metadata';
 
 export const metadata = pageMetadata(
   'Contact',
-  'Get in touch with Tasami — tell us about your project.'
+  'Get in touch with Madar — tell us about your project.'
 );
 
 export default function ContactPage() {

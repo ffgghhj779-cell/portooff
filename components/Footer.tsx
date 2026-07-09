@@ -8,7 +8,7 @@ import { MOTION } from '@/lib/motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SITE } from '@/lib/data/site';
-import { useTranslations } from '@/lib/i18n/LocaleProvider';
+import { useLocale, useTranslations } from '@/lib/i18n/LocaleProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,6 +21,7 @@ const socialLinks = [
 ] as const;
 
 export function Footer() {
+  const { locale } = useLocale();
   const t = useTranslations();
   const footerRef = useRef<HTMLElement>(null);
   const tellUsRef = useRef<HTMLAnchorElement>(null);
@@ -184,7 +185,11 @@ export function Footer() {
             <Link href="/privacy" className="transition-colors hover:text-white/60">
               {t.footer.privacy}
             </Link>
-            <span>© {new Date().getFullYear()} {SITE.name}</span>
+            <span>© {new Date().getFullYear()} {SITE.name}
+            <span className="hidden w-1 h-1 rounded-full bg-white/20 md:block" />
+            <span className="text-[#B8976A]/80 font-medium">
+              {locale === 'ar' ? 'إدارة مصطفى راضي' : 'Managed by Mustafa Rady'}
+            </span></span>
           </div>
           <p className="text-white/20">{t.footer.tagline}</p>
         </div>

@@ -27,15 +27,15 @@ export const PROJECTS: Project[] = [
   {
     slug: 'tasami-alwataniya',
     name: {
-      en: 'Tasami Al-Wataniah',
-      ar: 'Tasami Al-Wataniah'
+      en: 'Madar Al-Wataniah',
+      ar: 'Madar Al-Wataniah'
     },
     tagline: {
       en: 'Multilingual national brand gateway',
       ar: 'بوابة رقمية وطنية متعددة اللغات'
     },
     brand: {
-      en: 'Tasami Al-Wataniah is a corporate entity requiring a multilingual digital presence to serve a diverse audience across Saudi Arabia and beyond.',
+      en: 'Madar Al-Wataniah is a corporate entity requiring a multilingual digital presence to serve a diverse audience across Saudi Arabia and beyond.',
       ar: 'كيان مؤسسي رائد يتطلب حضوراً رقمياً متعدد اللغات لخدمة شريحة واسعة ومتنوعة من الجمهور داخل المملكة العربية السعودية وخارجها.'
     },
     problem: {
@@ -52,9 +52,73 @@ export const PROJECTS: Project[] = [
     },
     tags: ['Corporate', 'i18n', 'Brand'],
     year: '2025',
-    liveUrl: 'https://tasami-1.vercel.app/',
-    image: cover('tasami-alwataniya'),
-    tall: true
+    liveUrl: 'https://alwataniyagroup.com',
+    image: '/projects/tasami-alwataniya.jpg',
+    tall: false,
+  },
+  {
+    slug: 'eladawigroup',
+    name: {
+      en: 'El Adawi Group',
+      ar: 'مجموعة العدوي'
+    },
+    tagline: {
+      en: 'Premium Wholesale Paints',
+      ar: 'علامة رائدة في تجارة الدهانات'
+    },
+    brand: {
+      en: 'El Adawi Group',
+      ar: 'مجموعة العدوي'
+    },
+    problem: {
+      en: 'El Adawi Group needed a professional B2B platform to showcase their extensive range of premium wholesale paints and building materials to distributors and large-scale contractors.',
+      ar: 'احتاجت مجموعة العدوي إلى منصة B2B احترافية لعرض مجموعتها الواسعة من الدهانات ومواد البناء الفاخرة بالجملة للموزعين وشركات المقاولات الكبرى.'
+    },
+    built: {
+      en: 'We built a high-performance corporate catalog website with advanced filtering, a seamless quote request system, and an authoritative brand presence.',
+      ar: 'قمنا ببناء موقع كتالوج تفاعلي عالي الأداء مع نظام تصفية متقدم، وآلية سلسة لطلب عروض الأسعار، وحضور رقمي يعكس ثقل العلامة التجارية.'
+    },
+    outcome: {
+      en: 'A massive increase in B2B inquiries and a strengthened market position as a top-tier wholesale supplier.',
+      ar: 'زيادة هائلة في استفسارات B2B وتعزيز مكانة الشركة كمورد جملة من الدرجة الأولى.'
+    },
+    tags: ['Next.js', 'Tailwind', 'B2B Catalog'],
+    year: '2023',
+    liveUrl: 'https://eladawigroup.com/',
+    image: '/projects/eladawigroup.jpg',
+    tall: false,
+  },
+  {
+    slug: 'esteemmedia',
+    name: {
+      en: 'Esteem Media',
+      ar: 'إستيم ميديا'
+    },
+    tagline: {
+      en: 'Elite Media Production',
+      ar: 'إنتاج إعلامي نخبوي'
+    },
+    brand: {
+      en: 'Esteem Media',
+      ar: 'إستيم ميديا'
+    },
+    problem: {
+      en: 'Esteem Media required a visually striking portfolio to highlight their high-end media production, photography, and videography services to premium clients.',
+      ar: 'تطلبت إستيم ميديا معرض أعمال جذاب بصرياً لتسليط الضوء على خدمات الإنتاج الإعلامي والتصوير الفوتوغرافي والفيديو الراقية للعملاء النخبويين.'
+    },
+    built: {
+      en: 'We designed a dark-themed, highly visual experience powered by smooth GSAP animations and optimized media delivery to ensure flawless playback.',
+      ar: 'صممنا تجربة بصرية فائقة النعومة تعتمد على النمط المظلم (Dark Theme)، مدعومة بحركات GSAP سلسة وتسليم محسن للوسائط لضمان تشغيل بلا تشويش.'
+    },
+    outcome: {
+      en: 'A stunning showcase that elevated their brand perception and significantly boosted high-ticket client acquisitions.',
+      ar: 'معرض أعمال مبهر أدى إلى الارتقاء بتصور العلامة التجارية وزيادة ملحوظة في استقطاب العملاء ذوي الميزانيات الكبيرة.'
+    },
+    tags: ['React', 'GSAP', 'Portfolio'],
+    year: '2024',
+    liveUrl: 'https://esteemmediaa.com/',
+    image: '/projects/esteemmedia.jpg',
+    tall: true,
   },
   {
     slug: 'alwafeer',
@@ -379,19 +443,19 @@ export const PROJECTS: Project[] = [
   {
     slug: 'tasami-industrial',
     name: {
-      en: 'Tasami Industrial',
-      ar: 'Tasami Industrial'
+      en: 'Madar Industrial',
+      ar: 'Madar Industrial'
     },
     tagline: {
       en: 'Saudi clinker supply — MENA export',
       ar: 'توريد الكلينكر السعودي ותصدير للشرق الأوسط'
     },
     brand: {
-      en: 'Tasami Industrial is a major player in the Saudi industrial manufacturing sector, specializing in the export and supply of premium clinker and cement products.',
+      en: 'Madar Industrial is a major player in the Saudi industrial manufacturing sector, specializing in the export and supply of premium clinker and cement products.',
       ar: 'ركيزة أساسية في قطاع التصنيع الصناعي السعودي، تتخصص في تصدير وتوريد منتجات الكلينكر والأسمنت الفاخرة.'
     },
     problem: {
-      en: 'The industrial sector often suffers from outdated, clunky digital footprints. Tasami Industrial needed a modern platform to facilitate massive B2B international supply chain logistics.',
+      en: 'The industrial sector often suffers from outdated, clunky digital footprints. Madar Industrial needed a modern platform to facilitate massive B2B international supply chain logistics.',
       ar: 'غالباً ما يتسم الحضور الرقمي للقطاع الصناعي بالجمود والتقادم. احتاجت الشركة إلى منصة عصرية تُسهّل إدارة العمليات اللوجستية الضخمة لسلاسل التوريد الدولية (B2B).'
     },
     built: {

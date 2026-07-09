@@ -3,6 +3,8 @@ const path = require('path');
 
 const PROJECTS = [
   { slug: 'tasami-alwataniya', name: 'Tasami Al-Wataniah' },
+  { slug: 'eladawigroup', name: 'Eladawi Group' },
+  { slug: 'esteemmedia', name: 'Esteem Media' },
   { slug: 'alwafeer', name: 'Alwafeer' },
   { slug: 'aura', name: 'Motivation Aura' },
   { slug: 'arkan', name: 'Arkan' },

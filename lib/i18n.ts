@@ -41,7 +41,7 @@ export const useLanguage = () => {
       desc: 'We engineer competitive advantages through elite digital craftsmanship.',
       contact: 'Contact',
       email: 'Email',
-      rights: 'Tasami. All rights reserved.',
+      rights: 'Madar. All rights reserved.',
       cta: 'Get in touch'
     }
   };

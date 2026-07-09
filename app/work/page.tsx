@@ -6,7 +6,7 @@ import { WorkHeader } from './WorkHeader';
 
 export const metadata = pageMetadata(
   'Work',
-  'Selected work from Tasami — digital products, brand sites, and design systems.'
+  'Selected work from Madar — digital products, brand sites, and design systems.'
 );
 
 export default function ProjectsPage() {

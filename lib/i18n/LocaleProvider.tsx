@@ -25,17 +25,18 @@ type LocaleContextValue = {
 
 const LocaleContext = createContext<LocaleContextValue | null>(null);
 
-const STORAGE_KEY = 'tasami-locale';
+const STORAGE_KEY = 'madar-locale';
 
 function detectLocale(): Locale {
-  if (typeof window === 'undefined') return 'en';
+  if (typeof window === 'undefined') return 'ar';
   const saved = localStorage.getItem(STORAGE_KEY) as Locale | null;
   if (saved === 'en' || saved === 'ar') return saved;
-  return navigator.language.startsWith('ar') ? 'ar' : 'en';
+  // Default to Arabic unless browser is strictly English
+  return navigator.language.startsWith('en') ? 'en' : 'ar';
 }
 
 export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>('en');
+  const [locale, setLocaleState] = useState<Locale>('ar');
   const [ready, setReady] = useState(false);
 
   useEffect(() => {

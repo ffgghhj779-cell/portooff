@@ -104,8 +104,8 @@ export type TranslationKeys = {
 export const translations: Record<Locale, TranslationKeys> = {
   en: {
     brand: {
-      name: 'Tasami',
-      nameAr: 'تسامي',
+      name: 'Madar',
+      nameAr: 'مدار',
       slogan: 'We build digital things that actually work.',
     },
     nav: {
@@ -133,7 +133,7 @@ export const translations: Record<Locale, TranslationKeys> = {
     story: {
       label: 'Who we are',
       heading: 'We started because bad websites bother us.',
-      body: 'Tasami was founded in Cairo in 2020 out of a simple frustration: too many businesses with genuine value were being let down by digital work that felt cheap, generic, or abandoned at the first sign of complexity.\n\nWe do not do templates, quick fixes, or hand-off packages. We stay involved until what we build is genuinely good — and we know the difference.',
+      body: 'Madar was founded in Cairo in 2020 out of a simple frustration: too many businesses with genuine value were being let down by digital work that felt cheap, generic, or abandoned at the first sign of complexity.\n\nWe do not do templates, quick fixes, or hand-off packages. We stay involved until what we build is genuinely good — and we know the difference.',
       cta: 'How we work',
     },
     marquee: 'Food & FMCG  ·  Real Estate  ·  SaaS & AI  ·  Agriculture & Export  ·  Industrial  ·  Beauty Tech  ·  Sports & Wellness  ·  E-commerce  ·  ',
@@ -188,7 +188,7 @@ export const translations: Record<Locale, TranslationKeys> = {
       navigate: 'Navigate',
       social: 'Follow us',
       privacy: 'Privacy Policy',
-      tagline: 'Tasami — Cairo, Egypt. Est. 2020.',
+      tagline: 'Madar — Cairo, Egypt. Est. 2020.',
     },
     menu: {
       tagline: 'Built in Cairo. Working across Egypt and the Gulf.',
@@ -232,8 +232,8 @@ export const translations: Record<Locale, TranslationKeys> = {
 
   ar: {
     brand: {
-      name: 'Tasami',
-      nameAr: 'تسامي',
+      name: 'Madar',
+      nameAr: 'مدار',
       slogan: 'نبني تجارب رقمية حقيقية.',
     },
     nav: {
@@ -249,7 +249,7 @@ export const translations: Record<Locale, TranslationKeys> = {
       line1: 'نبني مواقع وتطبيقات',
       line2: 'تليق بعلامتك التجارية.',
       subtitle:
-        'في تسامي، نبني حلولاً رقمية (مواقع، متاجر، وتطبيقات) تساعد الشركات على مضاعفة أرباحها وتسهيل وصولها للعملاء.',
+        'في مدار، نبني حلولاً رقمية (مواقع، متاجر، وتطبيقات) تساعد الشركات على مضاعفة أرباحها وتسهيل وصولها للعملاء.',
       cta: 'اكتشف أعمالنا',
       ctaSecondary: 'ابدأ محادثة',
     },
@@ -261,7 +261,7 @@ export const translations: Record<Locale, TranslationKeys> = {
     story: {
       label: 'من نحن',
       heading: 'انطلقنا من إيماننا بأن الرداءة الرقمية لا تليق بالعلامات الطموحة.',
-      body: 'تأسست تسامي في القاهرة عام 2020، من إحباط بسيط: كثير من الأعمال التي تملك قيمة حقيقية، تُخذل يومياً بتجارب رقمية رخيصة أو مكررة أو متروكة عند أول تعقيد.\n\nلا نعتمد على القوالب الجاهزة أو الحلول المؤقتة، ولا نكتفي بتسليم المشروع والرحيل. نلتزم بالعمل حتى نصل إلى نتيجة نفخر بها - فنحن ندرك تماماً معنى الجودة الحقيقية.',
+      body: 'تأسست مدار في القاهرة عام 2020، من إحباط بسيط: كثير من الأعمال التي تملك قيمة حقيقية، تُخذل يومياً بتجارب رقمية رخيصة أو مكررة أو متروكة عند أول تعقيد.\n\nلا نعتمد على القوالب الجاهزة أو الحلول المؤقتة، ولا نكتفي بتسليم المشروع والرحيل. نلتزم بالعمل حتى نصل إلى نتيجة نفخر بها - فنحن ندرك تماماً معنى الجودة الحقيقية.',
       cta: 'منهجيتنا',
     },
     marquee: 'غذاء ومستهلكات  ·  عقارات  ·  SaaS والذكاء الاصطناعي  ·  زراعة وتصدير  ·  صناعة  ·  تقنية تجميل  ·  رياضة وصحة  ·  تجارة إلكترونية  ·  ',
@@ -315,7 +315,7 @@ export const translations: Record<Locale, TranslationKeys> = {
       navigate: 'تصفح',
       social: 'تابعنا',
       privacy: 'سياسة الخصوصية',
-      tagline: 'تسامي — القاهرة، مصر. تأسست 2020.',
+      tagline: 'مدار — القاهرة، مصر. تأسست 2020.',
     },
     menu: {
       tagline: 'من القاهرة. نعمل عبر مصر والخليج.',

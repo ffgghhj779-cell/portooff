@@ -15,7 +15,7 @@ export const dict = {
       tag: 'Pioneering Digital Transcendence',
       title1: 'Empowering the Future with',
       title2: 'Elite Digital Craftsmanship.',
-      desc: 'Tasami architects next-generation web platforms, ultra-fast mobile applications, and intelligent AI automation for ambitious startups and scaling enterprises.',
+      desc: 'Madar architects next-generation web platforms, ultra-fast mobile applications, and intelligent AI automation for ambitious startups and scaling enterprises.',
       start: 'START A PROJECT',
       explore: 'EXPLORE WORK',
     },
@@ -53,8 +53,8 @@ export const dict = {
       ]
     },
     advantage: {
-      tag: 'Why Tasami?',
-      title: 'The Tasami Advantage',
+      tag: 'Why Madar?',
+      title: 'The Madar Advantage',
       desc: 'Built for ambitious startups and mid-to-large enterprises. We don\'t just write code; we engineer competitive advantages through elite digital craftsmanship.',
       a1_title: 'Uncompromising Code Quality',
       a1_desc: 'We write clean, strictly typed, and thoroughly tested code that scales seamlessly with your business.',
@@ -73,7 +73,7 @@ export const dict = {
       cta: 'LET\'S TALK',
       contact: 'Contact Us',
       email: 'Email',
-      rights: 'Tasami Digital Solutions. All Rights Reserved.',
+      rights: 'Madar Digital Solutions. All Rights Reserved.',
     }
   },
   ar: {
@@ -87,7 +87,7 @@ export const dict = {
       tag: 'ريادة في التفوق الرقمي',
       title1: 'نمكّن المستقبل من خلال',
       title2: 'حرفية رقمية نخبوية.',
-      desc: 'تسامي تصمم منصات ويب لجيل المستقبل، وتطبيقات هواتف فائقة السرعة، وأتمتة ذكاء اصطناعي للشركات الناشئة والمؤسسات الطموحة.',
+      desc: 'مدار تصمم منصات ويب لجيل المستقبل، وتطبيقات هواتف فائقة السرعة، وأتمتة ذكاء اصطناعي للشركات الناشئة والمؤسسات الطموحة.',
       start: 'ابدأ مشروعك',
       explore: 'استكشف أعمالنا',
     },
@@ -125,8 +125,8 @@ export const dict = {
       ]
     },
     advantage: {
-      tag: 'لماذا تسامي؟',
-      title: 'ميزة تسامي',
+      tag: 'لماذا مدار؟',
+      title: 'ميزة مدار',
       desc: 'صُممت للشركات الناشئة الطموحة والمؤسسات المتوسطة إلى الكبيرة. نحن لا نكتب الكود فقط؛ نحن نهندس ميزات تنافسية من خلال حرفية رقمية نخبوية.',
       a1_title: 'جودة كود لا تقبل المساومة',
       a1_desc: 'نكتب كودًا نظيفًا ومكتوبًا بدقة ومختبرًا بعناية يتوسع بسلاسة مع عملك.',
@@ -145,7 +145,7 @@ export const dict = {
       cta: 'لنتحدث',
       contact: 'اتصل بنا',
       email: 'البريد الإلكتروني',
-      rights: 'تسامي للحلول الرقمية. جميع الحقوق محفوظة.',
+      rights: 'مدار للحلول الرقمية. جميع الحقوق محفوظة.',
     }
   }
 };

@@ -44,7 +44,7 @@ export function Logo({ theme = 'dark', showSlogan = true, size = 'md' }: LogoPro
         {/* T Top Bar */}
         <rect x="5" y="6" width="30" height="6" rx="2.5" fill="currentColor" />
 
-        {/* Upward Arrow (Tasami / Elevation) */}
+        {/* Upward Arrow (Madar / Elevation) */}
         <path 
           d="M 9 28 L 20 14.5 L 31 28" 
           stroke="url(#t-grad)" 
