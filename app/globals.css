@@ -105,12 +105,16 @@ body {
   background-color: #141210;
   background-image: radial-gradient(circle at top center, rgba(184,151,106, 0.18), transparent 70%),
                     radial-gradient(circle at bottom right, rgba(184,151,106, 0.12), transparent 60%);
-  background-attachment: fixed;
+  /* ⚠️ background-attachment:fixed removed — destroys 60fps on all mobile browsers */
+  background-size: 100% 100%;
   color: #CFCAC2;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  /* Force GPU layer for the root body */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 .theme-dark {
@@ -329,8 +333,8 @@ body {
   }
 }
 
-/* Mobile: plain rendering — no GPU compositing layers */
-@media (max-width: 767px) {
+/* Mobile: ultra-smooth touch scroll optimizations */
+@media (max-width: 767px), (hover: none) and (pointer: coarse) {
   .project-image-inner,
   .service-image-inner,
   .blog-image-inner {
@@ -339,7 +343,7 @@ body {
     backface-visibility: visible;
   }
 
-  /* Disable mesh-glow heavy pseudo-element on mobile */
+  /* Disable heavy pseudo-element on mobile */
   .mesh-glow::before {
     display: none;
   }
@@ -349,6 +353,41 @@ body {
   .hero-subtitle-inner,
   .projects-heading-inner {
     transform: none;
+  }
+
+  /* Force native scroll feel — critical for 60fps on touch */
+  html, body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: none;
+  }
+
+  /* Prevent scroll jank on fixed/sticky elements */
+  .menu-overlay,
+  .menu-backdrop {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  /* Reduce GSAP animation distance on mobile for snappier feel */
+  .project-card {
+    transition: none !important;
+  }
+
+  /* Ensure images don't cause repaints during scroll */
+  img {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  /* Backdrop blur is expensive — reduce on mobile */
+  .backdrop-blur-md {
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+
+  .backdrop-blur-sm {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 }
 

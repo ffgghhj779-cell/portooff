@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SITE } from '@/lib/data/site';
 import { useLocale, useTranslations } from '@/lib/i18n/LocaleProvider';
+import { useDevice } from '@/components/DeviceProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,6 +24,7 @@ const socialLinks = [
 export function Footer() {
   const { locale } = useLocale();
   const t = useTranslations();
+  const { isMobile } = useDevice();
   const footerRef = useRef<HTMLElement>(null);
   const tellUsRef = useRef<HTMLAnchorElement>(null);
   const tellUsTextRef = useRef<HTMLSpanElement>(null);
@@ -36,47 +38,42 @@ export function Footer() {
       const tellUsText = tellUsTextRef.current;
       if (!footer) return;
 
-      gsap.from('.footer-reveal', {
-        y: 24,
-        opacity: 0,
-        duration: MOTION.reveal,
-        stagger: 0.08,
-        ease: MOTION.revealEase,
-        scrollTrigger: {
-          trigger: footer,
-          start: 'top 85%',
-          toggleActions: 'play none none none',
-        },
-      });
+      // Skip scroll-triggered reveal animations on mobile — they cause jank
+      if (!isMobile) {
+        gsap.from('.footer-reveal', {
+          y: 24,
+          opacity: 0,
+          duration: MOTION.reveal,
+          stagger: 0.08,
+          ease: MOTION.revealEase,
+          scrollTrigger: {
+            trigger: footer,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        });
 
-      gsap.from('.footer-cta-block', {
-        y: 32,
-        opacity: 0,
-        duration: MOTION.reveal,
-        ease: MOTION.revealEase,
-        scrollTrigger: {
-          trigger: footer,
-          start: 'top 88%',
-          toggleActions: 'play none none none',
-        },
-      });
+        gsap.from('.footer-cta-block', {
+          y: 32,
+          opacity: 0,
+          duration: MOTION.reveal,
+          ease: MOTION.revealEase,
+          scrollTrigger: {
+            trigger: footer,
+            start: 'top 88%',
+            toggleActions: 'play none none none',
+          },
+        });
+      }
 
       if (!tellUs || !tellUsText) return;
 
       const onEnter = () => {
-        gsap.to(tellUsText, {
-          color: '#ffffff',
-          duration: 0.35,
-          ease: 'expo.out',
-        });
+        gsap.to(tellUsText, { color: '#ffffff', duration: 0.35, ease: 'expo.out' });
       };
 
       const onLeave = () => {
-        gsap.to(tellUsText, {
-          color: 'transparent',
-          duration: 0.35,
-          ease: 'expo.out',
-        });
+        gsap.to(tellUsText, { color: 'transparent', duration: 0.35, ease: 'expo.out' });
       };
 
       tellUs.addEventListener('mouseenter', onEnter);
@@ -88,7 +85,7 @@ export function Footer() {
         gsap.killTweensOf(tellUsText);
       };
     },
-    { scope: footerRef }
+    { scope: footerRef, dependencies: [isMobile] }
   );
 
   return (
@@ -96,8 +93,6 @@ export function Footer() {
       ref={footerRef}
       className="section-pad relative z-10 w-full overflow-hidden bg-[#050505] !pt-8 text-white"
     >
-      {/* No color blobs — pure matte black */}
-
       <div className="section-shell relative z-10 pb-12 pt-16 md:pb-16">
         {/* CTA — only shown when not on contact page */}
         {!isContactPage && (
@@ -185,11 +180,11 @@ export function Footer() {
             <Link href="/privacy" className="transition-colors hover:text-white/60">
               {t.footer.privacy}
             </Link>
-            <span>© {new Date().getFullYear()} {SITE.name}
+            <span>© {new Date().getFullYear()} {SITE.name}</span>
             <span className="hidden w-1 h-1 rounded-full bg-white/20 md:block" />
             <span className="text-[#B8976A]/80 font-medium">
               {locale === 'ar' ? 'إدارة مصطفى راضي' : 'Managed by Mustafa Rady'}
-            </span></span>
+            </span>
           </div>
           <p className="text-white/20">{t.footer.tagline}</p>
         </div>

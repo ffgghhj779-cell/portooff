@@ -6,15 +6,18 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { MOTION } from '@/lib/motion';
 import { useTranslations } from '@/lib/i18n/LocaleProvider';
+import { useDevice } from '@/components/DeviceProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function Belief() {
   const t = useTranslations();
+  const { isMobile } = useDevice();
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
     () => {
+      if (isMobile) return; // Skip on mobile
       gsap.from('.belief-reveal', {
         y: 24,
         opacity: 0,
@@ -28,7 +31,7 @@ export function Belief() {
         },
       });
     },
-    { scope: sectionRef }
+    { scope: sectionRef, dependencies: [isMobile] }
   );
 
   return (

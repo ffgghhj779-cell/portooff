@@ -11,7 +11,6 @@ import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useMotionPreference } from '@/components/MotionPreferenceProvider';
-import { MOTION } from '@/lib/motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,18 +35,22 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       return;
     }
 
+    const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
     document.documentElement.classList.add('lenis', 'lenis-smooth');
 
     const lenis = new Lenis({
-      duration: MOTION.lenisDuration,
-      lerp: MOTION.lenisLerp,
+      // On touch devices: snappier lerp so scroll feels immediate, not floaty
+      lerp: isTouch ? 0.14 : 0.08,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      syncTouch: true,
-      wheelMultiplier: MOTION.lenisWheelMultiplier,
-      touchMultiplier: MOTION.lenisTouchMultiplier,
+      // syncTouch: false — letting native touch handle momentum, Lenis just smooths the rest
+      syncTouch: false,
+      wheelMultiplier: 1.0,
+      // Higher touch multiplier = more responsive swipe
+      touchMultiplier: isTouch ? 2.2 : 1.55,
       infinite: false,
     });
 
@@ -70,9 +73,12 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     let resizeTimer: ReturnType<typeof setTimeout>;
     const onResize = () => {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => lenis.resize(), 200);
+      resizeTimer = setTimeout(() => {
+        lenis.resize();
+        ScrollTrigger.refresh();
+      }, 250);
     };
-    window.addEventListener('resize', onResize);
+    window.addEventListener('resize', onResize, { passive: true });
 
     return () => {
       window.removeEventListener('resize', onResize);

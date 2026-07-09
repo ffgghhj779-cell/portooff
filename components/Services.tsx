@@ -8,17 +8,19 @@ import Link from 'next/link';
 import { MagneticButton } from './MagneticButton';
 import { MOTION } from '@/lib/motion';
 import { useTranslations } from '@/lib/i18n/LocaleProvider';
+import { useDevice } from '@/components/DeviceProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function Services() {
   const t = useTranslations();
+  const { isMobile } = useDevice();
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
     () => {
       const section = sectionRef.current;
-      if (!section) return;
+      if (!section || isMobile) return; // Skip heavy animations on mobile
 
       gsap.from('.services-label', {
         y: 16,
@@ -69,7 +71,7 @@ export function Services() {
         },
       });
     },
-    { scope: sectionRef }
+    { scope: sectionRef, dependencies: [isMobile] }
   );
 
   return (
