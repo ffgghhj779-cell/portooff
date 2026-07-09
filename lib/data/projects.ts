@@ -85,7 +85,7 @@ export const PROJECTS: Project[] = [
     tags: ['Next.js', 'Tailwind', 'B2B Catalog'],
     year: '2023',
     liveUrl: 'https://eladawigroup.com/',
-    image: '/projects/eladawigroup.jpg',
+    image: cover('eladawigroup'),
     tall: false,
   },
   {
@@ -117,7 +117,7 @@ export const PROJECTS: Project[] = [
     tags: ['React', 'GSAP', 'Portfolio'],
     year: '2024',
     liveUrl: 'https://esteemmediaa.com/',
-    image: '/projects/esteemmedia.jpg',
+    image: cover('esteemmedia'),
     tall: true,
   },
   {
