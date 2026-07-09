@@ -103,16 +103,21 @@ html.lenis {
 
 body {
   background-color: #141210;
-  background-image: radial-gradient(circle at top center, rgba(184,151,106, 0.18), transparent 70%),
-                    radial-gradient(circle at bottom right, rgba(184,151,106, 0.12), transparent 60%);
-  /* ⚠️ background-attachment:fixed removed — destroys 60fps on all mobile browsers */
-  background-size: 100% 100%;
   color: #CFCAC2;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  /* Force GPU layer for the root body */
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(circle at top center, rgba(184,151,106, 0.18), transparent 70%),
+                    radial-gradient(circle at bottom right, rgba(184,151,106, 0.12), transparent 60%);
+  pointer-events: none;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
@@ -393,7 +398,6 @@ body {
 
 .custom-cursor {
   z-index: 9999;
-  mix-blend-mode: exclusion;
 }
 
 .custom-cursor-inner {
