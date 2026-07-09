@@ -24,38 +24,7 @@ function cover(slug: string): string {
 }
 
 export const PROJECTS: Project[] = [
-  {
-    slug: 'tasami-alwataniya',
-    name: {
-      en: 'Madar Al-Wataniah',
-      ar: 'Madar Al-Wataniah'
-    },
-    tagline: {
-      en: 'Multilingual national brand gateway',
-      ar: 'بوابة رقمية وطنية متعددة اللغات'
-    },
-    brand: {
-      en: 'Madar Al-Wataniah is a corporate entity requiring a multilingual digital presence to serve a diverse audience across Saudi Arabia and beyond.',
-      ar: 'كيان مؤسسي رائد يتطلب حضوراً رقمياً متعدد اللغات لخدمة شريحة واسعة ومتنوعة من الجمهور داخل المملكة العربية السعودية وخارجها.'
-    },
-    problem: {
-      en: 'The client needed a unified digital gateway that could seamlessly handle multiple languages (Arabic, English, Urdu, Tagalog) without compromising performance or user experience.',
-      ar: 'تطلب التحدي بناء بوابة رقمية موحدة قادرة على التعامل بسلاسة تامة مع لغات متعددة (العربية، الإنجليزية، الأردية، والتاغالوغية) دون أي مساومة على الأداء الفائق أو تجربة المستخدم.'
-    },
-    built: {
-      en: 'We developed a highly responsive, multilingual corporate portal. The architecture was built to instantly route users to their preferred language while maintaining a unified corporate identity across all localized versions.',
-      ar: 'طوّرنا بوابة مؤسسية سريعة الاستجابة ومتعددة اللغات، تستند إلى بنية برمجية متطورة توجّه المستخدمين فوراً إلى لغتهم المفضلة، مع الحفاظ على الهوية المؤسسية الموحدة في كافة النسخ المترجمة.'
-    },
-    outcome: {
-      en: 'A frictionless entry point for a global workforce and client base, ensuring accessibility and brand consistency across four distinct languages.',
-      ar: 'واجهة رقمية انسيابية توفر نقطة وصول سهلة لقوة عاملة عالمية وقاعدة عملاء متنوعة، مما يضمن سهولة الاستخدام واتساق هوية العلامة التجارية عبر أربع لغات مختلفة.'
-    },
-    tags: ['Corporate', 'i18n', 'Brand'],
-    year: '2025',
-    liveUrl: 'https://alwataniyagroup.com',
-    image: '/projects/tasami-alwataniya.jpg',
-    tall: false,
-  },
+
   {
     slug: 'eladawigroup',
     name: {
@@ -443,19 +412,19 @@ export const PROJECTS: Project[] = [
   {
     slug: 'tasami-industrial',
     name: {
-      en: 'Madar Industrial',
-      ar: 'Madar Industrial'
+      en: 'Tasami Industrial',
+      ar: 'Tasami Industrial'
     },
     tagline: {
       en: 'Saudi clinker supply — MENA export',
       ar: 'توريد الكلينكر السعودي ותصدير للشرق الأوسط'
     },
     brand: {
-      en: 'Madar Industrial is a major player in the Saudi industrial manufacturing sector, specializing in the export and supply of premium clinker and cement products.',
+      en: 'Tasami Industrial is a major player in the Saudi industrial manufacturing sector, specializing in the export and supply of premium clinker and cement products.',
       ar: 'ركيزة أساسية في قطاع التصنيع الصناعي السعودي، تتخصص في تصدير وتوريد منتجات الكلينكر والأسمنت الفاخرة.'
     },
     problem: {
-      en: 'The industrial sector often suffers from outdated, clunky digital footprints. Madar Industrial needed a modern platform to facilitate massive B2B international supply chain logistics.',
+      en: 'The industrial sector often suffers from outdated, clunky digital footprints. Tasami Industrial needed a modern platform to facilitate massive B2B international supply chain logistics.',
       ar: 'غالباً ما يتسم الحضور الرقمي للقطاع الصناعي بالجمود والتقادم. احتاجت الشركة إلى منصة عصرية تُسهّل إدارة العمليات اللوجستية الضخمة لسلاسل التوريد الدولية (B2B).'
     },
     built: {
