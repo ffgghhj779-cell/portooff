@@ -16,7 +16,7 @@ export function Navbar({ variant = 'auto' }: NavbarProps) {
   const isLight =
     variant === 'light' || pathname === '/contact' || pathname === '/privacy';
 
-  const textClass = isLight ? 'text-black' : 'text-white mix-blend-difference';
+  const textClass = 'text-white';
 
   return (
     <nav className="pointer-events-none fixed inset-x-0 top-0 z-50 px-4 py-4 sm:px-6 sm:py-6 md:px-12">

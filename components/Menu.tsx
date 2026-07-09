@@ -126,7 +126,7 @@ export function Menu() {
       <button
         type="button"
         onClick={toggleMenu}
-        className="magnetic fixed top-4 end-4 z-[70] flex min-h-[44px] min-w-[44px] flex-col items-center justify-center gap-2 p-2 text-white mix-blend-difference sm:top-6 sm:end-6 md:end-12"
+        className="magnetic fixed top-4 end-4 z-[70] flex min-h-[44px] min-w-[44px] flex-col items-center justify-center gap-2 p-2 text-white sm:top-6 sm:end-6 md:end-12"
         aria-label={isOpen ? t.menu.close : t.menu.open}
         aria-expanded={isOpen}
       >

@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import {
   createContext,
@@ -36,20 +36,6 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       return;
     }
 
-    // ── Mobile: skip Lenis entirely — native scroll is hardware-accelerated ──
-    const isMobile = window.matchMedia('(max-width: 767px)').matches;
-    const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-
-    if (isMobile || isTouch) {
-      // Let ScrollTrigger work with native scroll on mobile
-      ScrollTrigger.config({ ignoreMobileResize: true });
-      ScrollTrigger.normalizeScroll(false);
-      document.documentElement.classList.remove('lenis', 'lenis-smooth');
-      setLenisInstance(null);
-      return;
-    }
-
-    // ── Desktop: full Lenis smooth scroll ──
     document.documentElement.classList.add('lenis', 'lenis-smooth');
 
     const lenis = new Lenis({
@@ -59,7 +45,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      syncTouch: false,
+      syncTouch: true,
       wheelMultiplier: MOTION.lenisWheelMultiplier,
       touchMultiplier: MOTION.lenisTouchMultiplier,
       infinite: false,
