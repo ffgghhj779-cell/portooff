@@ -3,6 +3,7 @@ import { Alexandria, Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import { ClientProviders } from '@/components/ClientProviders';
 import { baseMetadata } from '@/lib/metadata';
+import { WhatsAppWidget } from '@/components/WhatsAppWidget';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -56,6 +57,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <ClientProviders>{children}</ClientProviders>
+        <WhatsAppWidget />
       </body>
     </html>
   );

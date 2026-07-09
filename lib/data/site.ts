@@ -6,7 +6,7 @@ export const SITE = {
   description:
     'We help serious brands across Egypt and the Gulf grow by designing and developing premium websites, e-commerce stores, and digital applications.',
   url: 'https://portooff.vercel.app',
-  phone: '01144003490',
+  phone: '+966559962847',
   email: 'mustafaradyialy@gmail.com',
   location: 'Cairo, Egypt',
   social: {
